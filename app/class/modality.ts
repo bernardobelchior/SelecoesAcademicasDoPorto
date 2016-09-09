@@ -19,6 +19,14 @@ export class Modality {
       return this.gender;
     }
 
+    public getGenderToString() : string {
+      if(this.gender==Gender.MALE){
+        return 'Masculino';
+      }else{
+        return 'Feminino';
+      }
+    }
+
     public getId() : number {
       return this.id;
     }
