@@ -30,9 +30,13 @@ export class FavoritesService {
     public removeFavorite(favorite: Favorite): boolean {
         return this.favorites.remove(favorite);
     }
+
+    public getFavorites() : Set<Favorite> {
+      return this.favorites;
+    }
 }
 
-class Favorite {
+export class Favorite {
     constructor(private studentsAssociationId: number, private modalityId: number) {
 
     }
