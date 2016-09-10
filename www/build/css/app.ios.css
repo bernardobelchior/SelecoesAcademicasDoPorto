@@ -9375,8 +9375,8 @@ body {
   height: 1vh; }
 
 .right-arrow {
-  width: 50%;
-  height: 50%;
+  width: 5vh;
+  height: 5vh;
   -webkit-align-content: right;
   -ms-flex-line-pack: right;
   align-content: right;
@@ -9413,44 +9413,44 @@ body {
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif; }
 
 .image-left {
-  width: 100%;
-  height: 100%;
-  -webkit-align-content: left;
-  -ms-flex-line-pack: left;
-  align-content: left;
-  display: block;
+  width: 8vh;
+  height: 8vh;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: inherit;
   margin: auto; }
 
 .image2-left {
-  width: 100%;
-  height: 100%;
-  -webkit-align-content: left;
-  -ms-flex-line-pack: left;
-  align-content: left;
-  display: block;
+  width: 8vh;
+  height: 8vh;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: inherit;
   margin: auto; }
 
 .image-right {
-  width: 100%;
-  height: 100%;
-  -webkit-align-content: right;
-  -ms-flex-line-pack: right;
-  align-content: right;
-  display: block;
+  width: 8vh;
+  height: 8vh;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: inherit;
   margin: auto; }
 
 .image2-right {
-  width: 100%;
-  height: 100%;
-  -webkit-align-content: left;
-  -ms-flex-line-pack: left;
-  align-content: left;
-  display: block;
+  width: 8vh;
+  height: 8vh;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: inherit;
   margin: auto; }
 
 .image2-vs {
-  width: 35%;
-  height: 100%;
+  width: 10vh;
+  height: 10vh;
   -webkit-align-content: center;
   -ms-flex-line-pack: center;
   align-content: center;

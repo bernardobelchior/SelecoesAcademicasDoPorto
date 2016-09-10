@@ -6,10 +6,10 @@
             <ion-item *ngFor="let match of lastMatches" class="noBackground">
                 <ion-grid>
                     <ion-row center>
-                        <ion-col width-100>
+                          <ion-col width-100>
 
                             <ion-row center class="rowUltimos">
-                                <ion-col width-35>
+                                <ion-col width-30>
                                     <ion-img class="image-right" src="{{match.getFirstTeam().getSrcIcon()}}"></ion-img>
                                 </ion-col>
                                 <ion-col width-15>
@@ -25,7 +25,7 @@
                                         <ion-item class="styleScore noBackground">{{match.getSecondScore()}}</ion-item>
                                     </p>
                                 </ion-col>
-                                <ion-col width-35>
+                                <ion-col width-30>
                                     <ion-img class="image-left" src="{{match.getSecondTeam().getSrcIcon()}}"></ion-img>
                                 </ion-col>
                             </ion-row>
