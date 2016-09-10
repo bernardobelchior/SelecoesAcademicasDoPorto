@@ -1,26 +1,26 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{modality.getSport()}} - {{modality.getGenderToString()}}
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            {{modality.getFullName()}}
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-  <ion-card-header>
-    Equipas
-  </ion-card-header>
+    <ion-card>
+        <ion-card-header>
+            Equipas
+        </ion-card-header>
 
-  <ion-list>
-    <button *ngFor="let association of studentsAssociations" class="button button-assertive button-block">
-            <label (click)="openTeamPage(association)" class="icon-right ion-ios-arrow-forward"
+        <ion-list>
+            <button *ngFor="let association of studentsAssociations" (click)="openTeamPage(association)" class="button button-assertive button-block">
+            <label class="icon-right ion-ios-arrow-forward"
             style="align-items: center;">
-                  {{association}}
+                  {{association.getShortName()}}
               </label>
     </button>
 
-  </ion-list>
-</ion-card>
+        </ion-list>
+    </ion-card>
 
 </ion-content>

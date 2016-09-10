@@ -8,29 +8,20 @@ import {TeamDetailsPage} from '../teamDetails/teamDetails';
 
 
 @Component({
-    templateUrl: 'build/pages/modalitiesPage/modalitiesPage.html',
-    providers: [TestData]
+    templateUrl: 'build/pages/modalitiesPage/modalitiesPage.html'
 })
 export class ModalitiesPage {
     private modality: Modality;
-    private studentsAssociations: string[];
+    private studentsAssociations: StudentsAssociation[];
 
-    constructor(private navCtrl: NavController, private navParams: NavParams, private testData: TestData) {
-        this.modality=testData.getModalityById(navParams.get('id'));
-        console.log(this.modality.getSport());
-        for (var i=0; i < testData.getStudentsAssociations().length; i++){
-          for(var j=0; j < testData.getStudentsAssociations()[i].getTeams().length; j++){
-            if(testData.getStudentsAssociations()[i].getTeams()[j]==this.modality.getSport()){
-              this.studentsAssociations.push(testData.getStudentsAssociations()[i].getShortName());
-            }
-          }
-        }
-
+    constructor(private navCtrl: NavController, private navParams: NavParams) {
+        this.modality = TestData.getModalityById(navParams.get('id'));
+        this.studentsAssociations = TestData.getStudentsAssociationsWithModality(this.modality);
     }
 
-    public openTeamPage(team: Team) {
+    public openTeamPage(association: StudentsAssociation) {
         this.navCtrl.push(TeamDetailsPage, {
-            teamName: this.modality.getSport(), associationName: team
+            team: association.getTeamByModality(this.modality), association: association
         });
     }
 }

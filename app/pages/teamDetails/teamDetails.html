@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{teamName}} - {{associationName}}
+      {{association.getShortName() + " - " + team.getModalityFullName()}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,7 +13,6 @@
   </ion-card-header>
 
 
-</ion-card>
 <ion-list inset>
   <ion-item *ngFor="let player of players">
     {{player}}
