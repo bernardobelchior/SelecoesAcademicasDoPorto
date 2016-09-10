@@ -20,6 +20,8 @@ export class StudentAssociationDetailsPage {
 
     }
 
+
+
     public openTeamPage(team: Team) {
         this.navCtrl.push(TeamDetailsPage, {
             teamName: this.studentAssociation.getTeamByName(team.getModalityName()), associationName: this.studentAssociation.getShortName()

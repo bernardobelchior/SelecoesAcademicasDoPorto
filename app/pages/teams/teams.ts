@@ -7,28 +7,30 @@ import {StudentAssociationDetailsPage} from '../studentAssociationDetails/studen
 import {ModalitiesPage} from '../modalitiesPage/modalitiesPage';
 
 @Component({
-  templateUrl: 'build/pages/teams/teams.html',
-  providers : [TestData]
+    templateUrl: 'build/pages/teams/teams.html',
+    providers: [TestData]
 })
 export class TeamsPage {
-  private modalities:Modality[];
-  private studentAssociation: StudentsAssociation[];
+    private modalities: Modality[];
+    private studentAssociation: StudentsAssociation[];
 
-  constructor(private navCtrl: NavController, private testData: TestData) {
-    this.modalities = testData.getModalities();
-    this.studentAssociation = testData.getStudentsAssociations();
-  }
+    constructor(private navCtrl: NavController, private testData: TestData) {
+        this.modalities = testData.getModalities();
+        this.studentAssociation = testData.getStudentsAssociations();
+        this.testData.populateTeams();
+    }
 
-  public openStudentAssociationDetails(studentAssociation : StudentsAssociation){
-    this.navCtrl.push(StudentAssociationDetailsPage, {
-    name: studentAssociation.getShortName()
-  });
-  }
+    public openStudentAssociationDetails(studentAssociation: StudentsAssociation) {
+        this.navCtrl.push(StudentAssociationDetailsPage, {
+            name: studentAssociation.getShortName()
+        });
 
-  public openModalityDetails(modalities : Modality){
-    this.navCtrl.push(ModalitiesPage, {
-    id: modalities.getId()
-  });
-  }
+    }
+
+    public openModalityDetails(modalities: Modality) {
+        this.navCtrl.push(ModalitiesPage, {
+            id: modalities.getId()
+        });
+    }
 
 }

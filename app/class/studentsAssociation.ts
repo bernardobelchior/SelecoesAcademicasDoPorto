@@ -11,8 +11,9 @@ export class StudentsAssociation {
         this.name = fullName;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
+        this.activeModalities = new Set<Team>();
     }
-    
+
     public getFullName() {
         return this.fullName;
     }
@@ -26,8 +27,9 @@ export class StudentsAssociation {
 
     public getTeams() {
         var modalities: string[] = [];
+        var setIter = this.activeModalities.entries();
         for (var i = 0; i < this.activeModalities.size; i++) {
-            modalities.push(this.activeModalities.keys().return().value.getModalityName());
+            modalities.push(setIter.next().value[0].getModalityName());
         }
         return modalities;
     }

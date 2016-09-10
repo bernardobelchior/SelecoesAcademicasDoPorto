@@ -1,6 +1,7 @@
 import {Set} from 'typescript-collections';
 import {Modality, Gender} from '../class/modality';
 import {StudentsAssociation} from '../class/studentsAssociation.ts';
+import {Team} from '../class/team.ts';
 
 export class TestData {
     private static modalities: Modality[] = [
@@ -15,7 +16,7 @@ export class TestData {
         new StudentsAssociation('aefep', 'aefep'),
         new StudentsAssociation('aeisep', 'aeisep'),
         new StudentsAssociation('aefadeup', 'aefadeup')
-    ];;
+    ];
 
     public getStudensAssociations(){
       return TestData.studentsAssociations;
@@ -33,13 +34,25 @@ export class TestData {
     }
 
     public getModalityById(id : number){
-
           return TestData.modalities[id];
+    }
 
+    public getStudentsAssociationsById(id: number){
+      return TestData.studentsAssociations[id];
     }
 
     public getStudentsAssociations(){
       return TestData.studentsAssociations;
+    }
+
+    public populateTeams(){
+      var data:any = TestData.getGames();
+      for(var i=0; i < data.length; i++ ){
+        console.log(this.getStudentsAssociationsById(data[i].team1));
+          this.getStudentsAssociationsById(data[i].team1).addTeam(new Team(this.getModalityById[data[i].modality]));
+          this.getStudentsAssociationsById(data[i].team2).addTeam(new Team(this.getModalityById[data[i].modality]));
+      }
+
     }
 
 
