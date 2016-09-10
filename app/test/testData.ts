@@ -17,35 +17,28 @@ export class TestData {
         new StudentsAssociation('aefadeup', 'aefadeup')
     ];;
 
-    constructor() {
-    }
-
-
-    public static getStudensAssociations(){
-      return this.studentsAssociations;
-    }
-
     public getModalities(){
-      return this.modalities;
+      return TestData.modalities;
     }
 
     public getStudentsAssociationsByName(name: string){
-      for(var i=0; i<this.studentsAssociations.length; i++){
-        if(this.studentsAssociations[i].getShortName()==name){
-          return this.studentsAssociations[i];
+      for(var i=0; i<TestData.studentsAssociations.length; i++){
+        if(TestData.studentsAssociations[i].getShortName()==name){
+          return TestData.studentsAssociations[i];
         }
       }
     }
 
     public getModalityById(id : number){
 
-          return this.modalities[id];
+          return TestData.modalities[id];
 
     }
 
     public getStudentsAssociations(){
-      return this.studentsAssociations;
+      return TestData.studentsAssociations;
     }
+
 
     public static getGames(): any {
         return [
