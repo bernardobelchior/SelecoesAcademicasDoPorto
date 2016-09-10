@@ -11,10 +11,10 @@ export class TestData {
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
-        new StudentsAssociation('aefeup', 'aefeup'),
-        new StudentsAssociation('aefep', 'aefep'),
-        new StudentsAssociation('aeisep', 'aeisep'),
-        new StudentsAssociation('aefadeup', 'aefadeup')
+        new StudentsAssociation('aefeup', 'aefeup',"images/aefeup.png"),
+        new StudentsAssociation('aefep', 'aefep',"images/aefep.png"),
+        new StudentsAssociation('aeisep', 'aeisep',"images/aeisep.png"),
+        new StudentsAssociation('aefadeup', 'aefadeup',"images/aefadeup.png")
     ];;
 
     public getStudensAssociations(){

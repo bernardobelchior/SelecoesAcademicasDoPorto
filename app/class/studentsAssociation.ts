@@ -3,16 +3,23 @@ import {Team} from './team';
 
 export class StudentsAssociation {
     public name: string;
+    private srcIcon: string;
     private static nextId: number;
     private id: number;
     private activeModalities: Set<Team>;
 
-    constructor(private fullName: string, private shortName: string) {
+    constructor(private fullName: string, private shortName: string, private scrIcon: string) {
         this.name = fullName;
+        this.srcIcon=scrIcon;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
     }
-    
+
+    public getSrcIcon(){
+      console.log(this.srcIcon);
+      return this.srcIcon;
+    }
+
     public getFullName() {
         return this.fullName;
     }

@@ -13,12 +13,28 @@
             <ion-card>
                 <ion-grid>
                     <ion-row>
-                        <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
-                        <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
+                        <ion-col width-25>
+                            <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                        </ion-col>
+                        <ion-col width-25>
+                            <p>
+                                <ion-item class="styleScore">{{result.score1}}</ion-item>
+                            </p>
+                        </ion-col>
+                        <ion-col width-25>
+                            <p>
+                                <ion-item class="styleScore">{{result.score2}}</ion-item>
+                            </p>
+                        </ion-col>
+                        <ion-col width-25>
+                            <ion-img class="image-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                        </ion-col>
                     </ion-row>
                     <ion-row>
-                      <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
-                      </ion-row>
+                        <ion-col class="textInfoLocal">
+                            <font size="2">{{result.local}}</font>
+                        </ion-col>
+                    </ion-row>
                 </ion-grid>
             </ion-card>
         </ion-item>
@@ -28,15 +44,21 @@
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
         <ion-item *ngFor="let result of nextMatches">
             <ion-card>
-              <ion-grid>
-                  <ion-row>
-                      <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
-                      <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
+                <ion-grid>
+                    <ion-row>
+                      <ion-col width-50>
+                          <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                      </ion-col>
+                      <ion-col width-50>
+                          <ion-img class="image-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                      </ion-col>
                     </ion-row>
-              </ion-grid>
+                    <ion-row>
+                        <ion-col class="textInfoLocal">
+                            <font size="2">{{result.local}}</font>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
             </ion-card>
         </ion-item>
     </ion-card>

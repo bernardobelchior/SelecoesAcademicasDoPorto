@@ -1,25 +1,37 @@
-.matches {
+.matches {}
+
+.header1 {
+    text-align: center;
+    color: #a74b59;
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
 }
 
-.header1{
-  text-align: center;
-  color: #a74b59;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: bold;
-}
-.textInfoLeft{
-  text-align: center;
-  font-size: 4;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+.styleScore {
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20;
+    text-align: center;
+    font-weight: bold;
 }
 
-.textInfoRight{
-  text-align: center;
-  font-size: 4;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+.textInfoLocal {
+    text-align: center;
+    font-size: 6;
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.textInfoLocal{
-  text-align: center;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+.image-left {
+    width: 100%;
+    height: 100%;
+    align-content: left;
+    display: block;
+    margin: auto;
+}
+
+.image-right {
+    width: 100%;
+    height: 100%;
+    align-content: right;
+    display: block;
+    margin: auto;
 }

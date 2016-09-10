@@ -74,13 +74,19 @@ exports.Modality = Modality;
 },{}],3:[function(require,module,exports){
 "use strict";
 var StudentsAssociation = (function () {
-    function StudentsAssociation(fullName, shortName) {
+    function StudentsAssociation(fullName, shortName, scrIcon) {
         this.fullName = fullName;
         this.shortName = shortName;
+        this.scrIcon = scrIcon;
         this.name = fullName;
+        this.srcIcon = scrIcon;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
     }
+    StudentsAssociation.prototype.getSrcIcon = function () {
+        console.log(this.srcIcon);
+        return this.srcIcon;
+    };
     StudentsAssociation.prototype.getFullName = function () {
         return this.fullName;
     };
@@ -122,9 +128,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var CalendarPage = (function () {
-    function CalendarPage(navCtrl) {
-        this.navCtrl = navCtrl;
+    function CalendarPage(navController) {
+        this.navController = navController;
+        console.log("Entrei");
+        this.date = new Date();
+        this.initDaysOffTheMonth();
     }
+    CalendarPage.prototype.initDaysOffTheMonth = function () {
+        this.date.setDate(1);
+        this.date.getDay();
+        this.daysInPreviousMonth = (new Date(this.date.getFullYear(), this.date.getMonth() - 1, 0)).getDate();
+        this.daysInTheAtualMonth = (new Date(this.date.getFullYear(), this.date.getMonth(), 0)).getDate();
+        console.log(this.date.getMonth);
+        this.previousMonthDays = [];
+        this.restOfTheDays = [];
+        var counter = 0;
+        this.restOfTheDays[counter] = [];
+        for (var i = this.date.getDay() - 1; i >= 0; i--) {
+            this.restOfTheDays[0][counter] = this.daysInPreviousMonth - i;
+            counter++;
+        }
+        var day = 1;
+        for (var i = this.date.getDay(); i < 7; i++) {
+            this.restOfTheDays[0][i] = day;
+            day++;
+        }
+        for (var i = 1; i < 7; i++) {
+            this.restOfTheDays[i] = [];
+            for (var j = 0; j < 7; j++) {
+                this.restOfTheDays[i][j] = day;
+                if (day < this.daysInTheAtualMonth)
+                    day++;
+                else
+                    day = 1;
+            }
+        }
+    };
+    CalendarPage.prototype.nextMonth = function () {
+        this.date.setMonth(this.date.getMonth() + 1);
+        this.initDaysOffTheMonth();
+        console.log("Carregaram no botão");
+    };
+    CalendarPage.prototype.monthBefore = function () {
+        console.log("Carregaram no botão");
+        this.date.setMonth(this.date.getMonth() - 1);
+        this.initDaysOffTheMonth();
+    };
     CalendarPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/calendar/calendar.html'
@@ -155,6 +204,7 @@ var MatchesPage = (function () {
         this.viewCtrl = viewCtrl;
         this.navCtrl = navCtrl;
         this.testData = testData;
+        this.start = false;
         this.lastMatches = [];
         this.nextMatches = [];
         this.getGames = testData.getStudensAssociations();
@@ -176,7 +226,9 @@ var MatchesPage = (function () {
     };
     MatchesPage.prototype.ionViewWillEnter = function () {
         console.log(new Date());
-        this.loadGames();
+        if (!this.start)
+            this.loadGames();
+        this.start = true;
         console.log(this.nextMatches);
         console.log(this.lastMatches);
     };
@@ -507,10 +559,10 @@ var TestData = (function () {
         new modality_1.Modality('Masculino', modality_1.Gender.MALE)
     ];
     TestData.studentsAssociations = [
-        new studentsAssociation_ts_1.StudentsAssociation('aefeup', 'aefeup'),
-        new studentsAssociation_ts_1.StudentsAssociation('aefep', 'aefep'),
-        new studentsAssociation_ts_1.StudentsAssociation('aeisep', 'aeisep'),
-        new studentsAssociation_ts_1.StudentsAssociation('aefadeup', 'aefadeup')
+        new studentsAssociation_ts_1.StudentsAssociation('aefeup', 'aefeup', "images/aefeup.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('aefep', 'aefep', "images/aefep.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('aeisep', 'aeisep', "images/aeisep.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('aefadeup', 'aefadeup', "images/aefadeup.png")
     ];
     return TestData;
 }());
