@@ -9,12 +9,12 @@
 <ion-content>
   <ion-card>
   <ion-card-header>
-    Associações de Estudatens
+    Associações de Estudantes
   </ion-card-header>
 
   <ion-list>
-    <button *ngFor="let ae of studentAssociation" class="button button-assertive button-block">
-            <label (click)="openStudentAssociationDetails(ae)" class="icon-right ion-ios-arrow-forward"
+    <button *ngFor="let ae of studentAssociation" (click)="openStudentAssociationDetails(ae)" class="button button-assertive button-block">
+            <label class="icon-right ion-ios-arrow-forward"
             style="align-items: center;">
                   {{ae.getShortName()}}
               </label>
@@ -29,10 +29,10 @@
 </ion-card-header>
 
 <ion-list>
-  <button *ngFor="let modality of modalities" class="button button-assertive button-block">
-            <label (click)="openModalityDetails(modality)" class="icon-right ion-ios-arrow-forward"
+  <button *ngFor="let modality of modalities" (click)="openModalityDetails(modality)" class="button button-assertive button-block">
+            <label class="icon-right ion-ios-arrow-forward"
             style="align-items: center;">
-                  {{modality.getSport()}} - {{modality.getGenderToString()}}
+                  {{modality.getFullName()}}
               </label>
   </button>
 
