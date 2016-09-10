@@ -13,19 +13,19 @@
 
             <header>
 
-              <!--  <tr><h2>{{date.toLocaleDateString("pt-PT", {month: "long"})}}</h2></tr>
+                <!--  <tr><h2>{{date.toLocaleDateString("pt-PT", {month: "long"})}}</h2></tr>
                 <tr><h3><font size="2"> {{date.getFullYear()}}</font></h3></tr> -->
                 <p>
-                  <h2> {{date.toLocaleDateString("pt-PT", {month: "long"})}} </h2>
+                    <h2> {{date.toLocaleDateString("pt-PT", {month: "long"})}} </h2>
 
-                <p>
-                  <h3> {{date.getFullYear()}} </h3>
+                    <p>
+                        <h3> {{date.getFullYear()}} </h3>
 
 
-                <button   fab fab-left clear  fab-top (click)="monthBefore()">
+                        <button fab fab-left clear fab-top (click)="monthBefore()">
                     <ion-icon name="arrow-back"></ion-icon>
                   </button>
-                <button fab fab-right fab-top clear (click)="nextMonth()">
+                        <button fab fab-right fab-top clear (click)="nextMonth()">
                   <ion-icon name="arrow-forward"></ion-icon>
                 </button>
 
@@ -38,13 +38,13 @@
 
                     <tr>
 
-                        <td>Su</td>
-                        <td>Mo</td>
-                        <td>Tu</td>
-                        <td>We</td>
-                        <td>Th</td>
-                        <td>Fr</td>
-                        <td>Sa</td>
+                        <td>Dom</td>
+                        <td>Seg</td>
+                        <td>Ter</td>
+                        <td>Qua</td>
+                        <td>Qui</td>
+                        <td>Sex</td>
+                        <td>Sáb</td>
 
                     </tr>
 
@@ -53,28 +53,52 @@
                 <tbody>
 
                     <tr>
-                      <!--  <td *ngFor="let day of previousMonthDays">{{day}}</td>-->
-                      <td *ngFor="let day of restOfTheDays[0]">{{day}}</td>
+                        <td *ngFor="let day of days[0]" (click)="clicked(day)">
+                            <div *ngIf="!day.getCurrentMonth()" class=prev-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth()" class=color>
+                                {{day.getDay()}}
+                            </div>
 
+                        </td>
+                        <!--  <td *ngFor="let day of restOfTheDays[0]">{{day}}</td>-->
                     </tr>
                     <tr>
+                        <td *ngFor="let day of days[1]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[2]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[3]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[4]" (click)="clicked(day)">
+                            <div *ngIf="!day.getCurrentMonth()" class=next-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth()" class=color>
+                                {{day.getDay()}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[5]" (click)="clicked(day)">
+                          <div *ngIf="!day.getCurrentMonth()" class=next-month>
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="day.getCurrentMonth()" class=color>
+                              {{day.getDay()}}
+                          </div>
+                        </td>
+                    </tr>
 
-                        <td *ngFor="let day of restOfTheDays[1]">{{day}}</td>
-                    </tr>  
-                    <tr>
-                        <td *ngFor="let day of restOfTheDays[2]">{{day}}</td>
-                    </tr>
-
-                    <tr>
-                        <td *ngFor="let day of restOfTheDays[3]">{{day}}</td>
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of restOfTheDays[4]">{{day}}</td>
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of restOfTheDays[5]">{{day}}</td>
-                    </tr>
-
+                    <div>
+                      <tr *ngIf=" click">
+                        {{day}}
+                      </tr>
+                    </div>
                 </tbody>
 
             </table>
