@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{teamName}} - {{associationName}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+  <ion-card-header>
+    Plantel
+  </ion-card-header>
+
+
+</ion-card>
+<ion-list inset>
+  <ion-item *ngFor="let player of players">
+    {{player}}
+  </ion-item>
+</ion-list>
+</ion-card>
+</ion-content>

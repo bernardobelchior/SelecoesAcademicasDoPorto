@@ -3,24 +3,45 @@ import {Modality, Gender} from '../class/modality';
 import {StudentsAssociation} from '../class/studentsAssociation.ts';
 
 export class TestData {
-    private modalities: Modality[];
-    private studentsAssociations: StudentsAssociation[];
+    private static modalities: Modality[] = [
+        new Modality('Futebol', Gender.MALE),
+        new Modality('Voleibol', Gender.MALE),
+        new Modality('Basquetebol', Gender.FEMALE),
+        new Modality('Masculino', Gender.MALE)
+    ];
 
-    constructor() {
-        this.modalities = [
-          new Modality('Futebol', Gender.MALE),
-          new Modality('Voleibol', Gender.MALE),
-          new Modality('Basquetebol', Gender.FEMALE),
-          new Modality('Masculino', Gender.MALE)
-        ];
+    private static studentsAssociations: StudentsAssociation[] = [
+        new StudentsAssociation('aefeup', 'aefeup'),
+        new StudentsAssociation('aefep', 'aefep'),
+        new StudentsAssociation('aeisep', 'aeisep'),
+        new StudentsAssociation('aefadeup', 'aefadeup')
+    ];;
 
-        this.studentsAssociations = [
-          new StudentsAssociation('aefeup', 'aefeup'),
-          new StudentsAssociation('aefep', 'aefep'),
-          new StudentsAssociation('aeisep', 'aeisep'),
-          new StudentsAssociation('aefadeup', 'aefadeup')
-        ];
+    public getStudensAssociations(){
+      return TestData.studentsAssociations;
     }
+    public getModalities(){
+      return TestData.modalities;
+    }
+
+    public getStudentsAssociationsByName(name: string){
+      for(var i=0; i<TestData.studentsAssociations.length; i++){
+        if(TestData.studentsAssociations[i].getShortName()==name){
+          return TestData.studentsAssociations[i];
+        }
+      }
+    }
+
+    public getModalityById(id : number){
+
+          return TestData.modalities[id];
+
+    }
+
+    public getStudentsAssociations(){
+      return TestData.studentsAssociations;
+    }
+
 
     public static getGames(): any {
         return [
@@ -31,7 +52,7 @@ export class TestData {
                 score2: '0',
                 local: 'Pavilhão Luís Falcão',
                 modality: 0,
-                date: '08/09/2016',
+                date: new Date(2016, 8, 6),
                 time: '18:30'
             },
             {
@@ -53,7 +74,7 @@ export class TestData {
                 ],
                 local: 'Pavilhão Luís Falcão',
                 modality: 1,
-                date: '11/09/2016',
+                date: new Date(2016, 9, 11),
                 time: '18:30'
             },
             {
@@ -63,7 +84,7 @@ export class TestData {
                 score2: null,
                 local: 'Pavilhão Luís Falcão',
                 modality: 2,
-                date: '12/09/2016',
+                date: new Date(2016, 9, 12),
                 time: '19:30'
             },
             {
@@ -73,7 +94,7 @@ export class TestData {
                 score2: null,
                 local: 'Pavilhão Luís Falcão',
                 modality: 3,
-                date: '11/09/2016',
+                date: new Date(2016, 9, 15),
                 time: '18:30'
             }
         ];
