@@ -1,4 +1,3 @@
-import {Set} from 'typescript-collections';
 import {Modality, Gender} from '../class/modality';
 import {StudentsAssociation} from '../class/studentsAssociation.ts';
 import {Team} from '../class/team.ts';
@@ -12,10 +11,10 @@ export class TestData {
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
-        new StudentsAssociation('aefeup', 'aefeup'),
-        new StudentsAssociation('aefep', 'aefep'),
-        new StudentsAssociation('aeisep', 'aeisep'),
-        new StudentsAssociation('aefadeup', 'aefadeup')
+        new StudentsAssociation('AEFEUP', 'AEFEUP'),
+        new StudentsAssociation('AEFEP', 'AEFEP'),
+        new StudentsAssociation('AEISEP', 'AEISEP'),
+        new StudentsAssociation('AEFADEUP', 'AEFADEUP')
     ];
 
     public static getStudentsAssociations() {
@@ -43,10 +42,9 @@ export class TestData {
     }
 
     public static populateTeams() {
-        var data: any = TestData.getGames();
-        for (var i = 0; i < data.length; i++) {
-            TestData.getStudentsAssociationsById(data[i].team1).addTeam(new Team(TestData.getModalityById(data[i].modality)));
-            TestData.getStudentsAssociationsById(data[i].team2).addTeam(new Team(TestData.getModalityById(data[i].modality)));
+        for (let game of TestData.getGames()) {
+            this.studentsAssociations[game.team1].addTeam(new Team(this.modalities[game.modality]));
+            this.studentsAssociations[game.team2].addTeam(new Team(this.modalities[game.modality]));
         }
     }
 
@@ -55,7 +53,6 @@ export class TestData {
 
         for (let studentAssociation of this.studentsAssociations) {
             if (studentAssociation.hasModality(modality)) {
-                console.log(studentAssociation);
                 studentsAssociationsWithModality.push(studentAssociation);
             }
         }

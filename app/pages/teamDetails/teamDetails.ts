@@ -15,8 +15,6 @@ export class TeamDetailsPage {
     constructor(private navCtrl: NavController, private navParams: NavParams) {
         this.team = navParams.get('team');
         this.association = navParams.get('association');
-        //this.players = this.team.getPlayers();
-        console.log(this.team);
-        //console.log(this.players);
+        this.players = this.team.getPlayers();
     }
 }
