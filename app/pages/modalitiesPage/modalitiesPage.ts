@@ -18,13 +18,13 @@ export class ModalitiesPage {
     constructor(private navCtrl: NavController, private navParams: NavParams, private testData: TestData) {
         this.modality=testData.getModalityById(navParams.get('id'));
         console.log(this.modality.getSport());
-        for (var i=0; i < testData.getStudentsAssociations().length; i++){
+      /*  for (var i=0; i < testData.getStudentsAssociations().length; i++){
           for(var j=0; j < testData.getStudentsAssociations()[i].getTeams().length; j++){
             if(testData.getStudentsAssociations()[i].getTeams()[j]==this.modality.getSport()){
               this.studentsAssociations.push(testData.getStudentsAssociations()[i].getShortName());
             }
           }
-        }
+        }*/
 
     }
 

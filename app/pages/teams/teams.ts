@@ -22,7 +22,7 @@ export class TeamsPage {
 
     public openStudentAssociationDetails(studentAssociation: StudentsAssociation) {
         this.navCtrl.push(StudentAssociationDetailsPage, {
-            name: studentAssociation.getShortName()
+            id: studentAssociation.getId()
         });
 
     }
