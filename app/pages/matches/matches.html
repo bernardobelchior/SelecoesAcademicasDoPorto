@@ -6,13 +6,13 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding class="matches">
+<ion-content padding class="matches background" scroll="false">
     <ion-card>
-        <ion-card-header class="header1">Últimos Jogos</ion-card-header>
-        <ion-item *ngFor="let result of lastMatches">
-            <ion-card>
+        <ion-card-header class="header1" >Últimos Jogos</ion-card-header>
+        <ion-list inset>
+            <ion-item *ngFor="let result of lastMatches">
                 <ion-grid>
-                    <ion-row>
+                    <ion-row class="row">
                         <ion-col width-25>
                             <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
                         </ion-col>
@@ -36,37 +36,39 @@
                         </ion-col>
                     </ion-row>
                 </ion-grid>
-            </ion-card>
-        </ion-item>
+            </ion-item>
+        </ion-list>
     </ion-card>
     <ion-row></ion-row>
     <ion-card>
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
-        <ion-item *ngFor="let result of nextMatches">
-            <ion-card>
-                <ion-grid>
-                    <ion-row>
+        <ion-list inset>
+          <ion-item *ngFor="let result of nextMatches">
+              <ion-grid>
+                  <ion-row class="row">
                       <ion-col width-33>
                           <ion-img class="image2-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
                       </ion-col>
-                      <ion-col width-33 class="vsPhoto"> <ion-img src="images/vs.png"></ion-img></ion-col>
+                      <ion-col width-33 class="vsPhoto">
+                          <ion-img src="images/vs.png"></ion-img>
+                      </ion-col>
                       <ion-col width-33>
                           <ion-img class="image2-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
                       </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col class="textInfoLocal">
-                            <font size="2">{{result.local}}</font>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col class="textDate">
-                            <font size="2">{{result.date.getDay()}}/{{result.date.getMonth()}}/{{result.date.getFullYear()}}</font>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-card>
-        </ion-item>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col class="textInfoLocal">
+                          <font size="2">{{result.local}}</font>
+                      </ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col class="textDate">
+                          <font size="2">{{result.date.getDay()}}/{{result.date.getMonth()}}/{{result.date.getFullYear()}}</font>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-item>
+        </ion-list>
     </ion-card>
 
 </ion-content>
