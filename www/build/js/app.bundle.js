@@ -33,7 +33,6 @@ var MyApp = (function () {
 }());
 exports.MyApp = MyApp;
 ionic_angular_1.ionicBootstrap(MyApp);
-
 },{"./pages/tabs/tabs":5,"@angular/core":154,"ionic-angular":468,"ionic-native":495}],2:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -48,9 +47,52 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var CalendarPage = (function () {
-    function CalendarPage(navCtrl) {
-        this.navCtrl = navCtrl;
+    function CalendarPage(navController) {
+        this.navController = navController;
+        console.log("Entrei");
+        this.date = new Date();
+        this.initDaysOffTheMonth();
     }
+    CalendarPage.prototype.initDaysOffTheMonth = function () {
+        this.date.setDate(1);
+        this.date.getDay();
+        this.daysInPreviousMonth = (new Date(this.date.getFullYear(), this.date.getMonth() - 1, 0)).getDate();
+        this.daysInTheAtualMonth = (new Date(this.date.getFullYear(), this.date.getMonth(), 0)).getDate();
+        console.log(this.date.getMonth);
+        this.previousMonthDays = [];
+        this.restOfTheDays = [];
+        var counter = 0;
+        this.restOfTheDays[counter] = [];
+        for (var i = this.date.getDay() - 1; i >= 0; i--) {
+            this.restOfTheDays[0][counter] = this.daysInPreviousMonth - i;
+            counter++;
+        }
+        var day = 1;
+        for (var i = this.date.getDay(); i < 7; i++) {
+            this.restOfTheDays[0][i] = day;
+            day++;
+        }
+        for (var i = 1; i < 7; i++) {
+            this.restOfTheDays[i] = [];
+            for (var j = 0; j < 7; j++) {
+                this.restOfTheDays[i][j] = day;
+                if (day < this.daysInTheAtualMonth)
+                    day++;
+                else
+                    day = 1;
+            }
+        }
+    };
+    CalendarPage.prototype.nextMonth = function () {
+        this.date.setMonth(this.date.getMonth() + 1);
+        this.initDaysOffTheMonth();
+        console.log("Carregaram no botão");
+    };
+    CalendarPage.prototype.monthBefore = function () {
+        console.log("Carregaram no botão");
+        this.date.setMonth(this.date.getMonth() - 1);
+        this.initDaysOffTheMonth();
+    };
     CalendarPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/calendar/calendar.html'
@@ -60,7 +102,6 @@ var CalendarPage = (function () {
     return CalendarPage;
 }());
 exports.CalendarPage = CalendarPage;
-
 },{"@angular/core":154,"ionic-angular":468}],3:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -87,7 +128,6 @@ var MatchesPage = (function () {
     return MatchesPage;
 }());
 exports.MatchesPage = MatchesPage;
-
 },{"@angular/core":154,"ionic-angular":468}],4:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -114,7 +154,6 @@ var OptionsPage = (function () {
     return OptionsPage;
 }());
 exports.OptionsPage = OptionsPage;
-
 },{"@angular/core":154,"ionic-angular":468}],5:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -149,7 +188,6 @@ var TabsPage = (function () {
     return TabsPage;
 }());
 exports.TabsPage = TabsPage;
-
 },{"../calendar/calendar":2,"../matches/matches":3,"../options/options":4,"../teams/teams":6,"@angular/core":154}],6:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -176,7 +214,6 @@ var TeamsPage = (function () {
     return TeamsPage;
 }());
 exports.TeamsPage = TeamsPage;
-
 },{"@angular/core":154,"ionic-angular":468}],7:[function(require,module,exports){
 /**
  * @license
