@@ -1,10 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Jogos
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title class="header1">
+            Jogos
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding class="matches">
+    <ion-card>
+        <ion-card-header class="header1">Últimos Jogos</ion-card-header>
+        <ion-item *ngFor="let result of lastMatches">
+            <ion-card>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
+                        <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
+                      </ion-row>
+                </ion-grid>
+            </ion-card>
+        </ion-item>
+    </ion-card>
+    <ion-row></ion-row>
+    <ion-card>
+        <ion-card-header class="header1">Próximos Jogos</ion-card-header>
+        <ion-item *ngFor="let result of nextMatches">
+            <ion-card>
+              <ion-grid>
+                  <ion-row>
+                      <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
+                      <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
+                    </ion-row>
+              </ion-grid>
+            </ion-card>
+        </ion-item>
+    </ion-card>
+
 </ion-content>

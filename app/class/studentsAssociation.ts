@@ -25,6 +25,7 @@ export class StudentsAssociation {
         this.activeModalities.add(team);
     }
 
+<<<<<<< Updated upstream
     public getTeams(){
       var modalities:string[] = [];
       for(var i=0; i<this.activeModalities.size;i++){
@@ -39,5 +40,9 @@ export class StudentsAssociation {
         if(this.activeModalities.keys().return().value.getModalityName()==name)
           return this.activeModalities.keys().return().value;
       }
+=======
+    public getFullName(){
+      return this.fullName;
+>>>>>>> Stashed changes
     }
 }
