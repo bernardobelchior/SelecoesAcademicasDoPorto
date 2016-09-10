@@ -11098,8 +11098,24 @@ body {
   font-size: 6;
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif; }
 
+.vsPhoto {
+  width: 10%;
+  height: 10%;
+  display: block;
+  margin: auto;
+  opacity: 0.2; }
+
 .image-left {
   width: 100%;
+  height: 100%;
+  -webkit-align-content: left;
+  -ms-flex-line-pack: left;
+  align-content: left;
+  display: block;
+  margin: auto; }
+
+.image2-left {
+  width: 75%;
   height: 100%;
   -webkit-align-content: left;
   -ms-flex-line-pack: left;
@@ -11113,6 +11129,29 @@ body {
   -webkit-align-content: right;
   -ms-flex-line-pack: right;
   align-content: right;
+  display: block;
+  margin: auto; }
+
+.image2-right {
+  width: 75%;
+  height: 100%;
+  -webkit-align-content: left;
+  -ms-flex-line-pack: left;
+  align-content: left;
+  display: block;
+  margin: auto; }
+
+.image2-vs {
+  width: 35%;
+  height: 100%;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
   display: block;
   margin: auto; }
 

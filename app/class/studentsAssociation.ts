@@ -16,7 +16,6 @@ export class StudentsAssociation {
     }
 
     public getSrcIcon(){
-      console.log(this.srcIcon);
       return this.srcIcon;
     }
 

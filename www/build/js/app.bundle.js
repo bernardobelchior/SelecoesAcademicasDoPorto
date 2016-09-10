@@ -84,7 +84,6 @@ var StudentsAssociation = (function () {
         StudentsAssociation.nextId++;
     }
     StudentsAssociation.prototype.getSrcIcon = function () {
-        console.log(this.srcIcon);
         return this.srcIcon;
     };
     StudentsAssociation.prototype.getFullName = function () {
