@@ -1,11 +1,20 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>
-            {{association.getShortName() + " - " + team.getModalityFullName()}}
-        </ion-title>
-
-        <i *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star"></i>
-        <i *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star-outline"></i>
+        <table>
+            <tr>
+                <td>
+                    <ion-title>
+                        {{association.getShortName() + " - " + team.getModalityFullName()}}
+                    </ion-title>
+                </td>
+                <td>
+                    <i *ngIf="favoritesService.isFavorited(association, team.getModality())"
+                    (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star"></i>
+                    <i *ngIf="!favoritesService.isFavorited(association, team.getModality())"
+                    (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star-outline"></i>
+                </td>
+            </tr>
+        </table>
     </ion-navbar>
 </ion-header>
 
