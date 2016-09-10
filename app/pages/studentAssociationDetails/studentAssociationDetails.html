@@ -16,7 +16,7 @@
     <button *ngFor="let modality of modalities" class="button button-assertive button-block">
             <label (click)="openTeamPage(modality)" class="icon-right ion-ios-arrow-forward"
             style="align-items: center;">
-                  {{modality}}
+                  {{modality.getSport()}}
               </label>
     </button>
 

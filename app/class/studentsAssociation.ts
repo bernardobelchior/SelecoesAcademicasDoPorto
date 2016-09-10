@@ -3,7 +3,7 @@ import {Team} from './team';
 
 export class StudentsAssociation {
     public name: string;
-    private static nextId: number;
+    private static nextId: number = 0;
     private id: number;
     private activeModalities: Set<Team>;
 
@@ -21,17 +21,24 @@ export class StudentsAssociation {
     public getShortName() {
         return this.shortName;
     }
+
+    public getId() {
+      return this.id;
+    }
+
     public addTeam(team: Team): void {
         this.activeModalities.add(team);
     }
 
     public getTeams() {
-        var modalities: string[] = [];
+        /*var modalities: string[] = [];
         var setIter = this.activeModalities.entries();
         for (var i = 0; i < this.activeModalities.size; i++) {
             modalities.push(setIter.next().value[0].getModalityName());
         }
-        return modalities;
+        console.log(modalities);
+        return modalities;*/
+        return this.activeModalities;
     }
 
     public getTeamByName(name: string) {

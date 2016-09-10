@@ -21,6 +21,7 @@ export class TestData {
     public getStudensAssociations(){
       return TestData.studentsAssociations;
     }
+
     public getModalities(){
       return TestData.modalities;
     }
@@ -48,9 +49,8 @@ export class TestData {
     public populateTeams(){
       var data:any = TestData.getGames();
       for(var i=0; i < data.length; i++ ){
-        console.log(this.getStudentsAssociationsById(data[i].team1));
-          this.getStudentsAssociationsById(data[i].team1).addTeam(new Team(this.getModalityById[data[i].modality]));
-          this.getStudentsAssociationsById(data[i].team2).addTeam(new Team(this.getModalityById[data[i].modality]));
+          this.getStudentsAssociationsById(data[i].team1).addTeam(new Team(this.getModalityById(data[i].modality)));
+          this.getStudentsAssociationsById(data[i].team2).addTeam(new Team(this.getModalityById(data[i].modality)));
       }
 
     }
