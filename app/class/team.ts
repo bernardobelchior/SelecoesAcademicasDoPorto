@@ -16,6 +16,10 @@ export class Team {
       return this.modality.getSport();
     }
 
+    public getModalityFullName(): string {
+      return this.modality.getModalityFullName();
+    }
+
     public getPlayers(): string[]{
       return this.players;
     }

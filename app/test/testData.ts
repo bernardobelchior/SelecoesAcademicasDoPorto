@@ -8,7 +8,7 @@ export class TestData {
         new Modality('Futebol', Gender.MALE),
         new Modality('Voleibol', Gender.MALE),
         new Modality('Basquetebol', Gender.FEMALE),
-        new Modality('Masculino', Gender.MALE)
+        new Modality('Andebol', Gender.MALE)
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
@@ -18,41 +18,36 @@ export class TestData {
         new StudentsAssociation('aefadeup', 'aefadeup')
     ];
 
-    public getStudensAssociations(){
-      return TestData.studentsAssociations;
+    public static getStudentsAssociations() {
+        return TestData.studentsAssociations;
     }
 
-    public getModalities(){
-      return TestData.modalities;
+    public static getModalities() {
+        return TestData.modalities;
     }
 
-    public getStudentsAssociationsByName(name: string){
-      for(var i=0; i<TestData.studentsAssociations.length; i++){
-        if(TestData.studentsAssociations[i].getShortName()==name){
-          return TestData.studentsAssociations[i];
+    public static getStudentsAssociationsByName(name: string) {
+        for (var i = 0; i < TestData.studentsAssociations.length; i++) {
+            if (TestData.studentsAssociations[i].getShortName() == name) {
+                return TestData.studentsAssociations[i];
+            }
         }
-      }
     }
 
-    public getModalityById(id : number){
-          return TestData.modalities[id];
+    public static getModalityById(id: number) {
+        return TestData.modalities[id];
     }
 
-    public getStudentsAssociationsById(id: number){
-      return TestData.studentsAssociations[id];
+    public static getStudentsAssociationsById(id: number) {
+        return TestData.studentsAssociations[id];
     }
 
-    public getStudentsAssociations(){
-      return TestData.studentsAssociations;
-    }
-
-    public populateTeams(){
-      var data:any = TestData.getGames();
-      for(var i=0; i < data.length; i++ ){
-          this.getStudentsAssociationsById(data[i].team1).addTeam(new Team(this.getModalityById(data[i].modality)));
-          this.getStudentsAssociationsById(data[i].team2).addTeam(new Team(this.getModalityById(data[i].modality)));
-      }
-
+    public static populateTeams() {
+        var data: any = TestData.getGames();
+        for (var i = 0; i < data.length; i++) {
+            TestData.getStudentsAssociationsById(data[i].team1).addTeam(new Team(TestData.getModalityById(data[i].modality)));
+            TestData.getStudentsAssociationsById(data[i].team2).addTeam(new Team(TestData.getModalityById(data[i].modality)));
+        }
     }
 
 

@@ -27,6 +27,10 @@ export class Modality {
       }
     }
 
+    public getModalityFullName() : string {
+      return (this.sport + " " + this.getGenderToString());
+    }
+
     public getId() : number {
       return this.id;
     }

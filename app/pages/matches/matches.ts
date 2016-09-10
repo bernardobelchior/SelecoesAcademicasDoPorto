@@ -4,43 +4,36 @@ import { ViewController } from 'ionic-angular';
 import {TestData} from '../../test/testData';
 
 @Component({
-  templateUrl: 'build/pages/matches/matches.html',
-  providers: [TestData]
+    templateUrl: 'build/pages/matches/matches.html'
 })
 export class MatchesPage {
-private games;
-private data;
-private lastMatches;
-private nextMatches;
-private getGames;
+    private games;
+    private data;
+    private lastMatches;
+    private nextMatches;
+    private getGames;
 
-  constructor(public viewCtrl: ViewController, private navCtrl: NavController, private testData: TestData) {
-    this.lastMatches = [];
-    this.nextMatches = [];
-    this.getGames = testData.getStudensAssociations();
-  }
+    constructor(public viewCtrl: ViewController, private navCtrl: NavController) {
+        this.lastMatches = [];
+        this.nextMatches = [];
+        this.getGames = TestData.getStudentsAssociations();
+    }
 
-  public loadGames(){
-    this.data=TestData.getGames();
-    this.divideData();
-  }
+    public loadGames() {
+        this.data = TestData.getGames();
+        this.divideData();
+    }
 
-  public divideData(){
+    public divideData() {
+        for (let item of this.data) {
+            console.log(item.date.valueOf()); console.log(new Date().valueOf());
+            if (item.date.valueOf() < (new Date()).valueOf())
+                this.lastMatches.push(item);
+            else this.nextMatches.push(item);
+        }
+    }
 
-    for (let item of this.data) {
-      console.log(item.date.valueOf());console.log(new Date().valueOf());
-      if(item.date.valueOf() < (new Date()).valueOf())
-        this.lastMatches.push(item);
-      else this.nextMatches.push(item);
-
-  }
-}
-
-  ionViewWillEnter(){
-    console.log(new Date());
-    this.loadGames();
-    console.log(this.nextMatches);
-    console.log(this.lastMatches);
-  }
-
+    ionViewWillEnter() {
+        this.loadGames();
+    }
 }

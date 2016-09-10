@@ -63,6 +63,9 @@ var Modality = (function () {
             return 'Feminino';
         }
     };
+    Modality.prototype.getModalityFullName = function () {
+        return (this.sport + " " + this.getGenderToString());
+    };
     Modality.prototype.getId = function () {
         return this.id;
     };
@@ -80,7 +83,7 @@ var StudentsAssociation = (function () {
         this.name = fullName;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
-        this.activeModalities = new Set();
+        this.activeTeams = new Set();
     }
     StudentsAssociation.prototype.getFullName = function () {
         return this.fullName;
@@ -92,7 +95,7 @@ var StudentsAssociation = (function () {
         return this.id;
     };
     StudentsAssociation.prototype.addTeam = function (team) {
-        this.activeModalities.add(team);
+        this.activeTeams.add(team);
     };
     StudentsAssociation.prototype.getTeams = function () {
         /*var modalities: string[] = [];
@@ -102,13 +105,20 @@ var StudentsAssociation = (function () {
         }
         console.log(modalities);
         return modalities;*/
-        return this.activeModalities;
+        return this.activeTeams;
+    };
+    StudentsAssociation.prototype.getTeamsArray = function () {
+        var teams = [];
+        this.activeTeams.forEach(function (team) {
+            teams.push(team);
+        });
+        return teams;
     };
     StudentsAssociation.prototype.getTeamByName = function (name) {
         var modalities;
-        for (var i = 0; i < this.activeModalities.size; i++) {
-            if (this.activeModalities.keys().return().value.getModalityName() == name)
-                return this.activeModalities.keys().return().value;
+        for (var i = 0; i < this.activeTeams.size; i++) {
+            if (this.activeTeams.keys().return().value.getModalityName() == name)
+                return this.activeTeams.keys().return().value;
         }
     };
     StudentsAssociation.nextId = 0;
@@ -128,6 +138,9 @@ var Team = (function () {
     };
     Team.prototype.getModalityName = function () {
         return this.modality.getSport();
+    };
+    Team.prototype.getModalityFullName = function () {
+        return this.modality.getModalityFullName();
     };
     Team.prototype.getPlayers = function () {
         return this.players;
@@ -222,13 +235,12 @@ var ionic_angular_1 = require('ionic-angular');
 var ionic_angular_2 = require('ionic-angular');
 var testData_1 = require('../../test/testData');
 var MatchesPage = (function () {
-    function MatchesPage(viewCtrl, navCtrl, testData) {
+    function MatchesPage(viewCtrl, navCtrl) {
         this.viewCtrl = viewCtrl;
         this.navCtrl = navCtrl;
-        this.testData = testData;
         this.lastMatches = [];
         this.nextMatches = [];
-        this.getGames = testData.getStudensAssociations();
+        this.getGames = testData_1.TestData.getStudentsAssociations();
     }
     MatchesPage.prototype.loadGames = function () {
         this.data = testData_1.TestData.getGames();
@@ -246,17 +258,13 @@ var MatchesPage = (function () {
         }
     };
     MatchesPage.prototype.ionViewWillEnter = function () {
-        console.log(new Date());
         this.loadGames();
-        console.log(this.nextMatches);
-        console.log(this.lastMatches);
     };
     MatchesPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/matches/matches.html',
-            providers: [testData_1.TestData]
+            templateUrl: 'build/pages/matches/matches.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_2.ViewController, ionic_angular_1.NavController, testData_1.TestData])
+        __metadata('design:paramtypes', [ionic_angular_2.ViewController, ionic_angular_1.NavController])
     ], MatchesPage);
     return MatchesPage;
 }());
@@ -278,11 +286,10 @@ var ionic_angular_1 = require('ionic-angular');
 var testData_1 = require('../../test/testData');
 var teamDetails_1 = require('../teamDetails/teamDetails');
 var ModalitiesPage = (function () {
-    function ModalitiesPage(navCtrl, navParams, testData) {
+    function ModalitiesPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.testData = testData;
-        this.modality = testData.getModalityById(navParams.get('id'));
+        this.modality = testData_1.TestData.getModalityById(navParams.get('id'));
         console.log(this.modality.getSport());
         /*  for (var i=0; i < testData.getStudentsAssociations().length; i++){
             for(var j=0; j < testData.getStudentsAssociations()[i].getTeams().length; j++){
@@ -299,10 +306,9 @@ var ModalitiesPage = (function () {
     };
     ModalitiesPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/modalitiesPage/modalitiesPage.html',
-            providers: [testData_1.TestData]
+            templateUrl: 'build/pages/modalitiesPage/modalitiesPage.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, testData_1.TestData])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
     ], ModalitiesPage);
     return ModalitiesPage;
 }());
@@ -351,30 +357,23 @@ var ionic_angular_1 = require('ionic-angular');
 var testData_1 = require('../../test/testData');
 var teamDetails_1 = require('../teamDetails/teamDetails');
 var StudentAssociationDetailsPage = (function () {
-    function StudentAssociationDetailsPage(navCtrl, navParams, testData) {
+    function StudentAssociationDetailsPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.testData = testData;
-        this.studentAssociation = testData.getStudentsAssociations()[navParams.get('id')];
-        this.teams = this.studentAssociation.getTeams();
-        this.modalities = [];
-        var modalities = this.modalities;
-        this.teams.forEach(function (team) {
-            modalities.push(team.getModality());
-        });
-        console.log(modalities);
+        this.studentAssociation = testData_1.TestData.getStudentsAssociations()[navParams.get('id')];
+        this.teams = this.studentAssociation.getTeamsArray();
     }
     StudentAssociationDetailsPage.prototype.openTeamPage = function (team) {
         this.navCtrl.push(teamDetails_1.TeamDetailsPage, {
-            teamName: this.studentAssociation.getTeamByName(team.getModalityName()), associationName: this.studentAssociation.getShortName()
+            team: team,
+            association: this.studentAssociation
         });
     };
     StudentAssociationDetailsPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/studentAssociationDetails/studentAssociationDetails.html',
-            providers: [testData_1.TestData]
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, testData_1.TestData])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
     ], StudentAssociationDetailsPage);
     return StudentAssociationDetailsPage;
 }());
@@ -428,29 +427,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var testData_1 = require('../../test/testData');
 var TeamDetailsPage = (function () {
-    function TeamDetailsPage(navCtrl, navParams, testData) {
+    function TeamDetailsPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.testData = testData;
-        this.teamName = navParams.get('teamName');
-        this.associationName = navParams.get('associationName');
-        this.players = testData.getStudentsAssociationsByName(navParams.get('associationName')).getTeamByName(navParams.get('teamName')).getPlayers();
-        ;
+        this.team = navParams.get('team');
+        this.association = navParams.get('association');
+        //this.players = this.team.getPlayers();
+        console.log(this.team);
+        //console.log(this.players);
     }
     TeamDetailsPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/teams/teamsDetails.html',
-            providers: [testData_1.TestData]
+            templateUrl: 'build/pages/teamDetails/teamDetails.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, testData_1.TestData])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
     ], TeamDetailsPage);
     return TeamDetailsPage;
 }());
 exports.TeamDetailsPage = TeamDetailsPage;
 
-},{"../../test/testData":13,"@angular/core":161,"ionic-angular":475}],12:[function(require,module,exports){
+},{"@angular/core":161,"ionic-angular":475}],12:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -467,12 +464,11 @@ var testData_1 = require('../../test/testData');
 var studentAssociationDetails_1 = require('../studentAssociationDetails/studentAssociationDetails');
 var modalitiesPage_1 = require('../modalitiesPage/modalitiesPage');
 var TeamsPage = (function () {
-    function TeamsPage(navCtrl, testData) {
+    function TeamsPage(navCtrl) {
         this.navCtrl = navCtrl;
-        this.testData = testData;
-        this.modalities = testData.getModalities();
-        this.studentAssociation = testData.getStudentsAssociations();
-        this.testData.populateTeams();
+        this.modalities = testData_1.TestData.getModalities();
+        this.studentAssociation = testData_1.TestData.getStudentsAssociations();
+        testData_1.TestData.populateTeams();
     }
     TeamsPage.prototype.openStudentAssociationDetails = function (studentAssociation) {
         this.navCtrl.push(studentAssociationDetails_1.StudentAssociationDetailsPage, {
@@ -489,7 +485,7 @@ var TeamsPage = (function () {
             templateUrl: 'build/pages/teams/teams.html',
             providers: [testData_1.TestData]
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, testData_1.TestData])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController])
     ], TeamsPage);
     return TeamsPage;
 }());
@@ -503,33 +499,30 @@ var team_ts_1 = require('../class/team.ts');
 var TestData = (function () {
     function TestData() {
     }
-    TestData.prototype.getStudensAssociations = function () {
+    TestData.getStudentsAssociations = function () {
         return TestData.studentsAssociations;
     };
-    TestData.prototype.getModalities = function () {
+    TestData.getModalities = function () {
         return TestData.modalities;
     };
-    TestData.prototype.getStudentsAssociationsByName = function (name) {
+    TestData.getStudentsAssociationsByName = function (name) {
         for (var i = 0; i < TestData.studentsAssociations.length; i++) {
             if (TestData.studentsAssociations[i].getShortName() == name) {
                 return TestData.studentsAssociations[i];
             }
         }
     };
-    TestData.prototype.getModalityById = function (id) {
+    TestData.getModalityById = function (id) {
         return TestData.modalities[id];
     };
-    TestData.prototype.getStudentsAssociationsById = function (id) {
+    TestData.getStudentsAssociationsById = function (id) {
         return TestData.studentsAssociations[id];
     };
-    TestData.prototype.getStudentsAssociations = function () {
-        return TestData.studentsAssociations;
-    };
-    TestData.prototype.populateTeams = function () {
+    TestData.populateTeams = function () {
         var data = TestData.getGames();
         for (var i = 0; i < data.length; i++) {
-            this.getStudentsAssociationsById(data[i].team1).addTeam(new team_ts_1.Team(this.getModalityById(data[i].modality)));
-            this.getStudentsAssociationsById(data[i].team2).addTeam(new team_ts_1.Team(this.getModalityById(data[i].modality)));
+            TestData.getStudentsAssociationsById(data[i].team1).addTeam(new team_ts_1.Team(TestData.getModalityById(data[i].modality)));
+            TestData.getStudentsAssociationsById(data[i].team2).addTeam(new team_ts_1.Team(TestData.getModalityById(data[i].modality)));
         }
     };
     TestData.getGames = function () {
@@ -592,7 +585,7 @@ var TestData = (function () {
         new modality_1.Modality('Futebol', modality_1.Gender.MALE),
         new modality_1.Modality('Voleibol', modality_1.Gender.MALE),
         new modality_1.Modality('Basquetebol', modality_1.Gender.FEMALE),
-        new modality_1.Modality('Masculino', modality_1.Gender.MALE)
+        new modality_1.Modality('Andebol', modality_1.Gender.MALE)
     ];
     TestData.studentsAssociations = [
         new studentsAssociation_ts_1.StudentsAssociation('aefeup', 'aefeup'),

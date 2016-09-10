@@ -5,13 +5,13 @@ export class StudentsAssociation {
     public name: string;
     private static nextId: number = 0;
     private id: number;
-    private activeModalities: Set<Team>;
+    private activeTeams: Set<Team>;
 
     constructor(private fullName: string, private shortName: string) {
         this.name = fullName;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
-        this.activeModalities = new Set<Team>();
+        this.activeTeams = new Set<Team>();
     }
 
     public getFullName() {
@@ -23,14 +23,14 @@ export class StudentsAssociation {
     }
 
     public getId() {
-      return this.id;
+        return this.id;
     }
 
     public addTeam(team: Team): void {
-        this.activeModalities.add(team);
+        this.activeTeams.add(team);
     }
 
-    public getTeams() {
+    public getTeams(): Set<Team> {
         /*var modalities: string[] = [];
         var setIter = this.activeModalities.entries();
         for (var i = 0; i < this.activeModalities.size; i++) {
@@ -38,14 +38,24 @@ export class StudentsAssociation {
         }
         console.log(modalities);
         return modalities;*/
-        return this.activeModalities;
+        return this.activeTeams;
+    }
+
+    public getTeamsArray(): Team[] {
+        let teams: Team[] = [];
+
+        this.activeTeams.forEach(function(team) {
+            teams.push(team);
+        });
+
+        return teams;
     }
 
     public getTeamByName(name: string) {
         var modalities: string[];
-        for (var i = 0; i < this.activeModalities.size; i++) {
-            if (this.activeModalities.keys().return().value.getModalityName() == name)
-                return this.activeModalities.keys().return().value;
+        for (var i = 0; i < this.activeTeams.size; i++) {
+            if (this.activeTeams.keys().return().value.getModalityName() == name)
+                return this.activeTeams.keys().return().value;
         }
     }
 }

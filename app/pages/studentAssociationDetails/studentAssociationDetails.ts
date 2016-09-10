@@ -9,31 +9,20 @@ import {Modality} from '../../class/modality';
 
 @Component({
     templateUrl: 'build/pages/studentAssociationDetails/studentAssociationDetails.html',
-    providers: [TestData]
 })
 export class StudentAssociationDetailsPage {
     private studentAssociation: StudentsAssociation;
-    private teams: Set<Team>;
-    private modalities: Modality[];
+    private teams: Team[];
 
-    constructor(private navCtrl: NavController, private navParams: NavParams, private testData: TestData) {
-        this.studentAssociation = testData.getStudentsAssociations()[navParams.get('id')];
-        this.teams = this.studentAssociation.getTeams();
-        this.modalities = [];
-
-        let modalities: Modality[] = this.modalities;
-        this.teams.forEach(function(team) {
-            modalities.push(team.getModality());
-        });
-
-        console.log(modalities);
+    constructor(private navCtrl: NavController, private navParams: NavParams) {
+        this.studentAssociation = TestData.getStudentsAssociations()[navParams.get('id')];
+        this.teams = this.studentAssociation.getTeamsArray();
     }
 
     public openTeamPage(team: Team) {
         this.navCtrl.push(TeamDetailsPage, {
-            teamName: this.studentAssociation.getTeamByName(team.getModalityName()), associationName: this.studentAssociation.getShortName()
+            team: team,
+            association: this.studentAssociation
         });
     }
-
-
 }
