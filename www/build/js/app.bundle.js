@@ -33,6 +33,7 @@ var MyApp = (function () {
 }());
 exports.MyApp = MyApp;
 ionic_angular_1.ionicBootstrap(MyApp);
+
 },{"./pages/tabs/tabs":9,"@angular/core":160,"ionic-angular":474,"ionic-native":501}],2:[function(require,module,exports){
 "use strict";
 (function (Gender) {
@@ -69,6 +70,7 @@ var Modality = (function () {
     return Modality;
 }());
 exports.Modality = Modality;
+
 },{}],3:[function(require,module,exports){
 "use strict";
 var StudentsAssociation = (function () {
@@ -78,7 +80,6 @@ var StudentsAssociation = (function () {
         this.name = fullName;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
-        this.activeModalities = new Set();
     }
     StudentsAssociation.prototype.getFullName = function () {
         return this.fullName;
@@ -106,6 +107,7 @@ var StudentsAssociation = (function () {
     return StudentsAssociation;
 }());
 exports.StudentsAssociation = StudentsAssociation;
+
 },{}],4:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -132,6 +134,7 @@ var CalendarPage = (function () {
     return CalendarPage;
 }());
 exports.CalendarPage = CalendarPage;
+
 },{"@angular/core":160,"ionic-angular":474}],5:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -145,20 +148,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var ionic_angular_2 = require('ionic-angular');
+var testData_1 = require('../../test/testData');
 var MatchesPage = (function () {
-    function MatchesPage(navCtrl) {
+    function MatchesPage(viewCtrl, navCtrl, testData) {
+        this.viewCtrl = viewCtrl;
         this.navCtrl = navCtrl;
+        this.testData = testData;
+        this.lastMatches = [];
+        this.nextMatches = [];
+        this.getGames = testData.getStudensAssociations();
     }
+    MatchesPage.prototype.loadGames = function () {
+        this.data = testData_1.TestData.getGames();
+        this.divideData();
+    };
+    MatchesPage.prototype.divideData = function () {
+        for (var _i = 0, _a = this.data; _i < _a.length; _i++) {
+            var item = _a[_i];
+            console.log(item.date.valueOf());
+            console.log(new Date().valueOf());
+            if (item.date.valueOf() < (new Date()).valueOf())
+                this.lastMatches.push(item);
+            else
+                this.nextMatches.push(item);
+        }
+    };
+    MatchesPage.prototype.ionViewWillEnter = function () {
+        console.log(new Date());
+        this.loadGames();
+        console.log(this.nextMatches);
+        console.log(this.lastMatches);
+    };
     MatchesPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/matches/matches.html'
+            templateUrl: 'build/pages/matches/matches.html',
+            providers: [testData_1.TestData]
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController])
+        __metadata('design:paramtypes', [ionic_angular_2.ViewController, ionic_angular_1.NavController, testData_1.TestData])
     ], MatchesPage);
     return MatchesPage;
 }());
 exports.MatchesPage = MatchesPage;
-},{"@angular/core":160,"ionic-angular":474}],6:[function(require,module,exports){
+
+},{"../../test/testData":12,"@angular/core":160,"ionic-angular":474}],6:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -203,6 +236,7 @@ var ModalitiesPage = (function () {
     return ModalitiesPage;
 }());
 exports.ModalitiesPage = ModalitiesPage;
+
 },{"../../test/testData":12,"../teamDetails/teamDetails":10,"@angular/core":160,"ionic-angular":474}],7:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -229,6 +263,7 @@ var OptionsPage = (function () {
     return OptionsPage;
 }());
 exports.OptionsPage = OptionsPage;
+
 },{"@angular/core":160,"ionic-angular":474}],8:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -267,6 +302,7 @@ var StudentAssociationDetailsPage = (function () {
     return StudentAssociationDetailsPage;
 }());
 exports.StudentAssociationDetailsPage = StudentAssociationDetailsPage;
+
 },{"../../test/testData":12,"../teamDetails/teamDetails":10,"@angular/core":160,"ionic-angular":474}],9:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -301,6 +337,7 @@ var TabsPage = (function () {
     return TabsPage;
 }());
 exports.TabsPage = TabsPage;
+
 },{"../calendar/calendar":4,"../matches/matches":5,"../options/options":7,"../teams/teams":11,"@angular/core":160}],10:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -335,6 +372,7 @@ var TeamDetailsPage = (function () {
     return TeamDetailsPage;
 }());
 exports.TeamDetailsPage = TeamDetailsPage;
+
 },{"../../test/testData":12,"@angular/core":160,"ionic-angular":474}],11:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -378,40 +416,33 @@ var TeamsPage = (function () {
     return TeamsPage;
 }());
 exports.TeamsPage = TeamsPage;
+
 },{"../../test/testData":12,"../modalitiesPage/modalitiesPage":6,"../studentAssociationDetails/studentAssociationDetails":8,"@angular/core":160,"ionic-angular":474}],12:[function(require,module,exports){
 "use strict";
 var modality_1 = require('../class/modality');
 var studentsAssociation_ts_1 = require('../class/studentsAssociation.ts');
 var TestData = (function () {
     function TestData() {
-        this.modalities = [
-            new modality_1.Modality('Futebol', modality_1.Gender.MALE),
-            new modality_1.Modality('Voleibol', modality_1.Gender.MALE),
-            new modality_1.Modality('Basquetebol', modality_1.Gender.FEMALE),
-            new modality_1.Modality('Masculino', modality_1.Gender.MALE)
-        ];
-        this.studentsAssociations = [
-            new studentsAssociation_ts_1.StudentsAssociation('aefeup', 'aefeup'),
-            new studentsAssociation_ts_1.StudentsAssociation('aefep', 'aefep'),
-            new studentsAssociation_ts_1.StudentsAssociation('aeisep', 'aeisep'),
-            new studentsAssociation_ts_1.StudentsAssociation('aefadeup', 'aefadeup')
-        ];
     }
+    ;
+    TestData.prototype.getStudensAssociations = function () {
+        return TestData.studentsAssociations;
+    };
     TestData.prototype.getModalities = function () {
-        return this.modalities;
+        return TestData.modalities;
     };
     TestData.prototype.getStudentsAssociationsByName = function (name) {
-        for (var i = 0; i < this.studentsAssociations.length; i++) {
-            if (this.studentsAssociations[i].getShortName() == name) {
-                return this.studentsAssociations[i];
+        for (var i = 0; i < TestData.studentsAssociations.length; i++) {
+            if (TestData.studentsAssociations[i].getShortName() == name) {
+                return TestData.studentsAssociations[i];
             }
         }
     };
     TestData.prototype.getModalityById = function (id) {
-        return this.modalities[id];
+        return TestData.modalities[id];
     };
     TestData.prototype.getStudentsAssociations = function () {
-        return this.studentsAssociations;
+        return TestData.studentsAssociations;
     };
     TestData.getGames = function () {
         return [
@@ -422,7 +453,7 @@ var TestData = (function () {
                 score2: '0',
                 local: 'Pavilhão Luís Falcão',
                 modality: 0,
-                date: '08/09/2016',
+                date: new Date(2016, 8, 6),
                 time: '18:30'
             },
             {
@@ -444,7 +475,7 @@ var TestData = (function () {
                 ],
                 local: 'Pavilhão Luís Falcão',
                 modality: 1,
-                date: '11/09/2016',
+                date: new Date(2016, 9, 11),
                 time: '18:30'
             },
             {
@@ -454,7 +485,7 @@ var TestData = (function () {
                 score2: null,
                 local: 'Pavilhão Luís Falcão',
                 modality: 2,
-                date: '12/09/2016',
+                date: new Date(2016, 9, 12),
                 time: '19:30'
             },
             {
@@ -464,14 +495,27 @@ var TestData = (function () {
                 score2: null,
                 local: 'Pavilhão Luís Falcão',
                 modality: 3,
-                date: '11/09/2016',
+                date: new Date(2016, 9, 15),
                 time: '18:30'
             }
         ];
     };
+    TestData.modalities = [
+        new modality_1.Modality('Futebol', modality_1.Gender.MALE),
+        new modality_1.Modality('Voleibol', modality_1.Gender.MALE),
+        new modality_1.Modality('Basquetebol', modality_1.Gender.FEMALE),
+        new modality_1.Modality('Masculino', modality_1.Gender.MALE)
+    ];
+    TestData.studentsAssociations = [
+        new studentsAssociation_ts_1.StudentsAssociation('aefeup', 'aefeup'),
+        new studentsAssociation_ts_1.StudentsAssociation('aefep', 'aefep'),
+        new studentsAssociation_ts_1.StudentsAssociation('aeisep', 'aeisep'),
+        new studentsAssociation_ts_1.StudentsAssociation('aefadeup', 'aefadeup')
+    ];
     return TestData;
 }());
 exports.TestData = TestData;
+
 },{"../class/modality":2,"../class/studentsAssociation.ts":3}],13:[function(require,module,exports){
 /**
  * @license

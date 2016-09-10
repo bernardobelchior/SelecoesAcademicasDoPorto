@@ -17,6 +17,9 @@ export class TestData {
         new StudentsAssociation('aefadeup', 'aefadeup')
     ];;
 
+    public getStudensAssociations(){
+      return TestData.studentsAssociations;
+    }
     public getModalities(){
       return TestData.modalities;
     }

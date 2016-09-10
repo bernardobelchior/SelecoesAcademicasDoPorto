@@ -14,10 +14,10 @@ private lastMatches;
 private nextMatches;
 private getGames;
 
-  constructor(public viewCtrl: ViewController, private navCtrl: NavController) {
+  constructor(public viewCtrl: ViewController, private navCtrl: NavController, private testData: TestData) {
     this.lastMatches = [];
     this.nextMatches = [];
-    this.getGames = TestData.getStudensAssociations();
+    this.getGames = testData.getStudensAssociations();
   }
 
   public loadGames(){

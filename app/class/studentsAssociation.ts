@@ -11,9 +11,8 @@ export class StudentsAssociation {
         this.name = fullName;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
-        this.activeModalities = new Set<Team>();
     }
-
+    
     public getFullName() {
         return this.fullName;
     }
