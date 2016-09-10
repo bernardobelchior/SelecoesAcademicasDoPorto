@@ -1,5 +1,6 @@
 export class Event {
     private existEvent: boolean;
+    //private match: Match;
 
     constructor(private day: number, private currentMonth: boolean){
       this.existEvent = false;

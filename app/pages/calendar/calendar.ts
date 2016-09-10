@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Event} from  '../../class/event.ts';
+import {TestData} from '../../test/testData.ts';
 
 @Component({
     templateUrl: 'build/pages/calendar/calendar.html'
@@ -11,18 +12,17 @@ export class CalendarPage {
     private daysInTheAtualMonth: number;
     private atualMonthDays: number;
     private days: Event[][];
-    private click: boolean;
-    private day: number;
+    private selectedDay: number;
+    private feature: string;
 
     constructor(private navController: NavController) {
         this.date = new Date();
-        this.click = false;
+        this.selectedDay = this.date.getDate();
 
-        this.initDaysOffTheMonth();
-
+        this.initDaysOfTheMonth();
     }
 
-    initDaysOffTheMonth() {
+    initDaysOfTheMonth() {
 
         this.date.setDate(1);
         this.date.getDay();
@@ -39,7 +39,7 @@ export class CalendarPage {
             counter++;
         }
 
-        let day : number = 1;
+        let day: number = 1;
         for (let i = counter; i < 7; i++) {
             event = new Event(day, true);
             this.days[0][i] = event;
@@ -68,22 +68,51 @@ export class CalendarPage {
 
     nextMonth() {
         this.date.setMonth(this.date.getMonth() + 1);
-        this.initDaysOffTheMonth();
+        this.initDaysOfTheMonth();
     }
 
     monthBefore() {
         this.date.setMonth(this.date.getMonth() - 1);
-        this.initDaysOffTheMonth();
+        this.initDaysOfTheMonth();
     }
 
-    clicked(event: Event){
-      if(event.getCurrentMonth){
-      this.click = true;
-      this.day = event.getDay();
-      }
+    clicked(event: Event) {
+        if (event.getCurrentMonth) {
+            this.selectedDay = event.getDay();
+          //  this.featuresInADay();
+        }
     }
 
-    featuresInADay(){
-      
+    hasEvent(day: number): boolean {
+        let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
+
+        for (let game of TestData.getGames()) {
+            if (game.date.valueOf() == selectedDate.valueOf())
+                return true;
+        }
+
+        return false;
     }
+
+    /*getEventsInDay(day: number) : Event[] {
+
+    }*/
+
+    /*featuresInADay() {
+        let d: Date = new Date(this.date.getFullYear(), this.date.getMonth(), this.day);
+        console.log("d " + d);
+        for (let i = 0; i < TestData.getGames().length; i++) {
+            console.log(TestData.getGames()[i].date);
+            if (TestData.getGames()[i].date.valueOf() == d.valueOf()) {
+                this.feature = TestData.getStudentsAssociations()[TestData.getGames()[i].team1].getFullName() + " " +
+                    TestData.getStudentsAssociations()[TestData.getGames()[i].team2].getFullName() + '\n' +
+                    " In " + TestData.getGames()[i].local + " at " + TestData.getGames()[i].time;
+                console.log("Entrei");
+                return;
+            }
+        }
+        console.log("Estou a sair");
+        this.feature = " No games in this day";
+
+    }*/
 }

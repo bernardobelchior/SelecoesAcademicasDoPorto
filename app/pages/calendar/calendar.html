@@ -95,9 +95,12 @@
                     </tr>
 
                     <div>
-                      <tr *ngIf=" click">
-                        {{day}}
-                      </tr>
+                      <table *ngIf="hasEvent(selectedDay)">
+                        Evento no dia!!!
+                      </table>
+                      <table *ngIf="!hasEvent(selectedDay)">
+                        Não há eventos hoje.
+                      </table>
                     </div>
                 </tbody>
 
