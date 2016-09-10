@@ -1,20 +1,19 @@
 <ion-content padding class="background" scroll="false">
     <ion-card class="cardBackground">
         <ion-card-header class="header1">Últimos Jogos</ion-card-header>
-<<<<<<< HEAD
         <ion-list inset>
-            <ion-item *ngFor="let result of lastMatches" class="noBackground">
+            <ion-item *ngFor="let match of lastMatches" class="noBackground">
                 <ion-grid>
                     <ion-row center>
                         <ion-col width-100>
 
                             <ion-row center class="rowUltimos">
                                 <ion-col width-35>
-                                    <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                                    <ion-img class="image-right" src="{{match.getFirstTeam().getSrcIcon()}}"></ion-img>
                                 </ion-col>
                                 <ion-col width-15>
                                     <p>
-                                        <ion-item class="styleScore noBackground">{{result.score1}}</ion-item>
+                                        <ion-item class="styleScore noBackground">{{match.getFirstScore()}}</ion-item>
                                     </p>
                                 </ion-col>
                                 <ion-col width-5>
@@ -22,21 +21,21 @@
                                 </ion-col>
                                 <ion-col width-15>
                                     <p>
-                                        <ion-item class="styleScore noBackground">{{result.score2}}</ion-item>
+                                        <ion-item class="styleScore noBackground">{{match.getSecondScore()}}</ion-item>
                                     </p>
                                 </ion-col>
                                 <ion-col width-35>
-                                    <ion-img class="image-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                                    <ion-img class="image-left" src="{{match.getSecondTeam().getSrcIcon()}}"></ion-img>
                                 </ion-col>
                             </ion-row>
 
                             <ion-row center>
                                 <ion-col width-80 class="textInfoLocal">
-                                    <font size="2">{{result.local}}</font>
+                                    <font size="2">{{match.getLocal()}}</font>
                                 </ion-col>
 
                                 <ion-col width-20>
-                                    <ion-img (click)="openLastMatchDetails(result)" class="right-arrow" src="images/rightArrow.png"></ion-img>
+                                    <ion-img (click)="openMatchDetails(match)" class="right-arrow" src="images/rightArrow.png"></ion-img>
                                 </ion-col>
                             </ion-row>
 
@@ -44,19 +43,6 @@
 
 
                     </ion-row>
-
-=======
-        <ion-item *ngFor="let match of lastMatches">
-            <ion-card>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col width-50 class="textInfoLeft">{{match.getFirstTeam().getShortName()}}</ion-col>
-                        <ion-col width-50 class="textInfoRight">{{match.getSecondTeam().getShortName()}}</ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col class="textInfoLocal"><font size="2">{{match.getLocal()}}</font></ion-col>
-                      </ion-row>
->>>>>>> master
                 </ion-grid>
             </ion-item>
         </ion-list>
@@ -64,52 +50,40 @@
 
     <ion-card class="cardBackground">
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
-<<<<<<< HEAD
         <ion-list inset>
-            <ion-item *ngFor="let result of nextMatches" class="noBackground">
+            <ion-item *ngFor="let match of nextMatches" class="noBackground">
                 <ion-grid>
                     <ion-row center class="rowProximos">
                         <ion-col width-25>
-                            <ion-img class="image2-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                            <ion-img class="image2-right" src="{{match.getFirstTeam().getSrcIcon()}}"></ion-img>
                         </ion-col>
                         <ion-col width-25 class="vsPhoto">
                             <ion-img src="images/vs.png"></ion-img>
                         </ion-col>
                         <ion-col width-25>
-                            <ion-img class="image2-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                            <ion-img class="image2-left" src="{{match.getSecondTeam().getSrcIcon()}}"></ion-img>
                         </ion-col>
                     </ion-row>
                     <ion-row center>
                     <ion-col width-80>
                         <ion-row center>
                             <ion-col class="textInfoLocal">
-                                <font size="2">{{result.local}}</font>
+                                <font size="2">{{match.getLocal()}}</font>
                             </ion-col>
                         </ion-row>
 
                         <ion-row center>
                             <ion-col class="textDate">
-                                <font size="2">{{result.date.getDay()}}/{{result.date.getMonth()}}/{{result.date.getFullYear()}}</font>
+                                <font size="2">{{match.getDate().getDay()}}/{{match.getDate().getMonth()}}/{{match.getDate().getFullYear()}}</font>
                             </ion-col>
                         </ion-row>
 
 
                     </ion-col>
                     <ion-col width-20>
-                        <ion-img (click)="openNextMatchDetails(result)" class="right-arrow" src="images/rightArrow.png"></ion-img>
+                        <ion-img (click)="openMatchDetails(match)" class="right-arrow" src="images/rightArrow.png"></ion-img>
 
                     </ion-col>
-=======
-        <ion-item *ngFor="let match of nextMatches">
-            <ion-card>
-              <ion-grid>
-                  <ion-row>
-                      <ion-col width-50 class="textInfoLeft">{{match.getFirstTeam().getShortName()}}</ion-col>
-                      <ion-col width-50 class="textInfoRight">{{match.getSecondTeam().getShortName()}}</ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col class="textInfoLocal"><font size="2">{{match.getLocal()}}</font></ion-col>
->>>>>>> master
                     </ion-row>
                     <ion-row center class="divider">
                         <ion-img src="images/whiteDivider.png"></ion-img>

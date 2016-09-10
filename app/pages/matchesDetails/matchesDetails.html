@@ -1,38 +1,38 @@
 <ion-header>
-  <ion-navbar>
+    <ion-navbar>
 
-    <ion-grid>
-        <ion-row>
-            <ion-col width-20 class="card">
-                <ion-img class="image-right" src="{{teams[match.team1].getSrcIcon()}}"></ion-img>
-            </ion-col>
+        <ion-grid>
+            <ion-row>
+                <ion-col width-20 class="card">
+                    <ion-img class="image-right" src="{{match.getFirstTeam().getSrcIcon()}}"></ion-img>
+                </ion-col>
 
-            <ion-col width-20 class="card">
-                <ion-img class="image-right" src="{{match.score1}}"></ion-img>
-            </ion-col>
+                <ion-col width-20 class="card">
+                    {{match.getFirstScore()}}
+                </ion-col>
 
-            <ion-col width-20>
-                <ion-img class="image-right" src="{{teams[match.team2].getSrcIcon()}}"></ion-img>
-            </ion-col>
+                <ion-col width-20>
+                    :
+                </ion-col>
 
-            <ion-col width-20>
-                <ion-img class="image-right" src="{{match.score2}}"></ion-img>
-            </ion-col>
+                <ion-col width-20>
+                    {{match.getSecondScore()}}
+                </ion-col>
 
-            <ion-col width-20>
-                <p>:</p>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+                <ion-col width-20>
+                    <ion-img class="image-right" src="{{match.getSecondTeam().getSrcIcon()}}"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-  </ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-  <ion-card-header>
-    Plantel
-  </ion-card-header>
-
+    <ion-card>
+        <ion-card-header>
+            Plantel
+        </ion-card-header>
+    </ion-card>
 
 </ion-content>

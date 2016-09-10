@@ -4,30 +4,23 @@ import {Set} from 'typescript-collections'
 
 export class StudentsAssociation {
     public name: string;
-<<<<<<< HEAD
     private srcIcon: string;
-    private static nextId: number;
-=======
     private static nextId: number = 0;
->>>>>>> master
     private id: number;
     private activeTeams: Set<Team>;
 
     constructor(private fullName: string, private shortName: string, private scrIcon: string) {
         this.name = fullName;
-        this.srcIcon=scrIcon;
+        this.srcIcon = scrIcon;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
         this.activeTeams = new Set<Team>(this.teamHashFunction);
     }
 
-<<<<<<< HEAD
-    public getSrcIcon(){
-      return this.srcIcon;
+    public getSrcIcon() {
+        return this.srcIcon;
     }
 
-=======
->>>>>>> master
     public getFullName() {
         return this.fullName;
     }
@@ -65,13 +58,6 @@ export class StudentsAssociation {
         }
     }
 
-    /*public getTeamByName(name: string) {
-        for (let team of this.activeTeams.toArray()) {
-            if (team.getModalityName() == name)
-                return team;
-        }
-    }*/
-
     public hasModality(modality: Modality): boolean {
         for (let team of this.activeTeams.toArray()) {
             if (team.getModality().equals(modality))
@@ -81,7 +67,7 @@ export class StudentsAssociation {
         return false;
     }
 
-    private teamHashFunction(team : Team) : string {
-      return team.getModality().getId().toString();
+    private teamHashFunction(team: Team): string {
+        return team.getModality().getId().toString();
     }
 }

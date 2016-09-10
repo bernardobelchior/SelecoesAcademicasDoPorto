@@ -63,45 +63,10 @@ export class CalendarPage {
                 }
             }
         }
-<<<<<<< HEAD
-
     }
-=======
->>>>>>> master
 
     nextMonth() {
         this.date.setMonth(this.date.getMonth() + 1);
-        this.initDaysOfTheMonth();
-    }
-
-<<<<<<< HEAD
-    monthBefore() {
-        this.date.setMonth(this.date.getMonth() - 1);
-        this.initDaysOfTheMonth();
-    }
-
-    clicked(event: Event) {
-        if (event.getCurrentMonth) {
-            this.selectedDay = event.getDay();
-          //  this.featuresInADay();
-        }
-    }
-
-    hasEvent(day: number): boolean {
-        let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
-
-        for (let game of TestData.getGames()) {
-            if (game.date.valueOf() == selectedDate.valueOf())
-                return true;
-        }
-
-        return false;
-    }
-
-=======
-    nextMonth() {
-        this.date.setMonth(this.date.getMonth() + 1);
-
         this.initDaysOfTheMonth();
     }
 
@@ -113,14 +78,14 @@ export class CalendarPage {
     clicked(event: Event) {
         if (event.getCurrentMonth) {
             this.selectedDay = event.getDay();
-          //  this.featuresInADay();
+            //  this.featuresInADay();
         }
     }
 
     private sameDay(firstDate: Date, secondDate: Date) {
-      return (firstDate.getFullYear() === secondDate.getFullYear() &&
-        firstDate.getMonth() === secondDate.getMonth() &&
-        firstDate.getDate() === secondDate.getDate());
+        return (firstDate.getFullYear() === secondDate.getFullYear() &&
+            firstDate.getMonth() === secondDate.getMonth() &&
+            firstDate.getDate() === secondDate.getDate());
     }
 
     hasEvent(day: number): boolean {
@@ -134,7 +99,6 @@ export class CalendarPage {
         return false;
     }
 
->>>>>>> master
     /*getEventsInDay(day: number) : Event[] {
 
     }*/
