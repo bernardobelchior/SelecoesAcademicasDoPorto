@@ -491,6 +491,9 @@ var OptionsPage = (function () {
     function OptionsPage(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    OptionsPage.prototype.openCAPButton = function () {
+        window.open("http://www.cap.fap.pt/cap.html", "_system");
+    };
     OptionsPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/options/options.html'
