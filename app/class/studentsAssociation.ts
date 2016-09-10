@@ -14,35 +14,30 @@ export class StudentsAssociation {
         this.activeModalities = new Set<Team>();
     }
 
-    public getFullName(){
-      return this.fullName;
+    public getFullName() {
+        return this.fullName;
     }
 
-    public getShortName(){
-      return this.shortName;
+    public getShortName() {
+        return this.shortName;
     }
     public addTeam(team: Team): void {
         this.activeModalities.add(team);
     }
 
-<<<<<<< Updated upstream
-    public getTeams(){
-      var modalities:string[] = [];
-      for(var i=0; i<this.activeModalities.size;i++){
-        modalities.push(this.activeModalities.keys().return().value.getModalityName());
-      }
-      return modalities;
+    public getTeams() {
+        var modalities: string[] = [];
+        for (var i = 0; i < this.activeModalities.size; i++) {
+            modalities.push(this.activeModalities.keys().return().value.getModalityName());
+        }
+        return modalities;
     }
 
-    public getTeamByName(name: string){
-      var modalities:string[];
-      for(var i=0; i<this.activeModalities.size;i++){
-        if(this.activeModalities.keys().return().value.getModalityName()==name)
-          return this.activeModalities.keys().return().value;
-      }
-=======
-    public getFullName(){
-      return this.fullName;
->>>>>>> Stashed changes
+    public getTeamByName(name: string) {
+        var modalities: string[];
+        for (var i = 0; i < this.activeModalities.size; i++) {
+            if (this.activeModalities.keys().return().value.getModalityName() == name)
+                return this.activeModalities.keys().return().value;
+        }
     }
 }
