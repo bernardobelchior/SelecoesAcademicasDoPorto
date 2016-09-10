@@ -63,11 +63,14 @@ var Modality = (function () {
             return 'Feminino';
         }
     };
-    Modality.prototype.getModalityFullName = function () {
+    Modality.prototype.getFullName = function () {
         return (this.sport + " " + this.getGenderToString());
     };
     Modality.prototype.getId = function () {
         return this.id;
+    };
+    Modality.prototype.equals = function (modality) {
+        return this.id === modality.id;
     };
     Modality.nextId = 0;
     return Modality;
@@ -98,13 +101,6 @@ var StudentsAssociation = (function () {
         this.activeTeams.add(team);
     };
     StudentsAssociation.prototype.getTeams = function () {
-        /*var modalities: string[] = [];
-        var setIter = this.activeModalities.entries();
-        for (var i = 0; i < this.activeModalities.size; i++) {
-            modalities.push(setIter.next().value[0].getModalityName());
-        }
-        console.log(modalities);
-        return modalities;*/
         return this.activeTeams;
     };
     StudentsAssociation.prototype.getTeamsArray = function () {
@@ -120,6 +116,15 @@ var StudentsAssociation = (function () {
             if (this.activeTeams.keys().return().value.getModalityName() == name)
                 return this.activeTeams.keys().return().value;
         }
+    };
+    StudentsAssociation.prototype.hasModality = function (modality) {
+        console.log(this.shortName);
+        this.activeTeams.forEach(function (team) {
+            console.log(team.getModality().equals(modality));
+            if (team.getModality().equals(modality))
+                return true;
+        });
+        return false;
     };
     StudentsAssociation.nextId = 0;
     return StudentsAssociation;
@@ -140,7 +145,7 @@ var Team = (function () {
         return this.modality.getSport();
     };
     Team.prototype.getModalityFullName = function () {
-        return this.modality.getModalityFullName();
+        return this.modality.getFullName();
     };
     Team.prototype.getPlayers = function () {
         return this.players;
@@ -290,7 +295,9 @@ var ModalitiesPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modality = testData_1.TestData.getModalityById(navParams.get('id'));
-        console.log(this.modality.getSport());
+        this.studentsAssociations = testData_1.TestData.getStudentsAssociationsWithModality(this.modality);
+        console.log(this.studentsAssociations);
+        console.log(this.modality);
         /*  for (var i=0; i < testData.getStudentsAssociations().length; i++){
             for(var j=0; j < testData.getStudentsAssociations()[i].getTeams().length; j++){
               if(testData.getStudentsAssociations()[i].getTeams()[j]==this.modality.getSport()){
@@ -482,8 +489,7 @@ var TeamsPage = (function () {
     };
     TeamsPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/teams/teams.html',
-            providers: [testData_1.TestData]
+            templateUrl: 'build/pages/teams/teams.html'
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController])
     ], TeamsPage);
@@ -524,6 +530,17 @@ var TestData = (function () {
             TestData.getStudentsAssociationsById(data[i].team1).addTeam(new team_ts_1.Team(TestData.getModalityById(data[i].modality)));
             TestData.getStudentsAssociationsById(data[i].team2).addTeam(new team_ts_1.Team(TestData.getModalityById(data[i].modality)));
         }
+    };
+    TestData.getStudentsAssociationsWithModality = function (modality) {
+        var studentsAssociationsWithModality = [];
+        for (var _i = 0, _a = this.studentsAssociations; _i < _a.length; _i++) {
+            var studentAssociation = _a[_i];
+            if (studentAssociation.hasModality(modality)) {
+                console.log(studentAssociation);
+                studentsAssociationsWithModality.push(studentAssociation);
+            }
+        }
+        return studentsAssociationsWithModality;
     };
     TestData.getGames = function () {
         return [

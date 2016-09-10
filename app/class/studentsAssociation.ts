@@ -31,13 +31,6 @@ export class StudentsAssociation {
     }
 
     public getTeams(): Set<Team> {
-        /*var modalities: string[] = [];
-        var setIter = this.activeModalities.entries();
-        for (var i = 0; i < this.activeModalities.size; i++) {
-            modalities.push(setIter.next().value[0].getModalityName());
-        }
-        console.log(modalities);
-        return modalities;*/
         return this.activeTeams;
     }
 
@@ -57,5 +50,19 @@ export class StudentsAssociation {
             if (this.activeTeams.keys().return().value.getModalityName() == name)
                 return this.activeTeams.keys().return().value;
         }
+    }
+
+    public hasModality(modality: Modality): boolean {
+        console.log(this.shortName);
+
+        this.activeTeams.forEach(function(team) {
+            console.log(team.getModality().equals(modality));
+
+            if (team.getModality().equals(modality))
+                return true;
+
+        });
+
+        return false;
     }
 }

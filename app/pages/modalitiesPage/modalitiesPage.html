@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{modality.getSport()}} - {{modality.getGenderToString()}}
+      {{modality.getFullName()}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,7 +16,7 @@
     <button *ngFor="let association of studentsAssociations" class="button button-assertive button-block">
             <label (click)="openTeamPage(association)" class="icon-right ion-ios-arrow-forward"
             style="align-items: center;">
-                  {{association}}
+                  {{association.getShortName()}}
               </label>
     </button>
 

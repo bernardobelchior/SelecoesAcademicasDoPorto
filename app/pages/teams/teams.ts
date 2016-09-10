@@ -7,8 +7,7 @@ import {StudentAssociationDetailsPage} from '../studentAssociationDetails/studen
 import {ModalitiesPage} from '../modalitiesPage/modalitiesPage';
 
 @Component({
-    templateUrl: 'build/pages/teams/teams.html',
-    providers: [TestData]
+    templateUrl: 'build/pages/teams/teams.html'
 })
 export class TeamsPage {
     private modalities: Modality[];

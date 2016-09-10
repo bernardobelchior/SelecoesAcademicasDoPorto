@@ -17,7 +17,7 @@ export class Team {
     }
 
     public getModalityFullName(): string {
-      return this.modality.getModalityFullName();
+      return this.modality.getFullName();
     }
 
     public getPlayers(): string[]{

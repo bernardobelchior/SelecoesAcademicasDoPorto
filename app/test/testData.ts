@@ -50,6 +50,19 @@ export class TestData {
         }
     }
 
+    public static getStudentsAssociationsWithModality(modality: Modality): StudentsAssociation[] {
+        let studentsAssociationsWithModality: StudentsAssociation[] = [];
+
+        for (let studentAssociation of this.studentsAssociations) {
+            if (studentAssociation.hasModality(modality)) {
+                console.log(studentAssociation);
+                studentsAssociationsWithModality.push(studentAssociation);
+            }
+        }
+
+        return studentsAssociationsWithModality;
+    }
+
 
     public static getGames(): any {
         return [

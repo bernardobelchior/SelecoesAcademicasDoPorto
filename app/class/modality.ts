@@ -27,11 +27,15 @@ export class Modality {
       }
     }
 
-    public getModalityFullName() : string {
+    public getFullName() : string {
       return (this.sport + " " + this.getGenderToString());
     }
 
     public getId() : number {
       return this.id;
+    }
+
+    public equals(modality: Modality) : boolean {
+      return this.id === modality.id;
     }
 }
