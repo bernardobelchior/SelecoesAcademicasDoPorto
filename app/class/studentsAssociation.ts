@@ -4,17 +4,30 @@ import {Set} from 'typescript-collections'
 
 export class StudentsAssociation {
     public name: string;
+<<<<<<< HEAD
+    private srcIcon: string;
+    private static nextId: number;
+=======
     private static nextId: number = 0;
+>>>>>>> master
     private id: number;
     private activeTeams: Set<Team>;
 
-    constructor(private fullName: string, private shortName: string) {
+    constructor(private fullName: string, private shortName: string, private scrIcon: string) {
         this.name = fullName;
+        this.srcIcon=scrIcon;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
         this.activeTeams = new Set<Team>(this.teamHashFunction);
     }
 
+<<<<<<< HEAD
+    public getSrcIcon(){
+      return this.srcIcon;
+    }
+
+=======
+>>>>>>> master
     public getFullName() {
         return this.fullName;
     }

@@ -63,9 +63,42 @@ export class CalendarPage {
                 }
             }
         }
+<<<<<<< HEAD
 
     }
+=======
+>>>>>>> master
 
+    nextMonth() {
+        this.date.setMonth(this.date.getMonth() + 1);
+        this.initDaysOfTheMonth();
+    }
+
+<<<<<<< HEAD
+    monthBefore() {
+        this.date.setMonth(this.date.getMonth() - 1);
+        this.initDaysOfTheMonth();
+    }
+
+    clicked(event: Event) {
+        if (event.getCurrentMonth) {
+            this.selectedDay = event.getDay();
+          //  this.featuresInADay();
+        }
+    }
+
+    hasEvent(day: number): boolean {
+        let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
+
+        for (let game of TestData.getGames()) {
+            if (game.date.valueOf() == selectedDate.valueOf())
+                return true;
+        }
+
+        return false;
+    }
+
+=======
     nextMonth() {
         this.date.setMonth(this.date.getMonth() + 1);
 
@@ -101,6 +134,7 @@ export class CalendarPage {
         return false;
     }
 
+>>>>>>> master
     /*getEventsInDay(day: number) : Event[] {
 
     }*/
