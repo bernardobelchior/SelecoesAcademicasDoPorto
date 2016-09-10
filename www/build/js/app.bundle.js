@@ -258,6 +258,12 @@ var MatchesPage = (function () {
             match: lastMatch
         });
     };
+    MatchesPage.prototype.openNextMatchDetails = function (nextMatch) {
+        console.log('entrei');
+        this.navCtrl.push(matchesDetails_1.MatchDetailsPage, {
+            match: nextMatch
+        });
+    };
     MatchesPage.prototype.ionViewWillEnter = function () {
         console.log(new Date());
         if (!this.start)

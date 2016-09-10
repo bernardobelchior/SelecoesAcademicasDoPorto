@@ -22,11 +22,12 @@
 .divider{
   background: url('../../images/whiteDivider.png');
   background-repeat: repeat;
+  height: 1vh;
 }
 
 .right-arrow{
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   align-content: right;
   display: block;
   margin: auto;
@@ -50,7 +51,7 @@
 }
 
 .textInfoLocal {
-    text-align: center;
+    text-align: left;
     font-size: 6;
     font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -62,9 +63,10 @@
 }
 
 .textDate{
-  text-align: center;
+  text-align: left;
   font-size: 6;
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+
 }
 
 .image-left {
@@ -76,7 +78,7 @@
 }
 
 .image2-left {
-    width: 75%;
+    width: 100%;
     height: 100%;
     align-content: left;
     display: block;
@@ -93,7 +95,7 @@
 
 
 .image2-right {
-    width: 75%;
+    width: 100%;
     height: 100%;
     align-content: left;
     display: block;

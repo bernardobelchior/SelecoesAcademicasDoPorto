@@ -45,6 +45,13 @@ export class MatchesPage {
       });
     }
 
+    public openNextMatchDetails(nextMatch: any){
+      console.log('entrei');
+      this.navCtrl.push(MatchDetailsPage, {
+        match: nextMatch
+      });
+    }
+
 
     ionViewWillEnter() {
         console.log(new Date());
