@@ -7,7 +7,6 @@ import {TestData} from '../test/testData';
 
 const FAVORITES_FILENAME = "favorites.dat";
 
-
 export class FavoritesService {
     private static instance: FavoritesService;
     private static isCreating: boolean = false;
@@ -19,7 +18,7 @@ export class FavoritesService {
         if (!FavoritesService.isCreating)
             throw new Error("FavoritesService is a singleton. Do not use new, use the getInstance method instead.");
 
-        this.favorites = new Set<Favorite>();
+        this.favorites = new Set<Favorite>(this.favoriteHashFunction);
     }
 
     public static getInstance(): FavoritesService {
@@ -30,6 +29,20 @@ export class FavoritesService {
         }
 
         return FavoritesService.instance;
+    }
+
+    public isFavorited(association: StudentsAssociation, modality: Modality): boolean {
+        return this.favorites.contains(new Favorite(association, modality));
+    }
+
+    toggleFavorite(association: StudentsAssociation, modality: Modality) {
+        let favorite: Favorite = new Favorite(association, modality)
+        this.favoritesChanged = true;
+
+        if (this.favorites.contains(favorite))
+            this.removeFavorite(favorite);
+        else
+            this.addFavorite(favorite);
     }
 
     public addFavorite(favorite: Favorite): boolean {
@@ -106,7 +119,7 @@ export class FavoritesService {
             }
 
             favorites.forEach(function(favorite) {
-              console.log(favorite);
+                console.log(favorite);
             })
 
         }).catch(function(error) {
@@ -115,6 +128,10 @@ export class FavoritesService {
         });
 
         this.favoritesChanged = false;
+    }
+
+    private favoriteHashFunction(favorite: Favorite): string {
+        return (favorite.getStudentsAssociation().getId().toString() + ";" + favorite.getModality().getId().toString());
     }
 }
 

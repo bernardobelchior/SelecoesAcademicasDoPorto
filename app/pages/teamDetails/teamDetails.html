@@ -1,25 +1,25 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{association.getShortName() + " - " + team.getModalityFullName()}}
-    </ion-title>
+    <ion-navbar>
+        <ion-title>
+            {{association.getShortName() + " - " + team.getModalityFullName()}}
+        </ion-title>
 
-    <i *ngIf="" class="ion-ios-star"></i>
-    <i class="ion-ios-star-outline"></i>
-  </ion-navbar>
+        <i *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star"></i>
+        <i *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star-outline"></i>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-  <ion-card-header>
-    Plantel
-  </ion-card-header>
+    <ion-card>
+        <ion-card-header>
+            Plantel
+        </ion-card-header>
 
 
-<ion-list inset>
-  <ion-item *ngFor="let player of players">
-    {{player}}
-  </ion-item>
-</ion-list>
-</ion-card>
+        <ion-list inset>
+            <ion-item *ngFor="let player of players">
+                {{player}}
+            </ion-item>
+        </ion-list>
+    </ion-card>
 </ion-content>
