@@ -253,6 +253,7 @@ var MatchesPage = (function () {
         }
     };
     MatchesPage.prototype.openLastMatchDetails = function (lastMatch) {
+        console.log('entrei');
         this.navCtrl.push(matchesDetails_1.MatchDetailsPage, {
             match: lastMatch
         });

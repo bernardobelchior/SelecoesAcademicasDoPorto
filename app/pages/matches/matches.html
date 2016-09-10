@@ -1,32 +1,43 @@
 <ion-content padding class="background" scroll="false">
     <ion-card class="cardBackground">
-        <ion-card-header class="header1" >Últimos Jogos</ion-card-header>
+        <ion-card-header class="header1">Últimos Jogos</ion-card-header>
         <ion-list inset>
             <ion-item *ngFor="let result of lastMatches" class="noBackground">
                 <ion-grid >
-                    <ion-row class="rowUltimos">
-                        <ion-col width-35>
-                            <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
-                        </ion-col>
-                        <ion-col width-15>
-                            <p>
-                                <ion-item class="styleScore noBackground">{{result.score1}}</ion-item>
-                            </p>
-                        </ion-col>
-                        <ion-col width-15>
-                            <p>
-                                <ion-item class="styleScore noBackground">{{result.score2}}</ion-item>
-                            </p>
-                        </ion-col>
-                        <ion-col width-35>
-                            <ion-img class="image-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col class="textInfoLocal">
-                            <font size="2">{{result.local}}</font>
-                        </ion-col>
-                    </ion-row>
+                    <ion-col width-80>
+
+                        <ion-row class="rowUltimos">
+                            <ion-col width-35>
+                                <ion-img class="image-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                            </ion-col>
+                            <ion-col width-15>
+                                <p>
+                                    <ion-item class="styleScore noBackground">{{result.score1}}</ion-item>
+                                </p>
+                            </ion-col>
+                            <ion-col width-15>
+                                <p>
+                                    <ion-item class="styleScore noBackground">{{result.score2}}</ion-item>
+                                </p>
+                            </ion-col>
+                            <ion-col width-35>
+                                <ion-img class="image-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col class="textInfoLocal">
+                                <font size="2">{{result.local}}</font>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-col>
+
+                    <ion-col width-20>
+                        <ion-img (click)="openLastMatchDetails(result)" class="right-arrow" src="images/rightArrow.png"></ion-img>
+                    </ion-col>
+
+
                 </ion-grid>
             </ion-item>
         </ion-list>
@@ -35,35 +46,35 @@
     <ion-card class="cardBackground">
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
         <ion-list inset>
-          <ion-item *ngFor="let result of nextMatches" class="noBackground" >
-              <ion-grid>
-                  <ion-row class="rowProximos">
-                      <ion-col width-33 >
-                          <ion-img class="image2-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
-                      </ion-col>
-                      <ion-col width-33 class="vsPhoto">
-                          <ion-img src="images/vs.png"></ion-img>
-                      </ion-col>
-                      <ion-col width-33>
-                          <ion-img class="image2-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col class="textInfoLocal">
-                          <font size="2">{{result.local}}</font>
-                      </ion-col>
-                  </ion-row>
+            <ion-item *ngFor="let result of nextMatches" class="noBackground">
+                <ion-grid>
+                    <ion-row class="rowProximos">
+                        <ion-col width-25>
+                            <ion-img class="image2-right" src="{{getGames[result.team1].getSrcIcon()}}"></ion-img>
+                        </ion-col>
+                        <ion-col width-25 class="vsPhoto">
+                            <ion-img src="images/vs.png"></ion-img>
+                        </ion-col>
+                        <ion-col width-25>
+                            <ion-img class="image2-left" src="{{getGames[result.team2].getSrcIcon()}}"></ion-img>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col class="textInfoLocal">
+                            <font size="2">{{result.local}}</font>
+                        </ion-col>
+                    </ion-row>
 
-                  <ion-row>
-                      <ion-col class="textDate">
-                          <font size="2">{{result.date.getDay()}}/{{result.date.getMonth()}}/{{result.date.getFullYear()}}</font>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row  class="divider">
-                      <ion-img src="images/whiteDivider.png"></ion-img>
-                  </ion-row>
-              </ion-grid>
-          </ion-item>
+                    <ion-row>
+                        <ion-col class="textDate">
+                            <font size="2">{{result.date.getDay()}}/{{result.date.getMonth()}}/{{result.date.getFullYear()}}</font>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="divider">
+                        <ion-img src="images/whiteDivider.png"></ion-img>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
         </ion-list>
     </ion-card>
 

@@ -39,6 +39,7 @@ export class MatchesPage {
     }
 
     public openLastMatchDetails(lastMatch: any){
+      console.log('entrei');
       this.navCtrl.push(MatchDetailsPage, {
         match: lastMatch
       });
