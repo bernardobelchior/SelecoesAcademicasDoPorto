@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import {TestData} from '../../test/testData';
+import {MatchDetailsPage} from '../matchesDetails/matchesDetails';
 
 @Component({
     templateUrl: 'build/pages/matches/matches.html',
@@ -36,6 +37,13 @@ export class MatchesPage {
 
         }
     }
+
+    public openLastMatchDetails(lastMatch: any){
+      this.navCtrl.push(MatchDetailsPage, {
+        match: lastMatch
+      });
+    }
+
 
     ionViewWillEnter() {
         console.log(new Date());

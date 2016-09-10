@@ -11499,9 +11499,28 @@ body {
   background-color: #fff; }
 
 .background.scroll-content {
-  background-color: #a9bcca; }
+  background: url(../../../www/images/background.jpg); }
+
+.background {
+  background: url("../../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top; }
+
+.cardBackground {
+  background: url("../../images/cardBackground.png");
+  background-repeat: repeat; }
+
+.noBackground {
+  background: url("../../images/noBackground.png"); }
+
+.divider {
+  background: url("../../images/whiteDivider.png");
+  background-repeat: repeat; }
 
 .header1 {
+  background: url("../../images/cardBackground.png");
+  font-size: 150%;
   text-align: center;
   color: #a74b59;
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
@@ -11519,8 +11538,6 @@ body {
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif; }
 
 .vsPhoto {
-  width: 10%;
-  height: 10%;
   display: block;
   margin: auto;
   opacity: 0.2; }
@@ -11540,7 +11557,7 @@ body {
   margin: auto; }
 
 .image2-left {
-  width: 100%;
+  width: 75%;
   height: 100%;
   -webkit-align-content: left;
   -ms-flex-line-pack: left;
@@ -11580,8 +11597,11 @@ body {
   display: block;
   margin: auto; }
 
-.row {
-  height: 8vh; }
+.rowUltimos {
+  height: 10vh; }
+
+.rowProximos {
+  height: 12vh; }
 
 body {
   background: #f9f9f9;
