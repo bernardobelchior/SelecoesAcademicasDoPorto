@@ -68,6 +68,7 @@ export class CalendarPage {
 
     nextMonth() {
         this.date.setMonth(this.date.getMonth() + 1);
+
         this.initDaysOfTheMonth();
     }
 
@@ -83,11 +84,17 @@ export class CalendarPage {
         }
     }
 
+    private sameDay(firstDate: Date, secondDate: Date) {
+      return (firstDate.getFullYear() === secondDate.getFullYear() &&
+        firstDate.getMonth() === secondDate.getMonth() &&
+        firstDate.getDate() === secondDate.getDate());
+    }
+
     hasEvent(day: number): boolean {
         let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
 
-        for (let game of TestData.getGames()) {
-            if (game.date.valueOf() == selectedDate.valueOf())
+        for (let match of TestData.getMatches()) {
+            if (this.sameDay(match.getDate(), selectedDate))
                 return true;
         }
 

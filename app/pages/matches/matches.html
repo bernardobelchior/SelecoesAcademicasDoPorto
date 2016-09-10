@@ -9,15 +9,15 @@
 <ion-content padding class="matches">
     <ion-card>
         <ion-card-header class="header1">Últimos Jogos</ion-card-header>
-        <ion-item *ngFor="let result of lastMatches">
+        <ion-item *ngFor="let match of lastMatches">
             <ion-card>
                 <ion-grid>
                     <ion-row>
-                        <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
-                        <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
+                        <ion-col width-50 class="textInfoLeft">{{match.getFirstTeam().getShortName()}}</ion-col>
+                        <ion-col width-50 class="textInfoRight">{{match.getSecondTeam().getShortName()}}</ion-col>
                     </ion-row>
                     <ion-row>
-                      <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
+                      <ion-col class="textInfoLocal"><font size="2">{{match.getLocal()}}</font></ion-col>
                       </ion-row>
                 </ion-grid>
             </ion-card>
@@ -26,15 +26,15 @@
     <ion-row></ion-row>
     <ion-card>
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
-        <ion-item *ngFor="let result of nextMatches">
+        <ion-item *ngFor="let match of nextMatches">
             <ion-card>
               <ion-grid>
                   <ion-row>
-                      <ion-col width-50 class="textInfoLeft">{{getGames[result.team1].getFullName()}}</ion-col>
-                      <ion-col width-50 class="textInfoRight">{{getGames[result.team2].getFullName()}}</ion-col>
+                      <ion-col width-50 class="textInfoLeft">{{match.getFirstTeam().getShortName()}}</ion-col>
+                      <ion-col width-50 class="textInfoRight">{{match.getSecondTeam().getShortName()}}</ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col class="textInfoLocal"><font size="2">{{result.local}}</font></ion-col>
+                    <ion-col class="textInfoLocal"><font size="2">{{match.getLocal()}}</font></ion-col>
                     </ion-row>
               </ion-grid>
             </ion-card>
