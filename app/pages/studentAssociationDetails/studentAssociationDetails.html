@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{studentAssociation.name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+  <ion-card-header>
+    Equipas
+  </ion-card-header>
+
+  <ion-list>
+    <button *ngFor="let modality of modalities" class="button button-assertive button-block">
+            <label (click)="openTeamPage(modality)" class="icon-right ion-ios-arrow-forward"
+            style="align-items: center;">
+                  {{modality}}
+              </label>
+    </button>
+
+  </ion-list>
+</ion-card>
+
+</ion-content>

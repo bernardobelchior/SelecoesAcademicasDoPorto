@@ -11,4 +11,12 @@ export class Team {
     public getModality(): Modality {
         return this.modality;
     }
+
+    public getModalityName(): string{
+      return this.modality.getSport();
+    }
+
+    public getPlayers(): string[]{
+      return this.players;
+    }
 }

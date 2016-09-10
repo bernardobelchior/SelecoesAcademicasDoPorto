@@ -22,6 +22,28 @@ export class TestData {
         ];
     }
 
+    public getModalities(){
+      return this.modalities;
+    }
+
+    public getStudentsAssociationsByName(name: string){
+      for(var i=0; i<this.studentsAssociations.length; i++){
+        if(this.studentsAssociations[i].getShortName()==name){
+          return this.studentsAssociations[i];
+        }
+      }
+    }
+
+    public getModalityById(id : number){
+
+          return this.modalities[id];
+
+    }
+
+    public getStudentsAssociations(){
+      return this.studentsAssociations;
+    }
+
     public static getGames(): any {
         return [
             {
