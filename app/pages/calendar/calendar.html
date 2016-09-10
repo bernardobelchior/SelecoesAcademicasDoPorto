@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Calendar
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="container">
+
+        <div class="calendar">
+
+            <header>
+
+                <!--  <tr><h2>{{date.toLocaleDateString("pt-PT", {month: "long"})}}</h2></tr>
+                <tr><h3><font size="2"> {{date.getFullYear()}}</font></h3></tr> -->
+                <p>
+                    <h2> {{date.toLocaleDateString("pt-PT", {month: "long"})}} </h2>
+
+                    <p>
+                        <h3> {{date.getFullYear()}} </h3>
+
+
+                        <button fab fab-left clear fab-top (click)="monthBefore()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                  </button>
+                        <button fab fab-right fab-top clear (click)="nextMonth()">
+                  <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+
+
+            </header>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <td>Dom</td>
+                        <td>Seg</td>
+                        <td>Ter</td>
+                        <td>Qua</td>
+                        <td>Qui</td>
+                        <td>Sex</td>
+                        <td>Sáb</td>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td *ngFor="let day of days[0]" (click)="clicked(day)">
+                            <div *ngIf="!day.getCurrentMonth()" class=prev-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth()" class=color>
+                                {{day.getDay()}}
+                            </div>
+
+                        </td>
+                        <!--  <td *ngFor="let day of restOfTheDays[0]">{{day}}</td>-->
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[1]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[2]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[3]" (click)="clicked(day)">{{day.getDay()}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[4]" (click)="clicked(day)">
+                            <div *ngIf="!day.getCurrentMonth()" class=next-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth()" class=color>
+                                {{day.getDay()}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[5]" (click)="clicked(day)">
+                          <div *ngIf="!day.getCurrentMonth()" class=next-month>
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="day.getCurrentMonth()" class=color>
+                              {{day.getDay()}}
+                          </div>
+                        </td>
+                    </tr>
+
+                    <div>
+                      <table *ngIf="hasEvent(selectedDay)">
+                        Evento no dia!!!
+                      </table>
+                      <table *ngIf="!hasEvent(selectedDay)">
+                        Não há eventos hoje.
+                      </table>
+                    </div>
+                </tbody>
+
+            </table>
+
+        </div>
+        <!-- end calendar -->
+
+    </div>
+    <!-- end container -->
+</ion-content>

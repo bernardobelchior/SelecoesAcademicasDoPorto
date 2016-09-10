@@ -1,6 +1,11 @@
 import {Modality, Gender} from '../class/modality';
 import {StudentsAssociation} from '../class/studentsAssociation.ts';
 import {Team} from '../class/team.ts';
+<<<<<<< HEAD
+=======
+import {Match} from '../class/match/match';
+import {VolleyballMatch} from '../class/match/volleyballMatch';
+>>>>>>> master
 
 export class TestData {
     private static modalities: Modality[] = [
@@ -12,16 +17,37 @@ export class TestData {
 
     private static studentsAssociations: StudentsAssociation[] = [
 <<<<<<< HEAD
+<<<<<<< HEAD
         new StudentsAssociation('aefeup', 'aefeup',"images/aefeup.png"),
         new StudentsAssociation('aefep', 'aefep',"images/aefep.png"),
         new StudentsAssociation('aeisep', 'aeisep',"images/aeisep.png"),
         new StudentsAssociation('aefadeup', 'aefadeup',"images/aefadeup.png")
     ];;
 =======
+=======
+>>>>>>> master
         new StudentsAssociation('AEFEUP', 'AEFEUP'),
         new StudentsAssociation('AEFEP', 'AEFEP'),
         new StudentsAssociation('AEISEP', 'AEISEP'),
         new StudentsAssociation('AEFADEUP', 'AEFADEUP')
+    ];
+<<<<<<< HEAD
+>>>>>>> master
+=======
+
+    private static matches: Match[] = [
+      new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
+        3, 0, 'Pavilhão Luís Falcão', TestData.modalities[0], new Date(2016, 8, 6, 18, 30)),
+
+        new VolleyballMatch(TestData.studentsAssociations[1], TestData.studentsAssociations[2],
+        [25, 26, 25], [23, 24, 20], 'Pavilhão Luís Falcão', TestData.modalities[1],
+      new Date(2016, 9, 11, 18, 30)),
+
+      new Match(TestData.studentsAssociations[2], TestData.studentsAssociations[3],
+         null, null, 'Pavilhão Luís Falcão', TestData.modalities[2], new Date(2016, 8, 17, 19, 30)),
+
+        new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
+          null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 18, 14, 0))
     ];
 >>>>>>> master
 
@@ -44,6 +70,7 @@ export class TestData {
     public static getModalityById(id: number) {
         return TestData.modalities[id];
     }
+<<<<<<< HEAD
 
     public static getStudentsAssociationsById(id: number) {
         return TestData.studentsAssociations[id];
@@ -66,63 +93,34 @@ export class TestData {
         }
 
         return studentsAssociationsWithModality;
+=======
+
+    public static getStudentsAssociationsById(id: number) {
+        return TestData.studentsAssociations[id];
+    }
+
+    public static populateTeams() {
+        for (let match of TestData.getMatches()) {
+            match.getFirstTeam().addTeam(new Team(match.getModality()));
+            match.getSecondTeam().addTeam(new Team(match.getModality()));
+        }
+>>>>>>> master
+    }
+
+    public static getStudentsAssociationsWithModality(modality: Modality): StudentsAssociation[] {
+        let studentsAssociationsWithModality: StudentsAssociation[] = [];
+
+        for (let studentAssociation of this.studentsAssociations) {
+            if (studentAssociation.hasModality(modality)) {
+                studentsAssociationsWithModality.push(studentAssociation);
+            }
+        }
+
+        return studentsAssociationsWithModality;
     }
 
 
-    public static getGames(): any {
-        return [
-            {
-                team1: 0,
-                team2: 1,
-                score1: '3',
-                score2: '0',
-                local: 'Pavilhão Luís Falcão',
-                modality: 0,
-                date: new Date(2016, 8, 6),
-                time: '18:30'
-            },
-            {
-                team1: 1,
-                team2: 2,
-                sets: [
-                    {
-                        score1: '25',
-                        score2: '23'
-                    },
-                    {
-                        score1: '26',
-                        score2: '24'
-                    },
-                    {
-                        score1: '25',
-                        score2: '20'
-                    }
-                ],
-                local: 'Pavilhão Luís Falcão',
-                modality: 1,
-                date: new Date(2016, 9, 11),
-                time: '18:30'
-            },
-            {
-                team1: 2,
-                team2: 3,
-                score1: null,
-                score2: null,
-                local: 'Pavilhão Luís Falcão',
-                modality: 2,
-                date: new Date(2016, 9, 12),
-                time: '19:30'
-            },
-            {
-                team1: 0,
-                team2: 1,
-                score1: null,
-                score2: null,
-                local: 'Pavilhão Luís Falcão',
-                modality: 3,
-                date: new Date(2016, 9, 15),
-                time: '18:30'
-            }
-        ];
+    public static getMatches(): Match[] {
+        return TestData.matches;
     }
 }

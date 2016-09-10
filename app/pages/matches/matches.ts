@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import {TestData} from '../../test/testData';
+<<<<<<< HEAD
 import {MatchDetailsPage} from '../matchesDetails/matchesDetails';
 
 @Component({
@@ -26,10 +27,21 @@ export class MatchesPage {
         this.nextMatches = [];
         this.getGames = testData.getStudensAssociations();
 =======
+=======
+import {Match} from '../../class/match/match';
+
+@Component({
+    templateUrl: 'build/pages/matches/matches.html'
+})
+export class MatchesPage {
+    private lastMatches : Match[];
+    private nextMatches : Match[];
+>>>>>>> master
 
     constructor(public viewCtrl: ViewController, private navCtrl: NavController) {
         this.lastMatches = [];
         this.nextMatches = [];
+<<<<<<< HEAD
         this.getGames = TestData.getStudentsAssociations();
 >>>>>>> master
     }
@@ -78,11 +90,28 @@ export class MatchesPage {
     }
 
 =======
+=======
+    }
+
+    public loadMatches() : void {
+      let today : Date = new Date();
+
+        for (let match of TestData.getMatches()) {
+            if (match.getDate().valueOf() < today.valueOf())
+                this.lastMatches.push(match);
+            else
+                this.nextMatches.push(match);
+>>>>>>> master
         }
     }
 
     ionViewWillEnter() {
+<<<<<<< HEAD
         this.loadGames();
+    }
+>>>>>>> master
+=======
+        this.loadMatches();
     }
 >>>>>>> master
 }
