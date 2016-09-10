@@ -35,7 +35,6 @@ var MyApp = (function () {
 }());
 exports.MyApp = MyApp;
 ionic_angular_1.ionicBootstrap(MyApp);
-
 },{"./pages/tabs/tabs":14,"./services/favorites":17,"@angular/core":166,"ionic-angular":480,"ionic-native":507}],2:[function(require,module,exports){
 "use strict";
 var Event = (function () {
@@ -57,7 +56,6 @@ var Event = (function () {
     return Event;
 }());
 exports.Event = Event;
-
 },{}],3:[function(require,module,exports){
 "use strict";
 var Match = (function () {
@@ -94,7 +92,6 @@ var Match = (function () {
     return Match;
 }());
 exports.Match = Match;
-
 },{}],4:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -123,7 +120,6 @@ var VolleyballMatch = (function (_super) {
     return VolleyballMatch;
 }(match_1.Match));
 exports.VolleyballMatch = VolleyballMatch;
-
 },{"./match":3}],5:[function(require,module,exports){
 "use strict";
 (function (Gender) {
@@ -166,7 +162,6 @@ var Modality = (function () {
     return Modality;
 }());
 exports.Modality = Modality;
-
 },{}],6:[function(require,module,exports){
 "use strict";
 var typescript_collections_1 = require('typescript-collections');
@@ -228,7 +223,6 @@ var StudentsAssociation = (function () {
     return StudentsAssociation;
 }());
 exports.StudentsAssociation = StudentsAssociation;
-
 },{"typescript-collections":620}],7:[function(require,module,exports){
 "use strict";
 var Team = (function () {
@@ -251,7 +245,6 @@ var Team = (function () {
     return Team;
 }());
 exports.Team = Team;
-
 },{}],8:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -348,8 +341,37 @@ var CalendarPage = (function () {
     return CalendarPage;
 }());
 exports.CalendarPage = CalendarPage;
-
 },{"../../class/event.ts":2,"../../test/testData.ts":18,"@angular/core":166,"ionic-angular":480}],9:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var ionic_angular_1 = require('ionic-angular');
+var testData_1 = require('../../test/testData');
+var MatchDetailsPage = (function () {
+    function MatchDetailsPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.match = navParams.get('match');
+        this.teams = testData_1.TestData.getStudentsAssociations();
+    }
+    MatchDetailsPage = __decorate([
+        core_1.Component({
+            templateUrl: 'build/pages/matchesDetails/matchesDetails.html'
+        }), 
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
+    ], MatchDetailsPage);
+    return MatchDetailsPage;
+}());
+exports.MatchDetailsPage = MatchDetailsPage;
+},{"../../test/testData":18,"@angular/core":166,"ionic-angular":480}],10:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -405,39 +427,7 @@ var MatchesPage = (function () {
     return MatchesPage;
 }());
 exports.MatchesPage = MatchesPage;
-
-},{"../../test/testData":18,"../matchesDetails/matchesDetails":10,"@angular/core":166,"ionic-angular":480}],10:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var ionic_angular_1 = require('ionic-angular');
-var testData_1 = require('../../test/testData');
-var MatchDetailsPage = (function () {
-    function MatchDetailsPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.match = navParams.get('match');
-        this.teams = testData_1.TestData.getStudentsAssociations();
-    }
-    MatchDetailsPage = __decorate([
-        core_1.Component({
-            templateUrl: 'build/pages/matchesDetails/matchesDetails.html'
-        }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
-    ], MatchDetailsPage);
-    return MatchDetailsPage;
-}());
-exports.MatchDetailsPage = MatchDetailsPage;
-
-},{"../../test/testData":18,"@angular/core":166,"ionic-angular":480}],11:[function(require,module,exports){
+},{"../../test/testData":18,"../matchesDetails/matchesDetails":9,"@angular/core":166,"ionic-angular":480}],11:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -473,7 +463,6 @@ var ModalitiesPage = (function () {
     return ModalitiesPage;
 }());
 exports.ModalitiesPage = ModalitiesPage;
-
 },{"../../test/testData":18,"../teamDetails/teamDetails":15,"@angular/core":166,"ionic-angular":480}],12:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -500,7 +489,6 @@ var OptionsPage = (function () {
     return OptionsPage;
 }());
 exports.OptionsPage = OptionsPage;
-
 },{"@angular/core":166,"ionic-angular":480}],13:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -538,7 +526,6 @@ var StudentAssociationDetailsPage = (function () {
     return StudentAssociationDetailsPage;
 }());
 exports.StudentAssociationDetailsPage = StudentAssociationDetailsPage;
-
 },{"../../test/testData":18,"../teamDetails/teamDetails":15,"@angular/core":166,"ionic-angular":480}],14:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -573,8 +560,7 @@ var TabsPage = (function () {
     return TabsPage;
 }());
 exports.TabsPage = TabsPage;
-
-},{"../calendar/calendar":8,"../matches/matches":9,"../options/options":12,"../teams/teams":16,"@angular/core":166}],15:[function(require,module,exports){
+},{"../calendar/calendar":8,"../matches/matches":10,"../options/options":12,"../teams/teams":16,"@angular/core":166}],15:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -606,7 +592,6 @@ var TeamDetailsPage = (function () {
     return TeamDetailsPage;
 }());
 exports.TeamDetailsPage = TeamDetailsPage;
-
 },{"../../services/favorites":17,"@angular/core":166,"ionic-angular":480}],16:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -649,7 +634,6 @@ var TeamsPage = (function () {
     return TeamsPage;
 }());
 exports.TeamsPage = TeamsPage;
-
 },{"../../test/testData":18,"../modalitiesPage/modalitiesPage":11,"../studentAssociationDetails/studentAssociationDetails":13,"@angular/core":166,"ionic-angular":480}],17:[function(require,module,exports){
 "use strict";
 var typescript_collections_1 = require('typescript-collections');
@@ -773,7 +757,6 @@ var Favorite = (function () {
     return Favorite;
 }());
 exports.Favorite = Favorite;
-
 },{"../test/testData":18,"ionic-angular":480,"ionic-native":507,"typescript-collections":620}],18:[function(require,module,exports){
 "use strict";
 var modality_1 = require('../class/modality');
@@ -845,7 +828,6 @@ var TestData = (function () {
     return TestData;
 }());
 exports.TestData = TestData;
-
 },{"../class/match/match":3,"../class/match/volleyballMatch":4,"../class/modality":5,"../class/studentsAssociation.ts":6,"../class/team.ts":7}],19:[function(require,module,exports){
 /**
  * @license

@@ -9360,7 +9360,7 @@ body {
   background: url("../../images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top; }
+  background-position: center; }
 
 .cardBackground {
   background: url("../../images/cardBackground.png");

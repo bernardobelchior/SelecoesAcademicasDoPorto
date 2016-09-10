@@ -1,6 +1,7 @@
 <ion-content padding class="background" scroll="false">
     <ion-card class="cardBackground">
         <ion-card-header class="header1">Últimos Jogos</ion-card-header>
+        <ion-card-content>
         <ion-list inset>
             <ion-item *ngFor="let match of lastMatches" class="noBackground">
                 <ion-grid>
@@ -31,7 +32,7 @@
 
                             <ion-row center>
                                 <ion-col width-80 class="textInfoLocal">
-                                    <font size="2">{{match.getLocal()}}</font>
+                                    <font size="2">{{match.getModality().getSport()}}</font>
                                 </ion-col>
 
                                 <ion-col width-20>
@@ -46,10 +47,12 @@
                 </ion-grid>
             </ion-item>
         </ion-list>
+      </ion-card-content>
     </ion-card>
 
     <ion-card class="cardBackground">
         <ion-card-header class="header1">Próximos Jogos</ion-card-header>
+        <ion-card-content>
         <ion-list inset>
             <ion-item *ngFor="let match of nextMatches" class="noBackground">
                 <ion-grid>
@@ -68,7 +71,7 @@
                     <ion-col width-80>
                         <ion-row center>
                             <ion-col class="textInfoLocal">
-                                <font size="2">{{match.getLocal()}}</font>
+                                <font size="2">{{match.getModality().getSport()}}</font>
                             </ion-col>
                         </ion-row>
 
@@ -77,7 +80,6 @@
                                 <font size="2">{{match.getDate().getDay()}}/{{match.getDate().getMonth()}}/{{match.getDate().getFullYear()}}</font>
                             </ion-col>
                         </ion-row>
-
 
                     </ion-col>
                     <ion-col width-20>
@@ -91,6 +93,7 @@
                 </ion-grid>
             </ion-item>
         </ion-list>
+      </ion-card-content>
     </ion-card>
 
 </ion-content>
