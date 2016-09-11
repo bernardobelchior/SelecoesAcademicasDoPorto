@@ -158,10 +158,23 @@
                     </tr>
 
                     <div>
-                        <table *ngIf="hasEvent(selectedDay)">
+                        <table *ngIf="hasEvent(selectedDay)" >
                             <ion-list>
-                                <ion-item *ngFor="let feature of features">
-                                    {{feature}}
+                                <ion-item *ngFor="let feature of features" (click)="openMatchDetails(feature)">
+                                    <ion-row center>
+                                        <ion-col>
+                                            {{feature.getFirstTeam().getFullName()}}
+                                        </ion-col>
+
+                                        <ion-col>
+                                            <p>VS</p>
+                                        </ion-col>
+
+                                        <ion-col>
+                                            {{feature.getSecondTeam().getFullName()}}
+                                        </ion-col>
+
+                                    </ion-row>
                                 </ion-item>
                             </ion-list>
                         </table>

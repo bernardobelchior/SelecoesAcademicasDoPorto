@@ -7,7 +7,7 @@
                     Os teus favoritos ainda não jogaram...<br> Adiciona alguns <a (click)="openTeamsTab()">aqui</a>.
                 </ion-item>
                 <a *ngIf="lastMatches.length > 0">
-                    <ion-item *ngFor="let match of lastMatches" class="noBackground">
+                    <ion-item *ngFor="let match of lastMatches" class="noBackground" (click)="openMatchDetails(match)">
                         <ion-grid>
                             <ion-row center>
                                 <ion-col width-100>

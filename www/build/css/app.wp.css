@@ -11281,9 +11281,17 @@ table {
   background: #00addf;
   color: #f9f9f9; }
 
+.no-games {
+  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+  color: #000308;
+  font-size: 1.5em; }
+
 .event {
   cursor: pointer;
   position: relative; }
+
+.event-another-month {
+  color: #cbd1d2; }
 
 .event:after {
   background: #00addf;

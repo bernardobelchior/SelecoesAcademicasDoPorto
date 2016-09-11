@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 import {Event} from  '../../class/event.ts';
 import {TestData} from '../../test/testData.ts';
 import {Match} from '../../class/match/match.ts';
+import {MatchDetailsPage} from '../matchesDetails/matchesDetails';
 
 @Component({
     templateUrl: 'build/pages/calendar/calendar.html'
@@ -14,7 +15,7 @@ export class CalendarPage {
     private atualMonthDays: number;
     private days: Event[][];
     private selectedDay: number;
-    private features: string[];
+    private features: Match[];
     private matches: Match[];
 
     constructor(private navController: NavController) {
@@ -141,9 +142,14 @@ export class CalendarPage {
 
         let i: number = 0;
         for (let match of this.matches) {
-            this.features[i] = match.getFirstTeam().getFullName() + " x " +
-                match.getSecondTeam().getFullName() + " | " + match.getLocal();
+            this.features[i] = match;
             i++;
         }
+    }
+
+    public openMatchDetails(match: Match): void {
+        this.navController.push(MatchDetailsPage, {
+            match: match
+        });
     }
 }
