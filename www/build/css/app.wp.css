@@ -11269,6 +11269,10 @@ table {
   text-align: center;
   width: 13vw; }
 
+.number {
+  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+  color: black; }
+
 .calendar .prev-month,
 .calendar .next-month {
   color: #cbd1d2; }
@@ -11278,8 +11282,8 @@ table {
   border: 2px solid #cbd1d2; }
 
 .current-day {
-  background: #00addf;
-  color: #f9f9f9; }
+  background: #20a99b;
+  color: black; }
 
 .no-games {
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
@@ -11291,10 +11295,10 @@ table {
   position: relative; }
 
 .event-another-month {
-  color: #cbd1d2; }
+  color: #20a99b; }
 
 .event:after {
-  background: #00addf;
+  background: #20a99b;
   border-radius: 50%;
   bottom: .5em;
   display: block;
@@ -11306,13 +11310,13 @@ table {
   width: .5em; }
 
 .event.current-day:after {
-  background: #f9f9f9; }
+  background: #20a99b; }
 
 .btn-prev,
 .btn-next {
   border: 2px solid #cbd1d2;
   border-radius: 50%;
-  color: #cbd1d2;
+  color: #20a99b;
   height: 2em;
   font-size: .75em;
   line-height: 2em;
@@ -11324,7 +11328,7 @@ table {
 
 .btn-prev:hover,
 .btn-next:hover {
-  background: #cbd1d2;
+  background: #20a99b;
   color: #f9f9f9; }
 
 .btn-prev {
