@@ -102,11 +102,10 @@ export class CalendarPage {
     }
 
     hasEvent(day: number): boolean {
-        let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
+        let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), day);
         this.matches = [];
         for (let match of TestData.getMatches()) {
             if (this.sameDay(match.getDate(), selectedDate)) {
-                console.log("aa" + match.getFirstTeam().getShortName());
                 this.matches.push(match);
             }
         }
@@ -118,12 +117,29 @@ export class CalendarPage {
 
         return false;
     }
+    hasEventVeri(day: number, month: number): boolean {
+        let selectedDate: Date;
+        if (month == -1)
+            selectedDate = new Date(this.date.getFullYear(), this.date.getMonth() - 1, day);
+        else if (month == 0)
+            selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), day);
+        else if (month == 1)
+            selectedDate = new Date(this.date.getFullYear(), this.date.getMonth() + 1, day);
+
+        this.matches = [];
+        for (let match of TestData.getMatches()) {
+            if (this.sameDay(match.getDate(), selectedDate)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     matchesInADay() {
         this.features = [];
 
         let i: number = 0;
-        console.log("numero de matches " + this.matches.length);
         for (let match of this.matches) {
             this.features[i] = match.getFirstTeam().getFullName() + " x " +
                 match.getSecondTeam().getFullName() + " | " + match.getLocal();

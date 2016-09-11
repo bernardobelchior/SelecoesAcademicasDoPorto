@@ -44,13 +44,22 @@
 
                     <tr>
                         <td *ngFor="let day of days[0]" (click)="clicked(day, 0)">
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=prev-month>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), -1)" class="prev-month">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay" class=prev-month>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), -1)" class="event event-another-month">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay && !hasEventVeri(day.getDay(), -1) " class="prev-month">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay && hasEventVeri(day.getDay(), -1) " class="event event-another-month">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), 0)" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), 0)" class="event">
                                 {{day.getDay()}}
                             </div>
                             <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
@@ -60,62 +69,89 @@
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[1]" (click)="clicked(day, 1)">
-                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                            <div *ngIf="day.getDay() !== selectedDay && hasEventVeri(day.getDay(), 0)" class="event">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() !== selectedDay && !hasEventVeri(day.getDay(), 0)" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class="current-day">
                                 {{day.getDay()}}
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[2]" (click)="clicked(day, 2)">
-                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                            <div *ngIf="day.getDay() !== selectedDay && hasEventVeri(day.getDay(), 0)" class="event">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() !== selectedDay && !hasEventVeri(day.getDay(), 0)" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class="current-day">
                                 {{day.getDay()}}
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[3]" (click)="clicked(day, 3)">
-                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                            <div *ngIf="day.getDay() !== selectedDay && hasEventVeri(day.getDay(), 0)" class="event">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() !== selectedDay && !hasEventVeri(day.getDay(), 0)" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class="current-day">
                                 {{day.getDay()}}
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[4]" (click)="clicked(day, 4)">
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=next-month>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), 1)"  class="event event-another-month">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay" class=next-month>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), 1)"  class="next-month">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay && !hasEventVeri(day.getDay(), 1)"  class="next-month">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay &&  hasEventVeri(day.getDay(), 1)"  class="event event-another-month">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), 0)" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), 0)" class="event">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class="current-day">
                                 {{day.getDay()}}
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[5]" (click)="clicked(day, 5)">
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=next-month>
+                          <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), 1)"  class="event event-another-month">
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), 1)"  class="next-month">
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay && !hasEventVeri(day.getDay(), 1)"  class="next-month">
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay &&  hasEventVeri(day.getDay(), 1)"  class="event event-another-month">
+                              {{day.getDay()}}
+                          </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && !hasEventVeri(day.getDay(), 1)" class="color">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="!day.getCurrentMonth() && day.getDay() == selectedDay" class=next-month>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay && hasEventVeri(day.getDay(), 1)" class="event">
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
-                                {{day.getDay()}}
-                            </div>
-                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class="current-day">
                                 {{day.getDay()}}
                             </div>
                         </td>
@@ -129,7 +165,7 @@
                                 </ion-item>
                             </ion-list>
                         </table>
-                        <table *ngIf="!hasEvent(selectedDay)">
+                        <table *ngIf="!hasEvent(selectedDay)" class=no-games>
                             No games today
                         </table>
                     </div>
