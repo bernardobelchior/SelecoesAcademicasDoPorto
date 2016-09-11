@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {TestData} from '../../test/testData';
 import {Team} from '../../class/team';
 import {StudentsAssociation} from '../../class/studentsAssociation';
 import {FavoritesService} from '../../services/favorites';
@@ -23,5 +22,7 @@ export class TeamDetailsPage {
         this.favoritesService = FavoritesService.getInstance();
     }
 
-
+    ionViewWillLeave() {
+      this.favoritesService.saveFavorites();
+    }
 }

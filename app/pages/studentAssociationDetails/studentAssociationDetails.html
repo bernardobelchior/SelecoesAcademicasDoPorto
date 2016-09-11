@@ -6,17 +6,20 @@
     </ion-navbar>
 </ion-header>
 
-
 <ion-content class="card-background-page">
     <ion-card class="noBackground">
         <img class="iconSize" src={{studentAssociation.srcImg}}/>
         <ion-list>
             <button *ngFor="let team of teams" (click)="openTeamPage(team)" class="button button-assertive button-block">
                 <ion-icon name="md-arrow-forward"></ion-icon>
+<<<<<<< HEAD
         <label
         style="align-items: center;">
+=======
+                  <label style="align-items: center;">
+>>>>>>> origin/master
               {{team.getModalityFullName()}}
-          </label>
+            </label>
             </button>
         </ion-list>
     </ion-card>

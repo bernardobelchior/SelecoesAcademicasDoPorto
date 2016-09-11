@@ -35,6 +35,7 @@ var MyApp = (function () {
 }());
 exports.MyApp = MyApp;
 ionic_angular_1.ionicBootstrap(MyApp);
+
 },{"./pages/tabs/tabs":14,"./services/favorites":17,"@angular/core":166,"ionic-angular":480,"ionic-native":507}],2:[function(require,module,exports){
 "use strict";
 var Event = (function () {
@@ -56,6 +57,7 @@ var Event = (function () {
     return Event;
 }());
 exports.Event = Event;
+
 },{}],3:[function(require,module,exports){
 "use strict";
 var Match = (function () {
@@ -92,6 +94,7 @@ var Match = (function () {
     return Match;
 }());
 exports.Match = Match;
+
 },{}],4:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
@@ -120,6 +123,7 @@ var VolleyballMatch = (function (_super) {
     return VolleyballMatch;
 }(match_1.Match));
 exports.VolleyballMatch = VolleyballMatch;
+
 },{"./match":3}],5:[function(require,module,exports){
 "use strict";
 (function (Gender) {
@@ -162,6 +166,7 @@ var Modality = (function () {
     return Modality;
 }());
 exports.Modality = Modality;
+
 },{}],6:[function(require,module,exports){
 "use strict";
 var typescript_collections_1 = require('typescript-collections');
@@ -228,7 +233,8 @@ var StudentsAssociation = (function () {
     return StudentsAssociation;
 }());
 exports.StudentsAssociation = StudentsAssociation;
-},{"typescript-collections":620}],7:[function(require,module,exports){
+
+},{"typescript-collections":619}],7:[function(require,module,exports){
 "use strict";
 var Team = (function () {
     function Team(modality) {
@@ -253,6 +259,7 @@ var Team = (function () {
     return Team;
 }());
 exports.Team = Team;
+
 },{}],8:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -377,7 +384,75 @@ var CalendarPage = (function () {
     return CalendarPage;
 }());
 exports.CalendarPage = CalendarPage;
+
 },{"../../class/event.ts":2,"../../test/testData.ts":18,"@angular/core":166,"ionic-angular":480}],9:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var ionic_angular_1 = require('ionic-angular');
+var ionic_angular_2 = require('ionic-angular');
+var testData_1 = require('../../test/testData');
+var favorites_1 = require('../../services/favorites');
+var matchesDetails_1 = require('../matchesDetails/matchesDetails');
+var MatchesPage = (function () {
+    function MatchesPage(viewCtrl, navCtrl) {
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.start = false;
+        this.lastMatches = [];
+        this.nextMatches = [];
+        this.favorites = favorites_1.FavoritesService.getInstance();
+    }
+    MatchesPage.prototype.loadMatches = function () {
+        var today = new Date();
+        this.lastMatches = [];
+        this.nextMatches = [];
+        // FIXME: What if the match is still running?
+        for (var _i = 0, _a = testData_1.TestData.getMatches(); _i < _a.length; _i++) {
+            var match = _a[_i];
+            if (this.favorites.isFavorited(match.getFirstTeam(), match.getModality()) || this.favorites.isFavorited(match.getSecondTeam(), match.getModality())) {
+                if (match.getDate().valueOf() < today.valueOf())
+                    this.lastMatches.push(match);
+                else
+                    this.nextMatches.push(match);
+            }
+        }
+    };
+    MatchesPage.prototype.openMatchDetails = function (match) {
+        this.navCtrl.push(matchesDetails_1.MatchDetailsPage, {
+            match: match
+        });
+    };
+    MatchesPage.prototype.openTeamsTab = function () {
+        // FIXME: Tab does not go to root, instead it goes to the last tab.
+        this.navCtrl.parent.select(2);
+        //  this.navCtrl.popToRoot();
+        //this.navCtrl.push(TeamsPage);
+    };
+    MatchesPage.prototype.ionViewWillEnter = function () {
+        if (!this.start || this.favorites.getFavoritesChanged())
+            this.loadMatches();
+        this.start = true;
+    };
+    MatchesPage = __decorate([
+        core_1.Component({
+            templateUrl: 'build/pages/matches/matches.html'
+        }), 
+        __metadata('design:paramtypes', [ionic_angular_2.ViewController, ionic_angular_1.NavController])
+    ], MatchesPage);
+    return MatchesPage;
+}());
+exports.MatchesPage = MatchesPage;
+
+},{"../../services/favorites":17,"../../test/testData":18,"../matchesDetails/matchesDetails":10,"@angular/core":166,"ionic-angular":480}],10:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -407,60 +482,8 @@ var MatchDetailsPage = (function () {
     return MatchDetailsPage;
 }());
 exports.MatchDetailsPage = MatchDetailsPage;
-},{"../../test/testData":18,"@angular/core":166,"ionic-angular":480}],10:[function(require,module,exports){
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var ionic_angular_1 = require('ionic-angular');
-var ionic_angular_2 = require('ionic-angular');
-var testData_1 = require('../../test/testData');
-var matchesDetails_1 = require('../matchesDetails/matchesDetails');
-var MatchesPage = (function () {
-    function MatchesPage(viewCtrl, navCtrl) {
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.start = false;
-        this.lastMatches = [];
-        this.nextMatches = [];
-    }
-    MatchesPage.prototype.loadMatches = function () {
-        var today = new Date();
-        for (var _i = 0, _a = testData_1.TestData.getMatches(); _i < _a.length; _i++) {
-            var match = _a[_i];
-            if (match.getDate().valueOf() < today.valueOf())
-                this.lastMatches.push(match);
-            else
-                this.nextMatches.push(match);
-        }
-    };
-    MatchesPage.prototype.openMatchDetails = function (match) {
-        this.navCtrl.push(matchesDetails_1.MatchDetailsPage, {
-            match: match
-        });
-    };
-    MatchesPage.prototype.ionViewWillEnter = function () {
-        if (!this.start)
-            this.loadMatches();
-        this.start = true;
-    };
-    MatchesPage = __decorate([
-        core_1.Component({
-            templateUrl: 'build/pages/matches/matches.html'
-        }), 
-        __metadata('design:paramtypes', [ionic_angular_2.ViewController, ionic_angular_1.NavController])
-    ], MatchesPage);
-    return MatchesPage;
-}());
-exports.MatchesPage = MatchesPage;
-},{"../../test/testData":18,"../matchesDetails/matchesDetails":9,"@angular/core":166,"ionic-angular":480}],11:[function(require,module,exports){
+
+},{"../../test/testData":18,"@angular/core":166,"ionic-angular":480}],11:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -496,6 +519,7 @@ var ModalitiesPage = (function () {
     return ModalitiesPage;
 }());
 exports.ModalitiesPage = ModalitiesPage;
+
 },{"../../test/testData":18,"../teamDetails/teamDetails":15,"@angular/core":166,"ionic-angular":480}],12:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -525,6 +549,7 @@ var OptionsPage = (function () {
     return OptionsPage;
 }());
 exports.OptionsPage = OptionsPage;
+
 },{"@angular/core":166,"ionic-angular":480}],13:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -562,6 +587,7 @@ var StudentAssociationDetailsPage = (function () {
     return StudentAssociationDetailsPage;
 }());
 exports.StudentAssociationDetailsPage = StudentAssociationDetailsPage;
+
 },{"../../test/testData":18,"../teamDetails/teamDetails":15,"@angular/core":166,"ionic-angular":480}],14:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -596,7 +622,8 @@ var TabsPage = (function () {
     return TabsPage;
 }());
 exports.TabsPage = TabsPage;
-},{"../calendar/calendar":8,"../matches/matches":10,"../options/options":12,"../teams/teams":16,"@angular/core":166}],15:[function(require,module,exports){
+
+},{"../calendar/calendar":8,"../matches/matches":9,"../options/options":12,"../teams/teams":16,"@angular/core":166}],15:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -619,6 +646,9 @@ var TeamDetailsPage = (function () {
         this.players = this.team.getPlayers();
         this.favoritesService = favorites_1.FavoritesService.getInstance();
     }
+    TeamDetailsPage.prototype.ionViewWillLeave = function () {
+        this.favoritesService.saveFavorites();
+    };
     TeamDetailsPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/teamDetails/teamDetails.html'
@@ -628,6 +658,7 @@ var TeamDetailsPage = (function () {
     return TeamDetailsPage;
 }());
 exports.TeamDetailsPage = TeamDetailsPage;
+
 },{"../../services/favorites":17,"@angular/core":166,"ionic-angular":480}],16:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -670,6 +701,7 @@ var TeamsPage = (function () {
     return TeamsPage;
 }());
 exports.TeamsPage = TeamsPage;
+
 },{"../../test/testData":18,"../modalitiesPage/modalitiesPage":11,"../studentAssociationDetails/studentAssociationDetails":13,"@angular/core":166,"ionic-angular":480}],17:[function(require,module,exports){
 "use strict";
 var typescript_collections_1 = require('typescript-collections');
@@ -768,6 +800,9 @@ var FavoritesService = (function () {
         });
         this.favoritesChanged = false;
     };
+    FavoritesService.prototype.getFavoritesChanged = function () {
+        return this.favoritesChanged;
+    };
     FavoritesService.prototype.favoriteHashFunction = function (favorite) {
         return (favorite.getStudentsAssociation().getId().toString() + ";" + favorite.getModality().getId().toString());
     };
@@ -793,7 +828,8 @@ var Favorite = (function () {
     return Favorite;
 }());
 exports.Favorite = Favorite;
-},{"../test/testData":18,"ionic-angular":480,"ionic-native":507,"typescript-collections":620}],18:[function(require,module,exports){
+
+},{"../test/testData":18,"ionic-angular":480,"ionic-native":507,"typescript-collections":619}],18:[function(require,module,exports){
 "use strict";
 var modality_1 = require('../class/modality');
 var studentsAssociation_ts_1 = require('../class/studentsAssociation.ts');
@@ -873,6 +909,7 @@ var TestData = (function () {
     return TestData;
 }());
 exports.TestData = TestData;
+
 },{"../class/match/match":3,"../class/match/volleyballMatch":4,"../class/modality":5,"../class/studentsAssociation.ts":6,"../class/team.ts":7}],19:[function(require,module,exports){
 /**
  * @license
@@ -96013,7 +96050,7 @@ var BSTree = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = BSTree;
 
-},{"./Queue":616,"./util":621}],608:[function(require,module,exports){
+},{"./Queue":615,"./util":620}],608:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary_1 = require('./Dictionary');
@@ -96199,7 +96236,7 @@ var Bag = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Bag; // End of bag
 
-},{"./Dictionary":609,"./Set":617,"./util":621}],609:[function(require,module,exports){
+},{"./Dictionary":609,"./Set":616,"./util":620}],609:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary = (function () {
@@ -96377,84 +96414,7 @@ var Dictionary = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Dictionary; // End of dictionary
 
-},{"./util":621}],610:[function(require,module,exports){
-"use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Dictionary_1 = require('./Dictionary');
-var util = require('./util');
-var FactoryDictionary = (function (_super) {
-    __extends(FactoryDictionary, _super);
-    /**
-     * Creates an empty dictionary.
-     * @class <p>Dictionaries map keys to values; each key can map to at most one value.
-     * This implementation accepts any kind of objects as keys.</p>
-     *
-     * <p>The default factory function should return a new object of the provided
-     * type. Example:</p>
-     * <pre>
-     * function petFactory() {
-     *  return new Pet();
-     * }
-     * </pre>
-     *
-     * <p>If the keys are custom objects a function which converts keys to unique
-     * strings must be provided. Example:</p>
-     * <pre>
-     * function petToString(pet) {
-     *  return pet.name;
-     * }
-     * </pre>
-     * @constructor
-     * @param {function():V=} defaultFactoryFunction function used to create a
-     * default object.
-     * @param {function(Object):string=} toStrFunction optional function used
-     * to convert keys to strings. If the keys aren't strings or if toString()
-     * is not appropriate, a custom function which receives a key and returns a
-     * unique string must be provided.
-     */
-    function FactoryDictionary(defaultFactoryFunction, toStrFunction) {
-        _super.call(this, toStrFunction);
-        this.defaultFactoryFunction = defaultFactoryFunction;
-    }
-    /**
-     * Associates the specified default value with the specified key in this dictionary,
-     * if it didn't contain the key yet. If the key existed, the existing value will be used.
-     * @param {Object} key key with which the specified value is to be
-     * associated.
-     * @param {Object} defaultValue default value to be associated with the specified key.
-     * @return {*} previous value associated with the specified key, or the default value,
-     * if the key didn't exist yet.
-     */
-    FactoryDictionary.prototype.setDefault = function (key, defaultValue) {
-        var currentValue = _super.prototype.getValue.call(this, key);
-        if (util.isUndefined(currentValue)) {
-            this.setValue(key, defaultValue);
-            return defaultValue;
-        }
-        return currentValue;
-    };
-    /**
-     * Returns the value to which this dictionary maps the specified key.
-     * Returns a default value created by the factory passed in the constructor,
-     * if this dictionary contains no mapping for this key. The missing key will
-     * automatically be added to the dictionary.
-     * @param {Object} key key whose associated value is to be returned.
-     * @return {*} the value to which this dictionary maps the specified key or
-     * a default value if the map contains no mapping for this key.
-     */
-    FactoryDictionary.prototype.getValue = function (key) {
-        return this.setDefault(key, this.defaultFactoryFunction());
-    };
-    return FactoryDictionary;
-}(Dictionary_1.default));
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = FactoryDictionary;
-
-},{"./Dictionary":609,"./util":621}],611:[function(require,module,exports){
+},{"./util":620}],610:[function(require,module,exports){
 "use strict";
 var collections = require('./util');
 var arrays = require('./arrays');
@@ -96682,7 +96642,7 @@ var Heap = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Heap;
 
-},{"./arrays":619,"./util":621}],612:[function(require,module,exports){
+},{"./arrays":618,"./util":620}],611:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -96901,7 +96861,7 @@ exports.default = LinkedDictionary; // End of LinkedDictionary
 // 	return this.equalsAux(this.firstNode,other.firstNode,eqF);
 // }
 
-},{"./Dictionary":609,"./util":621}],613:[function(require,module,exports){
+},{"./Dictionary":609,"./util":620}],612:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var arrays = require('./arrays');
@@ -97280,7 +97240,7 @@ var LinkedList = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = LinkedList; // End of linked list
 
-},{"./arrays":619,"./util":621}],614:[function(require,module,exports){
+},{"./arrays":618,"./util":620}],613:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary_1 = require('./Dictionary');
@@ -97450,7 +97410,7 @@ var MultiDictionary = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MultiDictionary; // end of multi dictionary
 
-},{"./Dictionary":609,"./arrays":619,"./util":621}],615:[function(require,module,exports){
+},{"./Dictionary":609,"./arrays":618,"./util":620}],614:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Heap_1 = require('./Heap');
@@ -97563,7 +97523,7 @@ var PriorityQueue = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = PriorityQueue; // end of priority queue
 
-},{"./Heap":611,"./util":621}],616:[function(require,module,exports){
+},{"./Heap":610,"./util":620}],615:[function(require,module,exports){
 "use strict";
 var LinkedList_1 = require('./LinkedList');
 var Queue = (function () {
@@ -97672,7 +97632,7 @@ var Queue = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Queue; // End of queue
 
-},{"./LinkedList":613}],617:[function(require,module,exports){
+},{"./LinkedList":612}],616:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var arrays = require('./arrays');
@@ -97842,7 +97802,7 @@ var Set = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Set; // end of Set
 
-},{"./Dictionary":609,"./arrays":619,"./util":621}],618:[function(require,module,exports){
+},{"./Dictionary":609,"./arrays":618,"./util":620}],617:[function(require,module,exports){
 "use strict";
 var LinkedList_1 = require('./LinkedList');
 var Stack = (function () {
@@ -97946,7 +97906,7 @@ var Stack = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Stack; // End of stack
 
-},{"./LinkedList":613}],619:[function(require,module,exports){
+},{"./LinkedList":612}],618:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 /**
@@ -98115,7 +98075,7 @@ function forEach(array, callback) {
 }
 exports.forEach = forEach;
 
-},{"./util":621}],620:[function(require,module,exports){
+},{"./util":620}],619:[function(require,module,exports){
 (function (global){
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") {
@@ -98538,7 +98498,7 @@ var BSTree = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = BSTree;
 
-},{"./Queue":10,"./util":14}],2:[function(require,module,exports){
+},{"./Queue":9,"./util":13}],2:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary_1 = require('./Dictionary');
@@ -98724,7 +98684,7 @@ var Bag = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Bag; // End of bag
 
-},{"./Dictionary":3,"./Set":11,"./util":14}],3:[function(require,module,exports){
+},{"./Dictionary":3,"./Set":10,"./util":13}],3:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary = (function () {
@@ -98902,84 +98862,7 @@ var Dictionary = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Dictionary; // End of dictionary
 
-},{"./util":14}],4:[function(require,module,exports){
-"use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Dictionary_1 = require('./Dictionary');
-var util = require('./util');
-var FactoryDictionary = (function (_super) {
-    __extends(FactoryDictionary, _super);
-    /**
-     * Creates an empty dictionary.
-     * @class <p>Dictionaries map keys to values; each key can map to at most one value.
-     * This implementation accepts any kind of objects as keys.</p>
-     *
-     * <p>The default factory function should return a new object of the provided
-     * type. Example:</p>
-     * <pre>
-     * function petFactory() {
-     *  return new Pet();
-     * }
-     * </pre>
-     *
-     * <p>If the keys are custom objects a function which converts keys to unique
-     * strings must be provided. Example:</p>
-     * <pre>
-     * function petToString(pet) {
-     *  return pet.name;
-     * }
-     * </pre>
-     * @constructor
-     * @param {function():V=} defaultFactoryFunction function used to create a
-     * default object.
-     * @param {function(Object):string=} toStrFunction optional function used
-     * to convert keys to strings. If the keys aren't strings or if toString()
-     * is not appropriate, a custom function which receives a key and returns a
-     * unique string must be provided.
-     */
-    function FactoryDictionary(defaultFactoryFunction, toStrFunction) {
-        _super.call(this, toStrFunction);
-        this.defaultFactoryFunction = defaultFactoryFunction;
-    }
-    /**
-     * Associates the specified default value with the specified key in this dictionary,
-     * if it didn't contain the key yet. If the key existed, the existing value will be used.
-     * @param {Object} key key with which the specified value is to be
-     * associated.
-     * @param {Object} defaultValue default value to be associated with the specified key.
-     * @return {*} previous value associated with the specified key, or the default value,
-     * if the key didn't exist yet.
-     */
-    FactoryDictionary.prototype.setDefault = function (key, defaultValue) {
-        var currentValue = _super.prototype.getValue.call(this, key);
-        if (util.isUndefined(currentValue)) {
-            this.setValue(key, defaultValue);
-            return defaultValue;
-        }
-        return currentValue;
-    };
-    /**
-     * Returns the value to which this dictionary maps the specified key.
-     * Returns a default value created by the factory passed in the constructor,
-     * if this dictionary contains no mapping for this key. The missing key will
-     * automatically be added to the dictionary.
-     * @param {Object} key key whose associated value is to be returned.
-     * @return {*} the value to which this dictionary maps the specified key or
-     * a default value if the map contains no mapping for this key.
-     */
-    FactoryDictionary.prototype.getValue = function (key) {
-        return this.setDefault(key, this.defaultFactoryFunction());
-    };
-    return FactoryDictionary;
-}(Dictionary_1.default));
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = FactoryDictionary;
-
-},{"./Dictionary":3,"./util":14}],5:[function(require,module,exports){
+},{"./util":13}],4:[function(require,module,exports){
 "use strict";
 var collections = require('./util');
 var arrays = require('./arrays');
@@ -99207,7 +99090,7 @@ var Heap = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Heap;
 
-},{"./arrays":13,"./util":14}],6:[function(require,module,exports){
+},{"./arrays":12,"./util":13}],5:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -99426,7 +99309,7 @@ exports.default = LinkedDictionary; // End of LinkedDictionary
 // 	return this.equalsAux(this.firstNode,other.firstNode,eqF);
 // }
 
-},{"./Dictionary":3,"./util":14}],7:[function(require,module,exports){
+},{"./Dictionary":3,"./util":13}],6:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var arrays = require('./arrays');
@@ -99805,7 +99688,7 @@ var LinkedList = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = LinkedList; // End of linked list
 
-},{"./arrays":13,"./util":14}],8:[function(require,module,exports){
+},{"./arrays":12,"./util":13}],7:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Dictionary_1 = require('./Dictionary');
@@ -99975,7 +99858,7 @@ var MultiDictionary = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MultiDictionary; // end of multi dictionary
 
-},{"./Dictionary":3,"./arrays":13,"./util":14}],9:[function(require,module,exports){
+},{"./Dictionary":3,"./arrays":12,"./util":13}],8:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var Heap_1 = require('./Heap');
@@ -100088,7 +99971,7 @@ var PriorityQueue = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = PriorityQueue; // end of priority queue
 
-},{"./Heap":5,"./util":14}],10:[function(require,module,exports){
+},{"./Heap":4,"./util":13}],9:[function(require,module,exports){
 "use strict";
 var LinkedList_1 = require('./LinkedList');
 var Queue = (function () {
@@ -100197,7 +100080,7 @@ var Queue = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Queue; // End of queue
 
-},{"./LinkedList":7}],11:[function(require,module,exports){
+},{"./LinkedList":6}],10:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 var arrays = require('./arrays');
@@ -100367,7 +100250,7 @@ var Set = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Set; // end of Set
 
-},{"./Dictionary":3,"./arrays":13,"./util":14}],12:[function(require,module,exports){
+},{"./Dictionary":3,"./arrays":12,"./util":13}],11:[function(require,module,exports){
 "use strict";
 var LinkedList_1 = require('./LinkedList');
 var Stack = (function () {
@@ -100471,7 +100354,7 @@ var Stack = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Stack; // End of stack
 
-},{"./LinkedList":7}],13:[function(require,module,exports){
+},{"./LinkedList":6}],12:[function(require,module,exports){
 "use strict";
 var util = require('./util');
 /**
@@ -100640,7 +100523,7 @@ function forEach(array, callback) {
 }
 exports.forEach = forEach;
 
-},{"./util":14}],14:[function(require,module,exports){
+},{"./util":13}],13:[function(require,module,exports){
 "use strict";
 var _hasOwnProperty = Object.prototype.hasOwnProperty;
 exports.has = function (obj, prop) {
@@ -100805,10 +100688,6 @@ var LinkedList_1 = require('./LinkedList');
 exports.LinkedList = LinkedList_1.default;
 var MultiDictionary_1 = require('./MultiDictionary');
 exports.MultiDictionary = MultiDictionary_1.default;
-var FactoryDictionary_1 = require('./FactoryDictionary');
-exports.FactoryDictionary = FactoryDictionary_1.default;
-var FactoryDictionary_2 = require('./FactoryDictionary');
-exports.DefaultDictionary = FactoryDictionary_2.default;
 var Queue_1 = require('./Queue');
 exports.Queue = Queue_1.default;
 var PriorityQueue_1 = require('./PriorityQueue');
@@ -100820,13 +100699,13 @@ exports.Stack = Stack_1.default;
 var _util = require('./util');
 exports.util = _util;
 
-},{"./BSTree":1,"./Bag":2,"./Dictionary":3,"./FactoryDictionary":4,"./Heap":5,"./LinkedDictionary":6,"./LinkedList":7,"./MultiDictionary":8,"./PriorityQueue":9,"./Queue":10,"./Set":11,"./Stack":12,"./arrays":13,"./util":14}]},{},[])
+},{"./BSTree":1,"./Bag":2,"./Dictionary":3,"./Heap":4,"./LinkedDictionary":5,"./LinkedList":6,"./MultiDictionary":7,"./PriorityQueue":8,"./Queue":9,"./Set":10,"./Stack":11,"./arrays":12,"./util":13}]},{},[])
 
 return require('typescript-collections');
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./BSTree":607,"./Bag":608,"./Dictionary":609,"./FactoryDictionary":610,"./Heap":611,"./LinkedDictionary":612,"./LinkedList":613,"./MultiDictionary":614,"./PriorityQueue":615,"./Queue":616,"./Set":617,"./Stack":618,"./arrays":619,"./util":621,"typescript-collections":620}],621:[function(require,module,exports){
+},{"./BSTree":607,"./Bag":608,"./Dictionary":609,"./Heap":610,"./LinkedDictionary":611,"./LinkedList":612,"./MultiDictionary":613,"./PriorityQueue":614,"./Queue":615,"./Set":616,"./Stack":617,"./arrays":618,"./util":620,"typescript-collections":619}],620:[function(require,module,exports){
 "use strict";
 var _hasOwnProperty = Object.prototype.hasOwnProperty;
 exports.has = function (obj, prop) {
@@ -100967,9 +100846,9 @@ function compareToEquals(compareFunction) {
 }
 exports.compareToEquals = compareToEquals;
 
-},{}],622:[function(require,module,exports){
+},{}],621:[function(require,module,exports){
 
-},{}]},{},[1,622])
+},{}]},{},[1,621])
 
 
 //# sourceMappingURL=app.bundle.js.map

@@ -68,7 +68,7 @@ export class FavoritesService {
             return (<any>cordova).file.dataDirectory;
     }
 
-    private saveFavorites(): void {
+    public saveFavorites(): void {
         if (!window.cordova) {
             console.log("You are not running this application in a mobile device. Favorites could not be saved.");
             return;
@@ -128,6 +128,10 @@ export class FavoritesService {
         });
 
         this.favoritesChanged = false;
+    }
+
+    public getFavoritesChanged(): boolean {
+        return this.favoritesChanged;
     }
 
     private favoriteHashFunction(favorite: Favorite): string {
