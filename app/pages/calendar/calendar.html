@@ -14,10 +14,10 @@
                         <h3> {{date.getFullYear()}} </h3>
 
 
-                        <button fab fab-left clear fab-top (click)="monthBefore()">
+                        <button fab fab-left clear fab-top (click)="monthBefore(daysInPreviousMonth)">
                     <ion-icon name="arrow-back"></ion-icon>
                   </button>
-                        <button fab fab-right fab-top clear (click)="nextMonth()">
+                        <button fab fab-right fab-top clear (click)="nextMonth(1)">
                   <ion-icon name="arrow-forward"></ion-icon>
                 </button>
 
@@ -45,44 +45,72 @@
                 <tbody>
 
                     <tr>
-                        <td *ngFor="let day of days[0]" (click)="clicked(day)">
-                            <div *ngIf="!day.getCurrentMonth()" class=prev-month>
+                        <td *ngFor="let day of days[0]" (click)="clicked(day, 0)">
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=prev-month>
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getCurrentMonth()" class=color>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
                                 {{day.getDay()}}
                             </div>
-
-                        </td>
-                        <!--  <td *ngFor="let day of restOfTheDays[0]">{{day}}</td>-->
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of days[1]" (click)="clicked(day)">{{day.getDay()}}</td>
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of days[2]" (click)="clicked(day)">{{day.getDay()}}</td>
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of days[3]" (click)="clicked(day)">{{day.getDay()}}</td>
-                    </tr>
-                    <tr>
-                        <td *ngFor="let day of days[4]" (click)="clicked(day)">
-                            <div *ngIf="!day.getCurrentMonth()" class=next-month>
-                                {{day.getDay()}}
-                            </div>
-                            <div *ngIf="day.getCurrentMonth()" class=color>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
                                 {{day.getDay()}}
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td *ngFor="let day of days[5]" (click)="clicked(day)">
-                          <div *ngIf="!day.getCurrentMonth()" class=next-month>
+                        <td *ngFor="let day of days[1]" (click)="clicked(day, 1)">
+                          <div *ngIf="day.getDay() !== selectedDay" class="color">
                               {{day.getDay()}}
                           </div>
-                          <div *ngIf="day.getCurrentMonth()" class=color>
+                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
                               {{day.getDay()}}
                           </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[2]" (click)="clicked(day, 2)">
+                          <div *ngIf="day.getDay() !== selectedDay" class="color">
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                              {{day.getDay()}}
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[3]" (click)="clicked(day, 3)">
+                          <div *ngIf="day.getDay() !== selectedDay" class="color">
+                              {{day.getDay()}}
+                          </div>
+                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                              {{day.getDay()}}
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[4]" (click)="clicked(day, 4)">
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=next-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
+                                {{day.getDay()}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let day of days[5]" (click)="clicked(day, 5)">
+                            <div *ngIf="!day.getCurrentMonth() && day.getDay() != selectedDay" class=next-month>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
+                                {{day.getDay()}}
+                            </div>
                         </td>
                     </tr>
 
