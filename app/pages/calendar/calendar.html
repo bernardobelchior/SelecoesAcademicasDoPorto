@@ -1,11 +1,3 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>
-            Calendar
-        </ion-title>
-    </ion-navbar>
-</ion-header>
-
 <ion-content>
     <div class="container">
 
@@ -60,7 +52,7 @@
                             <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
                                 {{day.getDay()}}
                             </div>
                         </td>
@@ -103,7 +95,7 @@
                             <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
                                 {{day.getDay()}}
                             </div>
                         </td>
@@ -116,7 +108,7 @@
                             <div *ngIf="day.getCurrentMonth() && day.getDay() != selectedDay" class=color>
                                 {{day.getDay()}}
                             </div>
-                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                            <div *ngIf="day.getDay() == selectedDay && day.getCurrentMonth()" class=current-day>
                                 {{day.getDay()}}
                             </div>
                         </td>

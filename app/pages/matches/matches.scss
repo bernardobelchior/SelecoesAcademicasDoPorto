@@ -1,25 +1,122 @@
-.matches {
+.background.scroll-content {
+    background: url(../../../www/images/background.jpg);
 }
 
-.header1{
-  text-align: center;
-  color: #a74b59;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: bold;
-}
-.textInfoLeft{
-  text-align: center;
-  font-size: 4;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+.background{
+  background: url('../../images/background.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
 }
 
-.textInfoRight{
-  text-align: center;
-  font-size: 4;
-  font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+.cardBackground{
+  background: url('../../images/cardBackground.png');
+  background-repeat: repeat;
 }
 
-.textInfoLocal{
-  text-align: center;
+.noBackground{
+  background: url('../../images/noBackground.png');
+
+}
+
+.divider{
+  background: url('../../images/whiteDivider.png');
+  background-repeat: repeat;
+  height: 1vh;
+}
+
+.right-arrow{
+  width: 5vh;
+  height: 5vh;
+  align-content: right;
+  display: block;
+  margin: auto;
+}
+
+
+.header1 {
+    background: url('../../images/cardBackground.png');
+    font-size: 150%;
+    text-align: center;
+    color: #a74b59;
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.styleScore {
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20;
+    text-align: center;
+    font-weight: bold;
+}
+
+.textInfoLocal {
+    text-align: left;
+    font-size: 6;
+    font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.vsPhoto {
+  width: 8vh;
+  height: 8vh;
+  display: block;
+  margin: auto;
+  opacity: 0.2;
+}
+
+.textDate{
+  text-align: left;
+  font-size: 6;
   font-family: "Avenir Next", "Nunito", "Helvetica Neue", Helvetica, sans-serif;
+
+}
+
+.image-left {
+    width: 8vh;
+    height: 8vh;
+    align-content: center;
+    display: inherit;
+    margin:auto;
+}
+
+.image2-left {
+  width: 8vh;
+  height: 8vh;
+    align-content: center;
+    display: inherit;
+    margin: auto;
+}
+
+.image-right {
+  width: 8vh;
+  height: 8vh;
+    align-content: center;
+    display: inherit;
+    margin: auto;
+}
+
+
+.image2-right {
+  width: 8vh;
+  height: 8vh;
+    align-content: center;
+    display: inherit;
+    margin: auto;
+}
+
+.image2-vs{
+  width: 10vh;
+  height: 10vh;
+    align-content: center;
+    align-items: center;
+    display: block;
+    margin: auto;
+}
+
+.rowUltimos{
+  height: 10vh;
+}
+
+.rowProximos{
+  height: 12vh;
 }

@@ -1,17 +1,24 @@
 import {Modality} from './modality';
 import {Team} from './team';
+import {Set} from 'typescript-collections'
 
 export class StudentsAssociation {
     public name: string;
+    private srcIcon: string;
     private static nextId: number = 0;
     private id: number;
     private activeTeams: Set<Team>;
 
-    constructor(private fullName: string, private shortName: string) {
+    constructor(private fullName: string, private shortName: string, private scrIcon: string) {
         this.name = fullName;
+        this.srcIcon = scrIcon;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
-        this.activeTeams = new Set<Team>();
+        this.activeTeams = new Set<Team>(this.teamHashFunction);
+    }
+
+    public getSrcIcon() {
+        return this.srcIcon;
     }
 
     public getFullName() {
@@ -44,25 +51,23 @@ export class StudentsAssociation {
         return teams;
     }
 
-    public getTeamByName(name: string) {
-        var modalities: string[];
-        for (var i = 0; i < this.activeTeams.size; i++) {
-            if (this.activeTeams.keys().return().value.getModalityName() == name)
-                return this.activeTeams.keys().return().value;
+    public getTeamByModality(modality: Modality): Team {
+        for (let team of this.activeTeams.toArray()) {
+            if (team.getModality().equals(modality))
+                return team;
         }
     }
 
     public hasModality(modality: Modality): boolean {
-        console.log(this.shortName);
-
-        this.activeTeams.forEach(function(team) {
-            console.log(team.getModality().equals(modality));
-
+        for (let team of this.activeTeams.toArray()) {
             if (team.getModality().equals(modality))
                 return true;
-
-        });
+        }
 
         return false;
+    }
+
+    private teamHashFunction(team: Team): string {
+        return team.getModality().getId().toString();
     }
 }

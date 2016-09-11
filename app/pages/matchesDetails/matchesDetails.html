@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-navbar>
+
+        <ion-grid>
+            <ion-row center>
+                <ion-col width-20>
+                    <ion-img class="image-left" src="{{match.getFirstTeam().getSrcIcon()}}"></ion-img>
+                </ion-col>
+                <ion-col width-20>
+                </ion-col>
+                <ion-col width-20>
+                    <h1>VS</h1>
+                </ion-col>
+                <ion-col width-20>
+                </ion-col>
+
+                <ion-col width-20>
+                    <ion-img class="image-right" src="{{match.getSecondTeam().getSrcIcon()}}"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            Resultado
+        </ion-card-header>
+
+        <ion-card-content>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col width-20 offset-25>
+                        <h1>{{match.getFirstScore()}}</h1>
+                    </ion-col>
+                    <ion-col width-20>
+                        <h1>:</h1>
+                    </ion-col>
+                    <ion-col width-20>
+                        <h1>{{match.getSecondScore()}}</h1>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-card-content>
+
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            Plantel
+        </ion-card-header>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            Informações Extra
+        </ion-card-header>
+
+        <ion-card-content>
+            <h2>{{match.getDate().getDay()}}/{{match.getDate().getMonth()}}/{{match.getDate().getFullYear()}}</h2>
+            <h2>{{match.getLocal()}}</h2>
+        </ion-card-content>
+
+    </ion-card>
+
+</ion-content>

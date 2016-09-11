@@ -7,4 +7,8 @@ import {NavController} from 'ionic-angular';
 export class OptionsPage {
   constructor(private navCtrl: NavController) {
   }
+
+  openCAPButton() {
+    window.open("http://www.cap.fap.pt/cap.html", "_system");
+  }
 }
