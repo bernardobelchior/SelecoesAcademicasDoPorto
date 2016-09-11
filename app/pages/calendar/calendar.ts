@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Event} from  '../../class/event.ts';
 import {TestData} from '../../test/testData.ts';
+import {Match} from '../../class/match/match.ts';
 
 @Component({
     templateUrl: 'build/pages/calendar/calendar.html'
@@ -13,17 +14,18 @@ export class CalendarPage {
     private atualMonthDays: number;
     private days: Event[][];
     private selectedDay: number;
-    private feature: string;
+    private features: string[];
+    private matches: Match[];
 
     constructor(private navController: NavController) {
         this.date = new Date();
         this.selectedDay = this.date.getDate();
-        console.log("ss " + this.selectedDay);
 
         this.initDaysOfTheMonth();
     }
 
     initDaysOfTheMonth() {
+
         this.selectedDay = this.date.getDate();
         this.date.setDate(1);
         this.date.getDay();
@@ -66,31 +68,30 @@ export class CalendarPage {
         }
     }
 
-    nextMonth(n:number) {
+    nextMonth() {
 
         this.date.setMonth(this.date.getMonth() + 1);
-        this.date.setDate(n);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     }
 
-    monthBefore(n:number) {
+    monthBefore() {
 
-        this.date.setMonth(this.date.getMonth() - 1);
-        this.date.setDate(n);
+        this.date.setDate(1);
+        this.date.setDate(-1);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     }
 
     clicked(event: Event, n: number) {
-      console.log("d "+ event.getDay());
         if (event.getCurrentMonth()) {
             this.selectedDay = event.getDay();
-            //  this.featuresInADay();
         }
         else if (n == 0) {
-            this.monthBefore(event.getDay());
+            this.monthBefore();
         }
         else if (n == 4 || n == 5) {
-            this.nextMonth(event.getDay());
+            this.nextMonth();
         }
     }
 
@@ -102,34 +103,31 @@ export class CalendarPage {
 
     hasEvent(day: number): boolean {
         let selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
-
+        this.matches = [];
         for (let match of TestData.getMatches()) {
-            if (this.sameDay(match.getDate(), selectedDate))
-                return true;
+            if (this.sameDay(match.getDate(), selectedDate)) {
+                console.log("aa" + match.getFirstTeam().getShortName());
+                this.matches.push(match);
+            }
+        }
+
+        if (this.matches.length > 0) {
+            this.matchesInADay();
+            return true;
         }
 
         return false;
     }
 
-    /*getEventsInDay(day: number) : Event[] {
+    matchesInADay() {
+        this.features = [];
 
-    }*/
-
-    /*featuresInADay() {
-        let d: Date = new Date(this.date.getFullYear(), this.date.getMonth(), this.day);
-        console.log("d " + d);
-        for (let i = 0; i < TestData.getGames().length; i++) {
-            console.log(TestData.getGames()[i].date);
-            if (TestData.getGames()[i].date.valueOf() == d.valueOf()) {
-                this.feature = TestData.getStudentsAssociations()[TestData.getGames()[i].team1].getFullName() + " " +
-                    TestData.getStudentsAssociations()[TestData.getGames()[i].team2].getFullName() + '\n' +
-                    " In " + TestData.getGames()[i].local + " at " + TestData.getGames()[i].time;
-                console.log("Entrei");
-                return;
-            }
+        let i: number = 0;
+        console.log("numero de matches " + this.matches.length);
+        for (let match of this.matches) {
+            this.features[i] = match.getFirstTeam().getFullName() + " x " +
+                match.getSecondTeam().getFullName() + " | " + match.getLocal();
+            i++;
         }
-        console.log("Estou a sair");
-        this.feature = " No games in this day";
-
-    }*/
+    }
 }
