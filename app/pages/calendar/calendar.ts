@@ -18,7 +18,6 @@ export class CalendarPage {
     constructor(private navController: NavController) {
         this.date = new Date();
         this.selectedDay = this.date.getDate();
-        console.log("ss " + this.selectedDay);
 
         this.initDaysOfTheMonth();
     }
@@ -66,14 +65,14 @@ export class CalendarPage {
         }
     }
 
-    nextMonth(n:number) {
+    nextMonth() {
 
         this.date.setMonth(this.date.getMonth() + 1);
         this.date.setDate(1);
         this.initDaysOfTheMonth();
     }
 
-    monthBefore(n:number) {
+    monthBefore() {
 
         this.date.setDate(1);
         this.date.setDate(-1);
@@ -82,16 +81,15 @@ export class CalendarPage {
     }
 
     clicked(event: Event, n: number) {
-      console.log("d "+ event.getDay());
         if (event.getCurrentMonth()) {
             this.selectedDay = event.getDay();
             //  this.featuresInADay();
         }
         else if (n == 0) {
-            this.monthBefore(event.getDay());
+            this.monthBefore();
         }
         else if (n == 4 || n == 5) {
-            this.nextMonth(event.getDay());
+            this.nextMonth();
         }
     }
 
