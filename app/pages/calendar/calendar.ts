@@ -18,12 +18,13 @@ export class CalendarPage {
     constructor(private navController: NavController) {
         this.date = new Date();
         this.selectedDay = this.date.getDate();
+        console.log("ss " + this.selectedDay);
 
         this.initDaysOfTheMonth();
     }
 
     initDaysOfTheMonth() {
-
+        this.selectedDay = this.date.getDate();
         this.date.setDate(1);
         this.date.getDay();
         this.daysInPreviousMonth = (new Date(this.date.getFullYear(), this.date.getMonth() - 1, 0)).getDate();
@@ -63,23 +64,34 @@ export class CalendarPage {
                 }
             }
         }
-
+        console.log("fdfd " + this.days[1][6].getDay());
     }
 
-    nextMonth() {
+    nextMonth(n:number) {
+
         this.date.setMonth(this.date.getMonth() + 1);
+        this.date.setDate(n);
         this.initDaysOfTheMonth();
     }
 
-    monthBefore() {
+    monthBefore(n:number) {
+
         this.date.setMonth(this.date.getMonth() - 1);
+        this.date.setDate(n);
         this.initDaysOfTheMonth();
     }
 
-    clicked(event: Event) {
-        if (event.getCurrentMonth) {
+    clicked(event: Event, n: number) {
+      console.log("d "+ event.getDay());
+        if (event.getCurrentMonth()) {
             this.selectedDay = event.getDay();
-          //  this.featuresInADay();
+            //  this.featuresInADay();
+        }
+        else if (n == 0) {
+            this.monthBefore(event.getDay());
+        }
+        else if (n == 4 || n == 5) {
+            this.nextMonth(event.getDay());
         }
     }
 
