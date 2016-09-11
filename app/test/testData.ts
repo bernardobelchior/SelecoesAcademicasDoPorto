@@ -13,19 +13,12 @@ export class TestData {
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
-<<<<<<< HEAD
         new StudentsAssociation('AEFEUP', 'AEFEUP', "images/aefeup.png", "images/aefeupImage.png"),
         new StudentsAssociation('AEFEP', 'AEFEP', "images/aefep.png","images/aefepImg.png"),
         new StudentsAssociation('AEISEP', 'AEISEP', "images/aeisep.png","images/aeisepImg.png"),
         new StudentsAssociation('AEFADEUP', 'AEFADEUP', "images/aefadeup.png","images/aefadeupImg.jpg")
     ];;
-=======
-        new StudentsAssociation('AEFEUP', 'AEFEUP', 'images/aefeup.png'),
-        new StudentsAssociation('AEFEP', 'AEFEP', 'images/aefep.png'),
-        new StudentsAssociation('AEISEP', 'AEISEP', 'images/aeisep.png'),
-        new StudentsAssociation('AEFADEUP', 'AEFADEUP', 'images/aefadeup.png')
-    ];
->>>>>>> master
+
 
     private static matches: Match[] = [
         new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
