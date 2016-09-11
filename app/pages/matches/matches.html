@@ -40,13 +40,11 @@
                                         </ion-col>
 
                                         <ion-col width-20>
-                                            <ion-img (click)="openMatchDetails(match)" class="right-arrow" src="images/rightArrow.png"></ion-img>
+                                            <ion-img class="right-arrow" src="images/rightArrow.png"></ion-img>
                                         </ion-col>
                                     </ion-row>
 
                                 </ion-col>
-
-
                             </ion-row>
                         </ion-grid>
                     </ion-item>
@@ -63,7 +61,7 @@
                     Os teus favoritos não têm jogos futuros...<br> Adiciona alguns <a (click)="openTeamsTab()">aqui</a>.
                 </ion-item>
                 <a *ngIf="nextMatches.length > 0">
-                    <ion-item *ngFor="let match of nextMatches" class="noBackground">
+                    <ion-item *ngFor="let match of nextMatches" (click)="openMatchDetails(match)" class="noBackground">
                         <ion-grid>
                             <ion-row center class="rowProximos">
                                 <ion-col width-25>
@@ -92,7 +90,7 @@
 
                                 </ion-col>
                                 <ion-col width-20>
-                                    <ion-img (click)="openMatchDetails(match)" class="right-arrow" src="images/rightArrow.png"></ion-img>
+                                    <ion-img class="right-arrow" src="images/rightArrow.png"></ion-img>
 
                                 </ion-col>
                             </ion-row>

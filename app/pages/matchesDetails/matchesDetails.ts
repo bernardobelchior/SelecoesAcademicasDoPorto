@@ -23,4 +23,8 @@ export class MatchDetailsPage {
       this.playersTeam1=this.match.getFirstTeam().getTeamByModality(this.match.getModality()).getPlayers();
       this.playersTeam2=this.match.getSecondTeam().getTeamByModality(this.match.getModality()).getPlayers();
     }
+
+    public isVolleyballMatch(): boolean {
+        return typeof (<any>this.match).getSets === 'function';
+    }
 }

@@ -48,6 +48,27 @@
         </ion-card-content>
 
     </ion-card>
+
+    <ion-card *ngIf="isVolleyballMatch()">
+        <ion-card-header>
+            Sets
+        </ion-card-header>
+
+        <ion-grid>
+            <ion-row *ngFor="let set of match.getSets()">
+                <ion-col width-20 offset-25>
+                    <h1>{{set[0]}}</h1>
+                </ion-col>
+                <ion-col width-20>
+                    <h1>:</h1>
+                </ion-col>
+                <ion-col width-20>
+                  <h1>{{set[1]}}</h1>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+
     <ion-card>
         <ion-card-header>
             Plantel
