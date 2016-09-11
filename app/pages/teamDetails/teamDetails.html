@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <a>{{association.getShortName() + " - " + team.getModalityFullName()}}</a>
+            {{association.getShortName() + " - " + team.getModalityFullName()}}
         </ion-title>
         <ion-buttons end>
             <button (click)="favoritesService.toggleFavorite(association, team.getModality())" *ngIf="favoritesService.isFavorited(association, team.getModality())">
