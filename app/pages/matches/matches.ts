@@ -19,7 +19,7 @@ export class MatchesPage {
         this.nextMatches = [];
     }
 
-    public loadMatches() : void {
+    public loadMatches(): void {
         let today: Date = new Date();
 
         for (let match of TestData.getMatches()) {
@@ -30,18 +30,15 @@ export class MatchesPage {
         }
     }
 
-    public openMatchDetails(match: Match) : void {
+    public openMatchDetails(match: Match): void {
         this.navCtrl.push(MatchDetailsPage, {
             match: match
         });
     }
 
-    ionViewWillEnter() : void {
-        console.log(new Date());
+    ionViewWillEnter(): void {
         if (!this.start)
             this.loadMatches();
         this.start = true;
-        console.log(this.nextMatches);
-        console.log(this.lastMatches);
     }
 }
