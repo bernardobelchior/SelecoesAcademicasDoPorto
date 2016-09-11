@@ -1,34 +1,24 @@
 <ion-header>
     <ion-navbar>
-        <table>
-            <tr>
-                <td>
-                    <ion-title>
-                        {{association.getShortName() + " - " + team.getModalityFullName()}}
-                    </ion-title>
-                </td>
-                <td>
-                    <i *ngIf="favoritesService.isFavorited(association, team.getModality())"
-                    (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star"></i>
-                    <i *ngIf="!favoritesService.isFavorited(association, team.getModality())"
-                    (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-ios-star-outline"></i>
-                </td>
-            </tr>
-        </table>
+        <ion-title>
+            <a>{{association.getShortName() + " - " + team.getModalityFullName()}}</a>
+
+            <a *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" style="text-align: right">UNFAV</a>
+            <a *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" style="text-align: right">FAV</a>
+        </ion-title>
+        <!--<i *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-android-star"></i>
+            <i *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-android-star-outline"></i>-->
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <ion-card-header>
-            Plantel
-        </ion-card-header>
-
-
-        <ion-list inset>
-            <ion-item *ngFor="let player of players">
-                {{player}}
-            </ion-item>
-        </ion-list>
+    <ion-card class="noBackground">
+        <ion-card-header class="header1">Plantel</ion-card-header>
+        <ion-card-content>
+                <ion-item *ngFor="let player of players" class="noBackground">
+                    <ion-img style="height: auto"class="image" src="images/perfil.jpg"></ion-img>
+                    <ion-item style="text-align: center">{{player}}</ion-item>
+                </ion-item>
+        </ion-card-content>
     </ion-card>
 </ion-content>
