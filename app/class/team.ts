@@ -1,26 +1,30 @@
 import {Modality} from './modality';
 
 export class Team {
-    //TODO: Create actual player class.
+    // TODO: Create actual player class.
     private players: string[];
 
     constructor(private modality: Modality) {
-      this.players = [];
+        this.players = [];
     }
 
     public getModality(): Modality {
         return this.modality;
     }
 
-    public getModalityName(): string{
-      return this.modality.getSport();
+    public getModalityName(): string {
+        return this.modality.getSport();
     }
 
     public getModalityFullName(): string {
-      return this.modality.getFullName();
+        return this.modality.getFullName();
     }
 
-    public getPlayers(): string[]{
-      return this.players;
+    public getPlayers(): string[] {
+        return this.players;
+    }
+
+    public addPlayer(player: string): void {
+        this.players.push(player);
     }
 }

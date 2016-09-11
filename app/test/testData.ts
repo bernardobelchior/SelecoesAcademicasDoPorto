@@ -13,11 +13,11 @@ export class TestData {
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
-        new StudentsAssociation('AEFEUP', 'AEFEUP', "images/aefeup.png"),
-        new StudentsAssociation('AEFEP', 'AEFEP', "images/aefep.png"),
-        new StudentsAssociation('AEISEP', 'AEISEP', "images/aeisep.png"),
-        new StudentsAssociation('AEFADEUP', 'AEFADEUP', "images/aefadeup.png")
-    ];;
+        new StudentsAssociation('AEFEUP', 'AEFEUP', 'images/aefeup.png'),
+        new StudentsAssociation('AEFEP', 'AEFEP', 'images/aefep.png'),
+        new StudentsAssociation('AEISEP', 'AEISEP', 'images/aeisep.png'),
+        new StudentsAssociation('AEFADEUP', 'AEFADEUP', 'images/aefadeup.png')
+    ];
 
     private static matches: Match[] = [
         new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
@@ -44,7 +44,7 @@ export class TestData {
 
     public static getStudentsAssociationsByName(name: string) {
         for (var i = 0; i < TestData.studentsAssociations.length; i++) {
-            if (TestData.studentsAssociations[i].getShortName() == name) {
+            if (TestData.studentsAssociations[i].getShortName() === name) {
                 return TestData.studentsAssociations[i];
             }
         }
@@ -74,6 +74,17 @@ export class TestData {
         for (let match of TestData.getMatches()) {
             match.getFirstTeam().addTeam(new Team(match.getModality()));
             match.getSecondTeam().addTeam(new Team(match.getModality()));
+        }
+
+
+        let firstNames: string[] = ['Manuel', 'Bernardo', 'Pedro', 'Nuno', 'Maria João', 'João', 'Filipa', 'Luísa', 'Inês', 'André'];
+        let lastNames: string[] = ['Sousa', 'Belchior', 'Costa', 'Ramos', 'Mira Paulo', 'Carvalho', 'Moreira', 'Magno', 'Teixeira', 'Ferreira', 'Reis'];
+
+        for (let studentsAssociation of TestData.studentsAssociations) {
+            let teams = studentsAssociation.getTeamsArray();
+            for (let i = 0; i < Math.random() * 9 + 10; i++) {
+                teams[Math.trunc(Math.random() * teams.length)].addPlayer(firstNames[Math.trunc(Math.random() * firstNames.length)] + ' ' + lastNames[Math.trunc(Math.random() * lastNames.length)]);
+            }
         }
     }
 
