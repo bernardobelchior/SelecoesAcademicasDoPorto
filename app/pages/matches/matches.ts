@@ -49,7 +49,7 @@ export class MatchesPage {
         // FIXME: Tab does not go to root, instead it goes to the last tab.
         (<Tabs>this.navCtrl.parent).select(2);
         //  this.navCtrl.popToRoot();
-        //this.navCtrl.push(TeamsPage);
+        // this.navCtrl.push(TeamsPage);
     }
 
     ionViewWillEnter(): void {
