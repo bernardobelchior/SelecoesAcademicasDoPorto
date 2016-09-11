@@ -69,14 +69,15 @@ export class CalendarPage {
     nextMonth(n:number) {
 
         this.date.setMonth(this.date.getMonth() + 1);
-        this.date.setDate(n);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     }
 
     monthBefore(n:number) {
 
-        this.date.setMonth(this.date.getMonth() - 1);
-        this.date.setDate(n);
+        this.date.setDate(1);
+        this.date.setDate(-1);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     }
 
