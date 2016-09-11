@@ -15,4 +15,8 @@ export class MatchDetailsPage {
         this.match = navParams.get('match');
         this.teams = TestData.getStudentsAssociations();
     }
+
+    public isVolleyballMatch(): boolean {
+        return typeof (<any>this.match).getSets === 'function';
+    }
 }

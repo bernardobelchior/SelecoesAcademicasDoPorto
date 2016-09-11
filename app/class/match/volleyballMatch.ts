@@ -25,4 +25,12 @@ export class VolleyballMatch extends Match {
         return scores;
     }
 
+    public getSets(): number[][] {
+        let sets: number[][] = [];
+        for (let i = 0; i < this.firstSets.length; i++) {
+            sets.push([this.firstSets[i], this.secondSets[i]]);
+        }
+        
+        return sets;
+    }
 }
