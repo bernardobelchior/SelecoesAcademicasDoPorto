@@ -166,16 +166,21 @@ exports.Modality = Modality;
 "use strict";
 var typescript_collections_1 = require('typescript-collections');
 var StudentsAssociation = (function () {
-    function StudentsAssociation(fullName, shortName, scrIcon) {
+    function StudentsAssociation(fullName, shortName, scrIcon, scrImg) {
         this.fullName = fullName;
         this.shortName = shortName;
         this.scrIcon = scrIcon;
+        this.scrImg = scrImg;
         this.name = fullName;
         this.srcIcon = scrIcon;
+        this.srcImg = scrImg;
         this.id = StudentsAssociation.nextId;
         StudentsAssociation.nextId++;
         this.activeTeams = new typescript_collections_1.Set(this.teamHashFunction);
     }
+    StudentsAssociation.prototype.getSrcItem = function () {
+        return this.srcImg;
+    };
     StudentsAssociation.prototype.getSrcIcon = function () {
         return this.srcIcon;
     };
@@ -242,6 +247,9 @@ var Team = (function () {
     Team.prototype.getPlayers = function () {
         return this.players;
     };
+    Team.prototype.addPlayer = function (player) {
+        this.players.push(player);
+    };
     return Team;
 }());
 exports.Team = Team;
@@ -268,6 +276,7 @@ var CalendarPage = (function () {
         this.initDaysOfTheMonth();
     }
     CalendarPage.prototype.initDaysOfTheMonth = function () {
+        this.selectedDay = this.date.getDate();
         this.date.setDate(1);
         this.date.getDay();
         this.daysInPreviousMonth = (new Date(this.date.getFullYear(), this.date.getMonth() - 1, 0)).getDate();
@@ -307,15 +316,24 @@ var CalendarPage = (function () {
     };
     CalendarPage.prototype.nextMonth = function () {
         this.date.setMonth(this.date.getMonth() + 1);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     };
     CalendarPage.prototype.monthBefore = function () {
-        this.date.setMonth(this.date.getMonth() - 1);
+        this.date.setDate(1);
+        this.date.setDate(-1);
+        this.date.setDate(1);
         this.initDaysOfTheMonth();
     };
-    CalendarPage.prototype.clicked = function (event) {
-        if (event.getCurrentMonth) {
+    CalendarPage.prototype.clicked = function (event, n) {
+        if (event.getCurrentMonth()) {
             this.selectedDay = event.getDay();
+        }
+        else if (n == 0) {
+            this.monthBefore();
+        }
+        else if (n == 4 || n == 5) {
+            this.nextMonth();
         }
     };
     CalendarPage.prototype.sameDay = function (firstDate, secondDate) {
@@ -325,12 +343,30 @@ var CalendarPage = (function () {
     };
     CalendarPage.prototype.hasEvent = function (day) {
         var selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(), this.selectedDay);
+        this.matches = [];
         for (var _i = 0, _a = testData_ts_1.TestData.getMatches(); _i < _a.length; _i++) {
             var match = _a[_i];
-            if (this.sameDay(match.getDate(), selectedDate))
-                return true;
+            if (this.sameDay(match.getDate(), selectedDate)) {
+                console.log("aa" + match.getFirstTeam().getShortName());
+                this.matches.push(match);
+            }
+        }
+        if (this.matches.length > 0) {
+            this.matchesInADay();
+            return true;
         }
         return false;
+    };
+    CalendarPage.prototype.matchesInADay = function () {
+        this.features = [];
+        var i = 0;
+        console.log("numero de matches " + this.matches.length);
+        for (var _i = 0, _a = this.matches; _i < _a.length; _i++) {
+            var match = _a[_i];
+            this.features[i] = match.getFirstTeam().getFullName() + " x " +
+                match.getSecondTeam().getFullName() + " | " + match.getLocal();
+            i++;
+        }
     };
     CalendarPage = __decorate([
         core_1.Component({
@@ -411,12 +447,9 @@ var MatchesPage = (function () {
         });
     };
     MatchesPage.prototype.ionViewWillEnter = function () {
-        console.log(new Date());
         if (!this.start)
             this.loadMatches();
         this.start = true;
-        console.log(this.nextMatches);
-        console.log(this.lastMatches);
     };
     MatchesPage = __decorate([
         core_1.Component({
@@ -779,7 +812,7 @@ var TestData = (function () {
     };
     TestData.getStudentsAssociationsByName = function (name) {
         for (var i = 0; i < TestData.studentsAssociations.length; i++) {
-            if (TestData.studentsAssociations[i].getShortName() == name) {
+            if (TestData.studentsAssociations[i].getShortName() === name) {
                 return TestData.studentsAssociations[i];
             }
         }
@@ -806,6 +839,15 @@ var TestData = (function () {
             match.getFirstTeam().addTeam(new team_ts_1.Team(match.getModality()));
             match.getSecondTeam().addTeam(new team_ts_1.Team(match.getModality()));
         }
+        var firstNames = ['Manuel', 'Bernardo', 'Pedro', 'Nuno', 'Maria João', 'João', 'Filipa', 'Luísa', 'Inês', 'André'];
+        var lastNames = ['Sousa', 'Belchior', 'Costa', 'Ramos', 'Mira Paulo', 'Carvalho', 'Moreira', 'Magno', 'Teixeira', 'Ferreira', 'Reis'];
+        for (var _b = 0, _c = TestData.studentsAssociations; _b < _c.length; _b++) {
+            var studentsAssociation = _c[_b];
+            var teams = studentsAssociation.getTeamsArray();
+            for (var i = 0; i < Math.random() * 9 + 10; i++) {
+                teams[Math.trunc(Math.random() * teams.length)].addPlayer(firstNames[Math.trunc(Math.random() * firstNames.length)] + ' ' + lastNames[Math.trunc(Math.random() * lastNames.length)]);
+            }
+        }
     };
     TestData.getMatches = function () {
         return TestData.matches;
@@ -817,16 +859,16 @@ var TestData = (function () {
         new modality_1.Modality('Andebol', modality_1.Gender.MALE)
     ];
     TestData.studentsAssociations = [
-        new studentsAssociation_ts_1.StudentsAssociation('AEFEUP', 'AEFEUP', "images/aefeup.png"),
-        new studentsAssociation_ts_1.StudentsAssociation('AEFEP', 'AEFEP', "images/aefep.png"),
-        new studentsAssociation_ts_1.StudentsAssociation('AEISEP', 'AEISEP', "images/aeisep.png"),
-        new studentsAssociation_ts_1.StudentsAssociation('AEFADEUP', 'AEFADEUP', "images/aefadeup.png")
+        new studentsAssociation_ts_1.StudentsAssociation('AEFEUP', 'AEFEUP', "images/aefeup.png", "images/aefeupImage.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('AEFEP', 'AEFEP', "images/aefep.png", "images/aefepImg.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('AEISEP', 'AEISEP', "images/aeisep.png", "images/aeisepImg.png"),
+        new studentsAssociation_ts_1.StudentsAssociation('AEFADEUP', 'AEFADEUP', "images/aefadeup.png", "images/aefadeupImg.jpg")
     ];
     TestData.matches = [
         new match_1.Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1], 3, 0, 'Pavilhão Luís Falcão', TestData.modalities[0], new Date(2016, 8, 6, 18, 30)),
         new volleyballMatch_1.VolleyballMatch(TestData.studentsAssociations[1], TestData.studentsAssociations[2], [25, 26, 25], [23, 24, 20], 'Pavilhão Luís Falcão', TestData.modalities[1], new Date(2016, 9, 11, 18, 30)),
         new match_1.Match(TestData.studentsAssociations[2], TestData.studentsAssociations[3], null, null, 'Pavilhão Luís Falcão', TestData.modalities[2], new Date(2016, 8, 17, 19, 30)),
-        new match_1.Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1], null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 18, 14, 0))
+        new match_1.Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1], null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 17, 14, 0))
     ];
     return TestData;
 }());

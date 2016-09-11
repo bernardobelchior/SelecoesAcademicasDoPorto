@@ -60,32 +60,32 @@
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[1]" (click)="clicked(day, 1)">
-                          <div *ngIf="day.getDay() !== selectedDay" class="color">
-                              {{day.getDay()}}
-                          </div>
-                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
-                              {{day.getDay()}}
-                          </div>
+                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                                {{day.getDay()}}
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[2]" (click)="clicked(day, 2)">
-                          <div *ngIf="day.getDay() !== selectedDay" class="color">
-                              {{day.getDay()}}
-                          </div>
-                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
-                              {{day.getDay()}}
-                          </div>
+                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                                {{day.getDay()}}
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td *ngFor="let day of days[3]" (click)="clicked(day, 3)">
-                          <div *ngIf="day.getDay() !== selectedDay" class="color">
-                              {{day.getDay()}}
-                          </div>
-                          <div *ngIf="day.getDay() == selectedDay" class=current-day>
-                              {{day.getDay()}}
-                          </div>
+                            <div *ngIf="day.getDay() !== selectedDay" class="color">
+                                {{day.getDay()}}
+                            </div>
+                            <div *ngIf="day.getDay() == selectedDay" class=current-day>
+                                {{day.getDay()}}
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -122,12 +122,16 @@
                     </tr>
 
                     <div>
-                      <table *ngIf="hasEvent(selectedDay)">
-                        Evento no dia!!!
-                      </table>
-                      <table *ngIf="!hasEvent(selectedDay)">
-                        Não há eventos hoje.
-                      </table>
+                        <table *ngIf="hasEvent(selectedDay)">
+                            <ion-list>
+                                <ion-item *ngFor="let feature of features">
+                                    {{feature}}
+                                </ion-item>
+                            </ion-list>
+                        </table>
+                        <table *ngIf="!hasEvent(selectedDay)">
+                            No games today
+                        </table>
                     </div>
                 </tbody>
 

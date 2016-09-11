@@ -1,33 +1,30 @@
 <ion-content>
-  <ion-card>
-  <ion-card-header>
-    Associações de Estudantes
-  </ion-card-header>
+    <ion-card>
+        <ion-card-header style="text-align: center">
+            Associações de Estudantes
+        </ion-card-header>
 
-  <ion-list>
-    <button *ngFor="let ae of studentAssociation" (click)="openStudentAssociationDetails(ae)" class="button button-assertive button-block">
-            <label class="icon-right ion-arrow-forward"
-            style="align-items: center;">
+        <ion-list>
+            <button *ngFor="let ae of studentAssociation" (click)="openStudentAssociationDetails(ae)" class="button button-assertive button-block">
+            <ion-icon name="md-arrow-forward"></ion-icon>
+            <label style="align-items: center;">
                   {{ae.getShortName()}}
               </label>
     </button>
 
-  </ion-list>
-</ion-card>
+        </ion-list>
+    </ion-card>
 
-<ion-card>
-<ion-card-header>
-  Modalidades
-</ion-card-header>
-
-<ion-list>
-  <button *ngFor="let modality of modalities" (click)="openModalityDetails(modality)" class="button button-assertive button-block">
-            <label class="icon-right ion-arrow-forward"
-            style="align-items: center;">
+    <ion-card>
+        <ion-card-header style="text-align: center">Modalidades</ion-card-header>
+        <ion-list>
+            <button *ngFor="let modality of modalities" (click)="openModalityDetails(modality)" class="button button-assertive button-block">
+            <ion-icon name="md-arrow-forward"></ion-icon>
+            <label style="align-items: center;">
                   {{modality.getFullName()}}
               </label>
   </button>
 
-</ion-list>
-</ion-card>
+        </ion-list>
+    </ion-card>
 </ion-content>

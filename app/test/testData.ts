@@ -13,11 +13,12 @@ export class TestData {
     ];
 
     private static studentsAssociations: StudentsAssociation[] = [
-        new StudentsAssociation('AEFEUP', 'AEFEUP', 'images/aefeup.png'),
-        new StudentsAssociation('AEFEP', 'AEFEP', 'images/aefep.png'),
-        new StudentsAssociation('AEISEP', 'AEISEP', 'images/aeisep.png'),
-        new StudentsAssociation('AEFADEUP', 'AEFADEUP', 'images/aefadeup.png')
-    ];
+        new StudentsAssociation('AEFEUP', 'AEFEUP', "images/aefeup.png", "images/aefeupImage.png"),
+        new StudentsAssociation('AEFEP', 'AEFEP', "images/aefep.png","images/aefepImg.png"),
+        new StudentsAssociation('AEISEP', 'AEISEP', "images/aeisep.png","images/aeisepImg.png"),
+        new StudentsAssociation('AEFADEUP', 'AEFADEUP', "images/aefadeup.png","images/aefadeupImg.jpg")
+    ];;
+
 
     private static matches: Match[] = [
         new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
@@ -31,7 +32,7 @@ export class TestData {
             null, null, 'Pavilhão Luís Falcão', TestData.modalities[2], new Date(2016, 8, 17, 19, 30)),
 
         new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
-            null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 18, 14, 0))
+            null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 17, 14, 0))
     ];
 
     public static getStudentsAssociations() {
