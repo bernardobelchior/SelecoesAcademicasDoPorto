@@ -14,8 +14,8 @@
 
         <ion-list>
             <button *ngFor="let association of studentsAssociations" (click)="openTeamPage(association)" class="button button-assertive button-block">
-            <label class="icon-right ion-ios-arrow-forward"
-            style="align-items: center;">
+              <ion-icon name="arrow-forward"></ion-icon>
+            <label style="align-items: center;">
                   {{association.getShortName()}}
               </label>
     </button>
