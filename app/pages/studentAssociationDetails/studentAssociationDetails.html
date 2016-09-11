@@ -3,6 +3,17 @@
         <ion-title>
             {{studentAssociation.name}}
         </ion-title>
+
+        <!--<ion-buttons end>
+            <button (click)="favoritesService.toggleFavorite(association, team.getModality())" *ngIf="favoritesService.isFavorited(association, team.getModality())">
+                <ion-icon primary item-right name="star"></ion-icon>
+            </button>
+
+            <button (click)="favorite()" *ngIf="!favoritesService.isFavorited(association, team.getModality())">
+              <ion-icon primary item-right name="star-outline"></ion-icon>
+          </button>
+        </ion-buttons>-->
+
     </ion-navbar>
 </ion-header>
 

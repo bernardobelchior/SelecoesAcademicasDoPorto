@@ -2,12 +2,17 @@
     <ion-navbar>
         <ion-title>
             <a>{{association.getShortName() + " - " + team.getModalityFullName()}}</a>
-
-            <a *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" style="text-align: right">UNFAV</a>
-            <a *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" style="text-align: right">FAV</a>
         </ion-title>
-        <!--<i *ngIf="favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-android-star"></i>
-            <i *ngIf="!favoritesService.isFavorited(association, team.getModality())" (click)="favoritesService.toggleFavorite(association, team.getModality())" class="ion-android-star-outline"></i>-->
+        <ion-buttons end>
+            <button (click)="favoritesService.toggleFavorite(association, team.getModality())" *ngIf="favoritesService.isFavorited(association, team.getModality())">
+                <ion-icon primary item-right name="star"></ion-icon>
+            </button>
+
+            <button (click)="favoritesService.toggleFavorite(association, team.getModality())" *ngIf="!favoritesService.isFavorited(association, team.getModality())">
+              <ion-icon primary item-right name="star-outline"></ion-icon>
+          </button>
+        </ion-buttons>
+
     </ion-navbar>
 </ion-header>
 

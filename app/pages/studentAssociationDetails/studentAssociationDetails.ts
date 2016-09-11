@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, NavOptions} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {TestData} from '../../test/testData';
 import {StudentsAssociation} from '../../class/studentsAssociation.ts';
 import {Team} from '../../class/team.ts';
 import {TeamDetailsPage} from '../teamDetails/teamDetails';
-import {Modality} from '../../class/modality';
+import {FavoritesService, Favorite} from '../../services/favorites';
 
 
 @Component({
@@ -25,4 +25,16 @@ export class StudentAssociationDetailsPage {
             association: this.studentAssociation
         });
     }
+
+  /*  public favoriteAssociation() {
+      studentsAssociation.getTeams().forEach(function(team: Team) {
+        FavoritesService.getInstance().addFavorite(new Favorite(this.studentsAssociation, team.getModality()));
+      });
+    }
+
+    public unfavoriteAssociation() {
+      studentsAssociation.getTeams().forEach(function(team: Team) {
+        FavoritesService.getInstance().removeFavorite(new Favorite(studentsAssociation, team.getModality()));
+      });
+    }*/
 }
