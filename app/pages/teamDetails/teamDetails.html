@@ -17,12 +17,22 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="noBackground">
+    <ion-card >
         <ion-card-header class="header1">Plantel</ion-card-header>
         <ion-card-content>
-                <ion-item *ngFor="let player of players" class="noBackground">
-                    <ion-img style="height: auto"class="image" src="images/perfil.jpg"></ion-img>
-                    <ion-item style="text-align: center">{{player}}</ion-item>
+                <ion-item *ngFor="let player of players">
+
+                  <ion-row>
+                      <ion-col>
+                        <ion-img class="image-left" src="images/perfil.jpg"></ion-img>
+                      </ion-col>
+                      <ion-col>
+                        <ion-item>{{player}}</ion-item>
+                      </ion-col>
+
+                  </ion-row>
+
+
                 </ion-item>
         </ion-card-content>
     </ion-card>
