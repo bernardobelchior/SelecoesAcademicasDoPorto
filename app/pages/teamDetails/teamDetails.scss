@@ -1,7 +1,17 @@
-.teams {
-
-}
+.teams {}
 
 .transparent-background {
-  opacity: 0.0;
-}
+    opacity: 0.0;
+
+    .noBackground {
+        background: url('../../images/noBackground.png');
+    }
+
+    .image {
+        width: 10vh;
+        height: 10vh;
+        align-content: center;
+        align-items: center;
+        display: block;
+        margin: auto;
+    }
