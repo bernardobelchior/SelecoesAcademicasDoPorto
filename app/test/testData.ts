@@ -31,7 +31,7 @@ export class TestData {
             null, null, 'Pavilhão Luís Falcão', TestData.modalities[2], new Date(2016, 8, 17, 19, 30)),
 
         new Match(TestData.studentsAssociations[0], TestData.studentsAssociations[1],
-            null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 18, 14, 0))
+            null, null, 'Pavilhão Luís Falcão', TestData.modalities[3], new Date(2016, 8, 17, 14, 0))
     ];
 
     public static getStudentsAssociations() {
